@@ -2,7 +2,7 @@ import { Navbar, Nav, NavLink } from "react-bootstrap";
 
 function theNavbar() {
     return (
-        <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
             <Navbar.Brand>
                 <NavLink to="/">
                     <img src="/assets/logo.svg" alt="Logo" />
