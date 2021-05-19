@@ -1,0 +1,16 @@
+$theme-colors: (
+    "info":  #fff,
+    "danger":  #FE7F50,
+    "success":#14B394,
+    "warning":#344648,
+    "primary":#FE7F50,
+);
+$first:#FE7F50;
+$second:#EDB518;
+$third:#F5F7F6;
+$fourth:#ffc8b4;
+
+@import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.scss";  
+@import "~bootstrap/scss/bootstrap";
+@use "sass:color";
+
