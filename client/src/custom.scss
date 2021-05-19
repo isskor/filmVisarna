@@ -10,7 +10,8 @@ $second:#EDB518;
 $third:#F5F7F6;
 $fourth:#ffc8b4;
 
-@import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.scss";  
+
 @import "~bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
 @use "sass:color";
 
