@@ -15,7 +15,7 @@ function App() {
             <Home />
           </Route>
         </MovieContextProvider>
-        <Route exact path="/DetailPage">
+        <Route exact path="/movies/:id">
           <DetailPage />
         </Route>
       </BrowserRouter>

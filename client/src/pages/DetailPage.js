@@ -5,7 +5,7 @@ function DetailPage() {
       <div className="info">
         <div className="cover"></div>
         <div className="mainInfo">
-          <div className="title"> Title </div>
+          <div className="title"> Title {movie.title} </div>
 
           <div className="grayText"> Directors </div>
           <div className="director"> Director</div>
