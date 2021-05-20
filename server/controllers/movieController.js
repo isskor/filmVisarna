@@ -6,6 +6,11 @@ exports.getMovies = async (req, res) => {
   res.json(movies);
 };
 
+exports.getMovieById = async (req, res) => {
+  let movie = await Movie.findById(id).exec();
+  res.json(movie);
+};
+
 // only for creating movies
 // exports.createMovie = async (req, res) => {
 //   const price = [120, 140, 160];

@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Nav from "./components/Navbar.js";
 import Home from "./pages/Home";
 import MovieContextProvider from "./contexts/MovieContext";
+import DetailPage from "./pages/DetailPage";
 
 function App() {
   return (
@@ -14,8 +15,10 @@ function App() {
             <Home />
           </Route>
         </MovieContextProvider>
+        <Route exact path="/DetailPage">
+          <DetailPage />
+        </Route>
       </BrowserRouter>
-      <h1>Hello World</h1>
     </div>
   );
 }
