@@ -14,10 +14,11 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
+
+          <Route exact path="/movies/:id">
+            <DetailPage />
+          </Route>
         </MovieContextProvider>
-        <Route exact path="/movies/:id">
-          <DetailPage />
-        </Route>
       </BrowserRouter>
     </div>
   );
