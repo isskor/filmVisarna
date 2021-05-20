@@ -1,17 +1,17 @@
 $theme-colors: (
-  'info': #fff,
-  'danger': #fe7f50,
-  'success': #4d648d,
-  'warning': #fe5050,
-  'primary': #283655,
+  "info": #fff,
+  "danger": #fe7f50,
+  "success": #4d648d,
+  "warning": #fe5050,
+  "primary": #283655,
 );
 $RaisinBlack: #1e1f26;
 $SpaceCadet: #283655;
 $QueenBlue: #4d648d;
 $BeauBlue: #d0e1f9;
 
-@import '~bootstrap/scss/bootstrap';
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 body {
   background-color: $SpaceCadet;
