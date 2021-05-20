@@ -7,7 +7,8 @@ exports.getMovies = async (req, res) => {
 };
 
 exports.getMovieById = async (req, res) => {
-  let movie = await Movie.findById(id).exec();
+  console.log(req.params);
+  let movie = await Movie.findById(req.params.id).exec();
   res.json(movie);
 };
 
