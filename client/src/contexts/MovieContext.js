@@ -1,34 +1,34 @@
-import { createContext,useState,useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 
- const MovieContext = createContext();
+export const MovieContext = createContext();
 
 const MovieContextProvider = (props) => {
-   const [movies, setMovies] = useState([]);
-  
-   useEffect(() => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
     fetchMovies();
-    console.log("hej")
-  },[]);
+    console.log("hej");
+  }, []);
 
-
-      const fetchMovies = async () => {
-        const res = await fetch("http://localhost:3001/api/movies");
-        console.log(res);
-        let data = await res.json();
-        const movies = data;
-        setMovies(movies);
-      };
-  
-     const values = {
-     movies,
-     fetchMovies,
-       };
-     
-       return (
-         <MovieContext.Provider value={values}>
-           {props.children}
-         </MovieContext.Provider>
-       );
+  const fetchMovies = async () => {
+    fetch("http://localhost:3001/api/movies")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("here is data", data);
+        setMovies(data);
+      });
   };
-  
-  export default MovieContextProvider
+
+  const values = {
+    movies,
+    fetchMovies,
+  };
+
+  return (
+    <MovieContext.Provider value={values}>
+      {props.children}
+    </MovieContext.Provider>
+  );
+};
+
+export default MovieContextProvider;
