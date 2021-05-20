@@ -1,9 +1,14 @@
-const Movie = require('../models/movie');
-const axios = require('axios');
+const Movie = require("../models/movie");
+const axios = require("axios");
 
 exports.getMovies = async (req, res) => {
   let movies = await Movie.find().exec();
   res.json(movies);
+};
+
+exports.getMovieById = async (req, res) => {
+  let movie = await Movie.findById(id).exec();
+  res.json(movie);
 };
 
 // only for creating movies
