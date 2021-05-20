@@ -9,6 +9,7 @@ exports.getMovies = async (req, res) => {
 // only for creating movies
 // exports.createMovie = async (req, res) => {
 //   const price = [120, 140, 160];
+// const query =[]
 //   let data = [];
 //   for (let i = 0; i < query.length; i++) {
 //     try {
