@@ -1,8 +1,7 @@
 import { MovieContext } from "../contexts/MovieContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-
-
+import { Container } from 'react-bootstrap';
 
 
 function Home() {
@@ -30,7 +29,7 @@ function Home() {
 
   return (
     <div className="Home">
-      <div className="movie-container">{movieitems}</div>
+      <Container className="movie-container">{movieitems}</Container>
     </div>
   );
 }
