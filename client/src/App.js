@@ -4,6 +4,7 @@ import Nav from "./components/Navbar.js";
 import Home from "./pages/Home";
 import MovieContextProvider from "./contexts/MovieContext";
 import DetailPage from "./pages/DetailPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
           <Nav />
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/LoginPage">
+            <LoginPage />
           </Route>
 
           <Route exact path="/movies/:id">
