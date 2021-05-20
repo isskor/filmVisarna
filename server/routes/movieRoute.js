@@ -8,7 +8,7 @@ const { createMovie, getMovies } = require('../controllers/movieController');
 
 // routes
 
-// router.post('/movie', createMovie);
+router.post('/movie', createMovie);
 router.get('/movies', getMovies);
 
 // export
