@@ -5,7 +5,8 @@ function Home() {
   const { movies } = useContext(MovieContext);
 
   const movieitems = movies.map((movie) => (
-    <div className="movie">
+    <div key={movie._id} 
+    className="movie">
       <img src={movie.poster} alt={movie.title} />
       <div className="movie-info">
         <h3>{movie.title}</h3>
@@ -15,7 +16,7 @@ function Home() {
 
   return (
     <div className="Home">
-      <div className="movie-container">{movies && movieitems}</div>
+      <div className="movie-container">{movieitems}</div>
     </div>
   );
 }
