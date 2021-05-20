@@ -1,5 +1,5 @@
-const Movie = require('../models/movie');
-const axios = require('axios');
+const Movie = require("../models/movie");
+const axios = require("axios");
 
 exports.getMovies = async (req, res) => {
   let movies = await Movie.find().exec();
