@@ -1,12 +1,28 @@
+import { MovieContext } from "../contexts/MovieContext";
+import { useContext } from "react";
+
 function Home() {
+  // const { movies } = useContext(MovieContext);
+
+  // const movieitems = movies.map(movie =>
+
+  //   <div className="movie">
+  //     <img src={movie.Poster} alt={movie.Title} />
+  //     <div className="movie-info">
+  //       <h3>{movie.Title}</h3>
+  //       <span>{movie.Metascore}</span>
+  //     </div>
+  //   </div>
+  // );
+
   return (
-    <div>
-      <h1 primary>This is home</h1>
-      <div className='row'>
-        <div className='col-lg-6'>hello</div>
-        <div className='col-lg-6'>hello2</div>
+    <div className="Home">
+
+      <div className="movie-container">
+        {/* {movieitems} */}
       </div>
     </div>
   );
+
 }
 export default Home;
