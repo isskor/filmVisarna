@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
 const axios = require("axios");
 const mongoose = require("mongoose");
@@ -7,6 +8,15 @@ const movieRoutes = require("./routes/movieRoute");
 const userRoutes = require("./routes/userRoutes");
 server.use(cors());
 server.use(express.json());
+
+app.use(
+  session({
+    secret: "veni vidi vici",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: "auto" },
+  })
+);
 
 mongoose
   .connect(
