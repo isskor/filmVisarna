@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FilterModal from "../components/FilterModal";
+import MovieBannerImage from "../components/MovieBannerImage";
 import { MovieContext } from "../contexts/MovieContext";
 import { useContext } from "react";
 function Home() {
@@ -18,6 +19,7 @@ function Home() {
 
   return (
     <div className="Home">
+      <MovieBannerImage />
       <FilterModal open={openFilter} setOpen={setOpenFilter} />
       <button onClick={() => setOpenFilter(true)}>filter</button>
       <div className="movie-container">{movieitems}</div>
