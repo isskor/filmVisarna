@@ -1,7 +1,8 @@
 
 import { Container, Form, Button, Alert } from "react-bootstrap"
-import { useState, useEffect } from "react"
+import { useState, useEffect ,useContext } from "react"
 import styles from "../styles/login.module.css"
+import { UserContext } from "../contexts/UserContext"
 
 export default function Register() {
     const [email, setEmail] = useState("");
@@ -9,6 +10,7 @@ export default function Register() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [inputValidation, setInputValidation] = useState(true);
     const [isValid, setIsValid] = useState(false);
+    const { createUser } = useContext(UserContext);
 
     useEffect(() => {
         if (confirmPassword === "") {
@@ -35,15 +37,19 @@ export default function Register() {
       const checkPassword = (e) => {
         setConfirmPassword(e.target.value)
       }
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        createUser();
+      }
 
 
   return (
     <Container >
     <h1 className="text-center login-info">Register</h1>
-    <Form>
+    <Form onsubmit={handleSubmit}>
     <Alert variant={"danger"} className={`${styles.Alert} ${Error ? styles.Alert.active : styles.Alert.inactive}`}>You did not enter the correct credentials</Alert>
         <Form.Group controlId="formBasicEmail">
-            <Form.Label className="login-info">Email adress</Form.Label>
+            <Form.Label className="login-info">First name</Form.Label>
             <Form.Control onChange={emailInput}  type="email" placeholder="Enter email" required />
         </Form.Group>
 
@@ -58,7 +64,7 @@ export default function Register() {
         </Form.Group>
 
         <Container className="text-center">
-            <Button variant="primary" type="submit">
+            <Button  variant="primary" type="submit">
                 REGISTER
             </Button>
         </Container>

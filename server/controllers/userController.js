@@ -8,6 +8,7 @@ exports.whoami = (req, res) => {
 //Logic to create a user
 exports.createUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
+ console.log(req.body);
 
   let user = await User.create({
     firstName: req.body.firstName,
@@ -16,7 +17,7 @@ exports.createUser = async (req, res) => {
     password: req.body.password,
   });
   console.log("New user added to database", user);
-  res.send("Added successfully!");
+  res.json({success:true});
 };
 
 //Logic to login a user
