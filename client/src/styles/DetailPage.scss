@@ -1,0 +1,104 @@
+.trailer {
+  width: 100%;
+  height: 50vh;
+  z-index: 0;
+}
+
+.trailer iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  max-width: 1300px;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.cover {
+  width: 250;
+  height: 230px;
+  margin-left: 20px;
+  margin-top: -60px;
+  z-index: 1;
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+}
+
+.mainInfo {
+  margin-left: 20%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  z-index: 1;
+}
+
+.title {
+  margin-top: -25px;
+  font-size: 1.7rem;
+}
+
+.director {
+  font-size: 1.7rem;
+}
+
+.grayText {
+  color: rgb(156, 152, 152);
+  margin-top: 15px;
+}
+
+.whiteText {
+  color: white;
+  max-width: 60%;
+  margin-bottom: 15px;
+}
+
+.sideInfo {
+  width: 20%;
+  margin-top: 40px;
+  height: 60%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.genres {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.booking {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5%;
+  width: 80%;
+  height: 40vh;
+  color: white;
+}
+
+.showTimes {
+  display: flex;
+  padding-left: 30px;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background: #4d648d;
+}
+
+@media screen and (max-width: 600px) {
+  .info {
+    flex-direction: column;
+  }
+  .cover {
+    width: 25%;
+    height: 45%;
+    margin-top: -80px;
+    margin-bottom: 40px;
+  }
+}
