@@ -9,7 +9,7 @@ const userRoutes = require("./routes/userRoutes");
 server.use(cors());
 server.use(express.json());
 
-app.use(
+server.use(
   session({
     secret: "veni vidi vici",
     resave: false,
