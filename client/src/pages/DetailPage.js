@@ -46,12 +46,16 @@ function DetailPage() {
               <div className="grayText"> Release Date </div>
               <div className="whiteText"></div>
 
-              <div className="whiteText">{movie.genres}</div>
+              <div className="grayText"> Genres </div>
+              <div className="genres">{movie.genres}</div>
 
+              <div className="grayText"> Age Rating </div>
               <div className="whiteText">{movie.rated}</div>
 
+              <div className="grayText"> Length </div>
               <div className="whiteText">{movie.runTime} min </div>
 
+              <div className="grayText"> Language </div>
               <div className="whiteText">{movie.language}</div>
             </div>
           </div>
