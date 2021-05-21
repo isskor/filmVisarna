@@ -11,7 +11,7 @@ function theNavbar() {
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>
         <Nav className='ml-auto'>
-          <Nav.Link to='/LoginPage'>Sign In</Nav.Link>
+          <Nav.Link to='/login'>Sign In</Nav.Link>
           <Nav.Link to='/'>Sign Up</Nav.Link>
           <Nav.Link to='/'> Checkout</Nav.Link>
         </Nav>
