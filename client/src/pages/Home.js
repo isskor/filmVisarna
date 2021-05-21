@@ -3,14 +3,12 @@ import FilterModal from '../components/FilterModal';
 import { MovieContext } from '../contexts/MovieContext';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-function Home() {
-  const [openFilter, setOpenFilter] = useState(false);
 import { Container } from 'react-bootstrap';
 
-
-
-
 function Home() {
+  const [openFilter, setOpenFilter] = useState(false);
+
+
   const history = useHistory();
   const handleClick = (movieId) => {
     if (movieId === undefined) {
@@ -38,7 +36,7 @@ function Home() {
     <div className='Home'>
       <FilterModal open={openFilter} setOpen={setOpenFilter} />
       <button onClick={() => setOpenFilter(true)}>filter</button>
-      </div>
+
       <Container className="movie-container">{movieitems}</Container>
     </div>
   );
