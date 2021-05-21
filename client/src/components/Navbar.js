@@ -1,19 +1,19 @@
-import { Navbar, Nav, NavLink } from 'react-bootstrap';
+import { Navbar, Nav, NavLink } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function theNavbar() {
   return (
-    <Navbar collapseOnSelect expand='lg' bg='primary' variant='dark'>
+    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Navbar.Brand>
-        <NavLink to='/'>
-          <img src='/assets/logo.svg' alt='Logo' />
-        </NavLink>
+        <Link to="/">
+          <img src="/assets/logo.svg" alt="Logo" />
+        </Link>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-      <Navbar.Collapse id='responsive-navbar-nav'>
-        <Nav className='ml-auto'>
-          <Nav.Link to='/'>Sign In</Nav.Link>
-          <Nav.Link to='/'>Sign Up</Nav.Link>
-          <Nav.Link to='/'> Checkout</Nav.Link>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="ml-auto">
+          <Link to="/login">Sign In</Link>
+          <Link to="/login">Sign Up</Link> <Link to="/"> Checkout</Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
