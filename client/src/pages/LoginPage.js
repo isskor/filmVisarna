@@ -6,7 +6,7 @@ export default function LoginPage() {
 
   return (
     <div>
-      <Container class="mx-auto col-md-4 py-5">
+      <Container className="mx-auto col-md-4 py-5">
         <Login />
       </Container>
 
