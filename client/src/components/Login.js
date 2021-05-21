@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom"
 
 export default function Login() {
     const history = useHistory();
-    const { users, setLoginState, setloggedInUser } = useContext(UserContext);
+    const { users, setLoginState, setloggedInUser, login } = useContext(UserContext);
     const [Error, setError] = useState(false);
 
     const [userNameInput, setUserName] = useState("");
@@ -23,27 +23,16 @@ export default function Login() {
         setError(false);
     }
 
-    const login = (e) => {
-        e.preventDefault();
-        users.map((user) => {
-            if ((user.email === userNameInput) && user.password === passwordInput) {
-                setLoginState(true)
-                setloggedInUser({
-                    email: user.email,
-                    password: user.password
-                });
-                history.push("/");
-            } else {
-                setError(true);
-            }
-        })
+    const handleLogin = () => {
+       const user = login(userNameInput, passwordInput);
+        alert(`logged in ${user}`);
     }
 
 
     return (
         <Container >
             <h1 className="text-center login-info">Login</h1>
-            <Form onSubmit={login}>
+            <Form onSubmit={handleLogin}>
                 <Alert variant={"danger"} className={`${styles.Alert} ${Error ? styles.Alert.active : styles.Alert.inactive}`}>You did not enter the correct credentials</Alert>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label className="login-info">Email</Form.Label>
