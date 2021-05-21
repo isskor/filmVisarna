@@ -15,9 +15,13 @@ function DetailPage() {
     <div>
       {movie && (
         <>
-          <div className="trailer"></div>
+          <div className="trailer">
+            <iframe width="100%" height="100%" src={movie.trailer} />
+          </div>
           <div className="info">
-            <div className="cover"></div>
+            <div className="cover">
+              <img src={movie.poster} />
+            </div>
             <div className="mainInfo">
               <div className="title"> {movie.title} </div>
 
