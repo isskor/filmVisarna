@@ -16,7 +16,15 @@ function DetailPage() {
       {movie && (
         <>
           <div className="trailer">
-            <iframe width="100%" height="100%" src={movie.trailer} />
+            <iframe
+              src={
+                movie.trailer +
+                '?frameborder="0"' +
+                '?controls="0"' +
+                '?rel="0"'
+              }
+              allowfullscreen="true"
+            ></iframe>
           </div>
           <div className="info">
             <div className="cover">
@@ -36,15 +44,15 @@ function DetailPage() {
             </div>
             <div className="sideInfo">
               <div className="grayText"> Release Date </div>
-              <div className="whiteText">Release Date</div>
+              <div className="whiteText"></div>
 
-              <div className="whiteText">Genre</div>
+              <div className="whiteText">{movie.genres}</div>
 
-              <div className="whiteText">Tags</div>
+              <div className="whiteText">{movie.rated}</div>
 
-              <div className="whiteText">Length</div>
+              <div className="whiteText">{movie.runTime} min </div>
 
-              <div className="whiteText">Language</div>
+              <div className="whiteText">{movie.language}</div>
             </div>
           </div>
           <div className="booking">
