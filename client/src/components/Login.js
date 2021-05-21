@@ -1,5 +1,5 @@
 
-import { Container, Form, Button,Alert } from "react-bootstrap"
+import { Container, Form, Button, Alert } from "react-bootstrap"
 import { useState, useContext } from "react"
 import { UserContext } from "../contexts/UserContext"
 import styles from "../styles/login.module.css"
@@ -44,7 +44,7 @@ export default function Login() {
         <Container >
             <h1 className="text-center login-info">Login</h1>
             <Form onSubmit={login}>
-            <Alert variant={"danger"} className={`${styles.Alert} ${Error ? styles.Alert.active : styles.Alert.inactive}`}>You did not enter the correct credentials</Alert>
+                <Alert variant={"danger"} className={`${styles.Alert} ${Error ? styles.Alert.active : styles.Alert.inactive}`}>You did not enter the correct credentials</Alert>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label className="login-info">Email</Form.Label>
                     <Form.Control onChange={handleUsername} type="email" placeholder="Enter email" required />
