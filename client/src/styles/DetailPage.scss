@@ -1,39 +1,46 @@
 .trailer {
   width: 100%;
-  border: 1px solid white;
-  height: 40vh;
+  height: 50vh;
   z-index: 0;
+}
+
+.trailer iframe {
+  width: 100%;
+  height: 100%;
 }
 
 .info {
   display: flex;
   flex-direction: row;
   margin: auto;
-  width: 90%;
-  height: 55vh;
-  border: 5px dotted green;
+  max-width: 1300px;
+  margin-bottom: 50px;
   color: white;
 }
 
 .cover {
-  border: 1px solid yellow;
-  width: 10%;
-  height: 50%;
+  width: 250;
+  height: 230px;
+  margin-left: 20px;
   margin-top: -60px;
   z-index: 1;
 }
 
-.mainInfo {
-  border: 3px solid orange;
-  margin-left: 10%;
-  display: flex;
-  flex-direction: column;
-  width: 70%;
+.cover img {
+  width: 100%;
   height: 100%;
 }
 
+.mainInfo {
+  margin-left: 20%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  z-index: 1;
+}
+
 .title {
-  margin-top: -30px;
+  margin-top: -25px;
   font-size: 1.7rem;
 }
 
@@ -53,13 +60,17 @@
 }
 
 .sideInfo {
-  border: 3px solid purple;
-  width: 10%;
+  width: 20%;
   margin-top: 40px;
   height: 60%;
   margin-left: 10%;
   display: flex;
   flex-direction: column;
+}
+
+.genres {
+  color: white;
+  margin-bottom: 15px;
 }
 
 .booking {
@@ -68,7 +79,6 @@
   margin-left: 5%;
   width: 80%;
   height: 40vh;
-  border: 5px dotted green;
   color: white;
 }
 
@@ -79,4 +89,16 @@
   width: 100%;
   height: 40px;
   background: #4d648d;
+}
+
+@media screen and (max-width: 600px) {
+  .info {
+    flex-direction: column;
+  }
+  .cover {
+    width: 25%;
+    height: 45%;
+    margin-top: -80px;
+    margin-bottom: 40px;
+  }
 }
