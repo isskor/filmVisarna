@@ -8,7 +8,7 @@ exports.whoami = (req, res) => {
 //Logic to create a user
 exports.createUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
- console.log(req.body);
+  console.log(req.body);
 
   let user = await User.create({
     firstName: req.body.firstName,
@@ -16,8 +16,9 @@ exports.createUser = async (req, res) => {
     email: req.body.email,
     password: req.body.password,
   });
+
   console.log("New user added to database", user);
-  res.json({success:true});
+  res.json({ success: true });
 };
 
 //Logic to login a user
@@ -26,13 +27,13 @@ exports.loginUser = async (req, res) => {
   let password = Encrypt.encrypt(req.body.password);
 
   let user = await User.findOne({ email, password }).exec();
-  user.password = null;
 
-  req.session.user = user;
   //If database could not find user send back error
   if (!user) {
-    res.status(404).send("Wrong credentials");
+    res.status(404).json({ error: "Wrong credentials" });
   }
+  user.password = null;
+  req.session.user = user;
   //Otherwise send back the user
   res.json(user);
 };
