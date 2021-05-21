@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FilterModal from "../components/FilterModal";
+import MovieBannerImage from "../components/MovieBannerImage";
 import { MovieContext } from "../contexts/MovieContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
@@ -33,6 +34,7 @@ function Home() {
 
   return (
     <div className="Home">
+      <MovieBannerImage />
       <FilterModal open={openFilter} setOpen={setOpenFilter} />
       <button onClick={() => setOpenFilter(true)}>filter</button>
 
