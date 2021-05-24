@@ -7,8 +7,6 @@ const FilterContextProvider = (props) => {
 
   const arr = await movies.find({
     price: { $in: ["120", "140", "160"] },
-    length: { $in: ["120", "140", "160"] },
-
     length: { $lte: 60, $lte: 120, $lte: 180 },
     rated: { $in: ["PG", "PG-13", "Rated"] },
     genre: {
