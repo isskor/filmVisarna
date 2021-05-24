@@ -26,14 +26,6 @@ const FilterContextProvider = (props) => {
     }
   };
 
-  useEffect(() => {
-    fetch("http://localhost:3001/api/movies")
-      .then((res) => res.json())
-      .then((data) => {
-        setMovies(data);
-      });
-  }, []);
-
   const values = { filterMovies };
 
   return (

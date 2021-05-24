@@ -16,8 +16,8 @@ exports.filterMovies = async (req, res) => {
   console.log(req.body);
   const filteredMovies = await Movie.find({
     rated: { $in: req.body.rated },
-    price: { $in: req.body.price },
-    runTime: { $lte: req.body.runTime },
+    price: { $lte: req.body.price },
+    runTime: { $in: req.body.runTime },
     genres: { $in: req.body.genres },
     language: { $in: req.body.language },
   }).exec();
