@@ -20,8 +20,30 @@ exports.findMovieByKeyword = async (req, res) => {
   );
   console.log(req.body.keyword);
   console.log("query", query);
-  let foundMovies = await Movie.find({ title: query }).exec();
-  res.json(foundMovies);
+
+  let foundMovies = await Movie.find({
+    title: query,
+  }).exec();
+
+  let foundDirectors = await Movie.find({
+    directors: query,
+  }).exec();
+
+  let foundActors = await Movie.find({
+    actors: query,
+  }).exec();
+
+  if (foundMovies) {
+    res.json(foundMovies);
+  }
+  //else if (foundDirectors) {
+  //   res.json(foundDirectors);
+  // } else if (foundActors) {
+  //   res.json(foundActors);
+  // }
+  else {
+    res.send("No movies found...");
+  }
 };
 
 // only for creating movies

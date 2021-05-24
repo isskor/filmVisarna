@@ -40,7 +40,11 @@ function Home() {
       <button onClick={() => setOpenFilter(true)}>filter</button>
       <SearchComponent />
       <Container className="movie-container">
-        {movies.length > 0 && movieItems ? movieItems : <h3>Loading...</h3>}
+        {movies.length > 0 && movieItems ? (
+          movieItems
+        ) : (
+          <h3>No movies found...</h3>
+        )}
       </Container>
     </div>
   );

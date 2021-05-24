@@ -28,8 +28,7 @@ const MovieContextProvider = (props) => {
     movies = await movies.json();
     if (movies) {
       setMovies(movies);
-    } else {
-      alert("No movies found!");
+      return;
     }
   };
 
