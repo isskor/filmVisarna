@@ -28,6 +28,7 @@ const MovieContextProvider = (props) => {
     movies,
     movie,
     getMovieById,
+    setMovies,
   };
 
   return (
