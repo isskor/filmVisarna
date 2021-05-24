@@ -13,7 +13,7 @@ function DetailPage() {
   useEffect(() => {
     getMovieById(history.id);
     fetchShowtimes(history.id, date);
-  }, []);
+  }, [date, history.id]);
 
   const fetchShowtimes = async (id, date) => {
     fetch(`http://localhost:3001/api/showtime?id=${id}&date=${date}`)

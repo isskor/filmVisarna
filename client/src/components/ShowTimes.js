@@ -8,6 +8,7 @@ const ShowTimes = ({ showTimes }) => {
         showTimes.map((s) => (
           <div className='row align-items-center' key={s._id}>
             <div className='col-2'>{s.date}</div>
+            <div className='col-2'>{s.saloon.name}</div>
             <div className='col-2'>{s.time}</div>
             <div className='col ticket_btn'>
               <button>Tickets</button>
