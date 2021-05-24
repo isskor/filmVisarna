@@ -11,20 +11,20 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <UserContextProvider>
-        <MovieContextProvider>
-          <Nav />
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/login">
-            <LoginPage />
-          </Route>
+        <UserContextProvider>
+          <MovieContextProvider>
+            <Nav />
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/login">
+              <LoginPage />
+            </Route>
 
-          <Route exact path="/movies/:id">
-            <DetailPage />
-          </Route>
-        </MovieContextProvider>
+            <Route exact path="/movies/:id">
+              <DetailPage />
+            </Route>
+          </MovieContextProvider>
         </UserContextProvider>
       </BrowserRouter>
     </div>
