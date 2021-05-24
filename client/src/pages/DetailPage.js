@@ -1,12 +1,18 @@
 import { MovieContext } from '../contexts/MovieContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect,useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Calendar from 'react-calendar';
 
 function DetailPage() {
   const { movie, getMovieById } = useContext(MovieContext);
   const history = useParams();
   console.log(history);
+  const [date, setDate] = useState(new Date(2021,2,25));
 
+  const onChange = date => {
+    setDate(date);
+    console.log(date);
+  }
   useEffect(() => {
     getMovieById(history.id);
   }, []);
@@ -61,7 +67,18 @@ function DetailPage() {
           </div>
           <div className='booking'>
             <div className='showTimes'> Show times </div>
-          </div>{' '}
+            <div className="Sample">
+  
+      <div className="Sample__container">
+        <main className="Sample__container__content">
+          <Calendar
+            onChange={onChange}
+            value={date}
+          />
+        </main>
+      </div>
+    </div>
+          </div>{date.toString()}
         </>
       )}
     </div>
