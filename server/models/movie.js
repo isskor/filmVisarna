@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema(
   {
@@ -7,9 +7,9 @@ const movieSchema = new mongoose.Schema(
     trailer: String,
     actors: String,
     director: String,
-    runTime: String,
-    genres: String,
-    language: String,
+    runTime: Number,
+    genres: [],
+    language: [],
     poster: String,
     plot: String,
     price: Number,
@@ -17,4 +17,4 @@ const movieSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Movie", movieSchema);
+module.exports = mongoose.model('Movie', movieSchema);
