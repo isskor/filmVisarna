@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { FilterContext } from "../contexts/FilterContext";
+import { useContext } from "react";
 
 const initState = {
   rated: [],
-  price: ["120"],
+  price: [],
   runTime: [],
   genres: [],
   language: [],
 };
 
 const FilterModal = ({ open, setOpen }) => {
+  const { filterMovies } = useContext(FilterContext);
   const [genreList, setGenreList] = useState([]);
   const [filters, setFilters] = useState(initState);
 
@@ -51,6 +54,8 @@ const FilterModal = ({ open, setOpen }) => {
     e.preventDefault();
     setOpen(false);
     // logic
+
+    filterMovies(filters);
   };
 
   return (
