@@ -8,6 +8,7 @@ const {
   createMovie,
   getMovies,
   getMovieById,
+  findMovieByKeyword,
 } = require("../controllers/movieController");
 
 // routes
@@ -15,6 +16,7 @@ const {
 // router.post('/movie', createMovie);
 router.get("/movies", getMovies);
 router.get("/movies/:id", getMovieById);
+router.post("/movies-by-keyword", findMovieByKeyword);
 
 // export
 module.exports = router;

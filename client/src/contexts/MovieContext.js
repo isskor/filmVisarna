@@ -16,6 +16,23 @@ const MovieContextProvider = (props) => {
       });
   };
 
+  const getMoviesByKeyword = async (keyword) => {
+    let movies = await fetch("http://localhost:3001/api/movies-by-keyword", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(keyword),
+    });
+
+    movies = await movies.json();
+    if (movies) {
+      setMovies(movies);
+    } else {
+      alert("No movies found!");
+    }
+  };
+
   useEffect(() => {
     fetch("http://localhost:3001/api/movies")
       .then((res) => res.json())
@@ -24,10 +41,19 @@ const MovieContextProvider = (props) => {
       });
   }, []);
 
+  const getAllMovies = async () => {
+    fetch("http://localhost:3001/api/movies")
+      .then((res) => res.json())
+      .then((data) => {
+        setMovies(data);
+      });
+  };
   const values = {
     movies,
     movie,
     getMovieById,
+    getMoviesByKeyword,
+    getAllMovies,
   };
 
   return (
