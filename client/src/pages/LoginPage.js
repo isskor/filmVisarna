@@ -11,7 +11,7 @@ export default function LoginPage() {
   }
   return (
     <div>
-      <Container className="mx-auto col-md-4 py-5">
+      <Container className="LoginPage mx-auto col-md-4 py-5">
       {toBeMember ? <Login /> : <Register />}
         <p onClick={toggle}>{toBeMember ? "Are you not a member yet?" : " Back to login"}</p>
       </Container>
