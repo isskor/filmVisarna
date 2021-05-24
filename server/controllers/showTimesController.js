@@ -24,7 +24,6 @@ exports.BookShowtime = async (req, res) => {
   const shows = await showTimes
     .findOneAndUpdate({ id: showTime }, { booked: seats })
     .exec();
-
   res.json(shows);
 };
 
@@ -53,8 +52,6 @@ exports.createShowTime = async (req, res) => {
       date: d.date,
       time: d.time + '.00',
     }).save();
-    console.log(ran);
-    console.log(m2._id);
   }
 
   //   console.log(movies);
