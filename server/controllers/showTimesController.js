@@ -8,19 +8,21 @@ const showTimes = require('../models/showTimes');
 // only for creating saloons
 
 exports.getShowtime = async (req, res) => {
-  const { date, movieId } = req.query;
-  console.log(req.query);
+  const { date, id } = req.query;
+  console.log('query', req.query);
   const shows = await showTimes
-    .find({ movie: movieId, date })
+    .find({ movie: id, date })
     .populate('movie')
-    .populate('saloon', 'name');
+    .populate('saloon', 'name')
+    .exec();
 
   res.json(shows);
+  console.log(shows);
 };
 
 exports.BookShowtime = async (req, res) => {
   const { showTime, seats } = req.query;
-  console.log(req.query);
+  //   console.log(req.query);
   const shows = await showTimes
     .findOneAndUpdate({ id: showTime }, { booked: seats })
     .exec();

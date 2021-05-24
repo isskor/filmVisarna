@@ -1,15 +1,27 @@
 import { MovieContext } from '../contexts/MovieContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ShowTimes from '../components/ShowTimes';
 
 function DetailPage() {
   const { movie, getMovieById } = useContext(MovieContext);
+  const [showTimes, setShowTimes] = useState([]);
+  const [date, setDate] = useState('Thu Jun 24 2021');
   const history = useParams();
   console.log(history);
-
+  console.log(date);
   useEffect(() => {
     getMovieById(history.id);
+    fetchShowtimes(history.id, date);
   }, []);
+
+  const fetchShowtimes = async (id, date) => {
+    fetch(`http://localhost:3001/api/showtime?id=${id}&date=${date}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setShowTimes(data);
+      });
+  };
 
   return (
     <div>
@@ -59,9 +71,10 @@ function DetailPage() {
               <div className='whiteText'>{movie.language}</div>
             </div>
           </div>
-          <div className='booking'>
-            <div className='showTimes'> Show times </div>
-          </div>{' '}
+          <div className='booking container mx-auto'>
+            <div className='showTimes row'> Show times </div>
+            <ShowTimes showTimes={showTimes} />
+          </div>
         </>
       )}
     </div>

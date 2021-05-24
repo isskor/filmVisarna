@@ -127,40 +127,41 @@ router.get('/', async (req, res, next) => {
   //   }
   //   res.json(data);
 
-  // let date1 = new Date('jun 24, 2021');
-  // let date2 = new Date('aug 24, 2021');
+  let date1 = new Date('jun 24, 2021');
+  let date2 = new Date('aug 24, 2021');
 
-  // console.log(date1);
-  // console.log(date2);
+  console.log(date1);
+  console.log(date2);
 
-  // dates = [];
-  // for (let i = 0; date1 <= date2; i++) {
-  //   let d = new Date(date1);
-  //   for (let j = 0; j < 3; j++) {
-  //     let times = [17.0, 19.0, 21.0];
-  //     dates.push({ date: d, time: times[j] });
-  //   }
+  dates = [];
+  for (let i = 0; date1 <= date2; i++) {
+    let d = new Date(date1).toDateString();
+    for (let j = 0; j < 3; j++) {
+      let times = [17.0, 19.0, 21.0];
+      dates.push({ date: d, time: times[j] });
+    }
 
-  //   date1.setDate(date1.getDate() + 1);
+    date1.setDate(date1.getDate() + 1);
+  }
+  console.log(dates);
+
+  // console.log(showtimes.length);
+  // let shows = [];
+  // for (let i = 0; i < showtimes.length; i++) {
+  //   let m = movies[Math.floor(Math.random() * movies.length)];
+  //   let d = showtimes[i];
+
+  //   let m2 = movies.filter((mov) => mov !== m)[
+  //     Math.floor(Math.random() * movies.length)
+  //   ];
+
+  //   shows.push(
+  //     { date: d, movie: m, saloon: 1 },
+  //     { date: d, movie: m2, saloon: 2 }
+  //   );
   // }
 
-  console.log(showtimes.length);
-  let shows = [];
-  for (let i = 0; i < showtimes.length; i++) {
-    let m = movies[Math.floor(Math.random() * movies.length)];
-    let d = showtimes[i];
-
-    let m2 = movies.filter((mov) => mov !== m)[
-      Math.floor(Math.random() * movies.length)
-    ];
-
-    shows.push(
-      { date: d, movie: m, saloon: 1 },
-      { date: d, movie: m2, saloon: 2 }
-    );
-  }
-
-  res.json(shows);
+  res.json(dates);
   // console.log(dates);
 });
 

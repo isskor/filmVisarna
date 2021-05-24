@@ -12,6 +12,7 @@ const {
 // routes
 
 router.post('/showtime', createShowTime);
+// router.get('/showtime', getShowtime);
 router.get('/showtime', getShowtime);
 // router.get("/movies/:id", getMovieById);
 
