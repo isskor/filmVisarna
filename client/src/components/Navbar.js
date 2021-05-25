@@ -15,9 +15,18 @@ function TheNavbar() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
-        { loginState ?  <Link to="/">Bookings</Link> :   <Link to="/loginpage">Sign In</Link>} 
-        
-           <Link to="/"> Checkout</Link>
+          {loginState ? (
+            <div>
+              <Link to="/">My Profile</Link>
+              <Link to="/">Checkout</Link>
+              <Link to="/">Sign out</Link>
+            </div>
+          ) : (
+            <div>
+              <Link to="/loginpage">Sign In</Link>
+              <Link to="/loginpage">Register</Link>
+            </div>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
