@@ -3,18 +3,9 @@ import { FilterContext } from '../contexts/FilterContext';
 import { useContext } from 'react';
 import useToggle from './useToggle';
 
-const initState = {
-  rated: [],
-  price: [],
-  runTime: [],
-  genres: [],
-  language: [],
-};
-
 const FilterModal = ({ open, setOpen }) => {
-  const { filterMovies } = useContext(FilterContext);
+  const { filterMovies, filters, handleChange } = useContext(FilterContext);
   const [genreList, setGenreList] = useState([]);
-  const [filters, setFilters] = useState(initState);
   const [priceEl, priceToggle] = useToggle('price');
   const [lengthEl, lengthToggle] = useToggle('length');
   const [ratedEl, ratedToggle] = useToggle('rated');
@@ -41,21 +32,6 @@ const FilterModal = ({ open, setOpen }) => {
     }
     fetchMovies();
   }, []);
-
-  console.log(filters);
-
-  const handleChange = (e) => {
-    let type = e.target.name;
-
-    if (filters[type].includes(e.target.value)) {
-      return setFilters({
-        ...filters,
-        [type]: filters[type].filter((f) => f !== e.target.value),
-      });
-    }
-
-    setFilters({ ...filters, [type]: [...filters[type], e.target.value] });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
