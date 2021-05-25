@@ -7,9 +7,14 @@ export default function ProfilePage() {
 
   return (
     <div className="profileContainer">
-      <div className="profileMain"> </div>
       <div className="profileSideBar">
-        <div className="sideBarTop"></div>
+        <Link to="/Profile">My Profile</Link>
+        <Link to="/">Account Info</Link>
+        <Link to="/Bookings">Upcoming Bookings</Link>
+        <Link to="/Bookings">Previous Bookings</Link>
+      </div>
+      <div className="profileMain">
+        <h2> Hello {loggedInUser.firstName} </h2>{" "}
       </div>
     </div>
   );
