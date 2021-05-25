@@ -1,0 +1,22 @@
+.profileContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.profileMain {
+  width: 80%;
+  margin-right: 5%;
+  margin-left: 1%;
+  height: 90vh;
+}
+
+.profileSideBar {
+  margin-top: 5vh;
+  width: 12%;
+  height: 90%;
+  background: #1e1f26;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

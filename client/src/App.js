@@ -7,7 +7,8 @@ import UserContextProvider from "./contexts/UserContext";
 import DetailPage from "./pages/DetailPage";
 import LoginPage from "./pages/LoginPage";
 import FilterContextProvider from "./contexts/FilterContext";
-import Login from './components/Login'
+import Login from "./components/Login";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
               </Route>
               <Route exact path="/movies/:id">
                 <DetailPage />
+              </Route>
+              <Route exact path="/Profile">
+                <ProfilePage />
               </Route>
             </UserContextProvider>
           </FilterContextProvider>

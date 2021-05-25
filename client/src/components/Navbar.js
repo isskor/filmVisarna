@@ -17,7 +17,7 @@ function TheNavbar() {
         <Nav className="ml-auto">
           {loginState ? (
             <div>
-              <Link to="/">My Profile</Link>
+              <Link to="/Profile">My Profile</Link>
               <Link to="/">Checkout</Link>
               <Link to="/">Sign out</Link>
             </div>
