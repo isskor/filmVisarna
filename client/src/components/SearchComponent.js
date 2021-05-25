@@ -17,6 +17,8 @@ const SearchComponent = () => {
   };
 
   const resetMovies = () => {
+    let form = document.querySelector("form");
+    form.reset();
     getAllMovies();
   };
   return (

@@ -14,15 +14,15 @@ exports.getMovieById = async (req, res) => {
 
 //For finding movies/movie in the search bar at home.
 exports.findMovieByKeyword = async (req, res) => {
-  let query = new RegExp(
-    `^${req.body.keyword ? req.body.keyword : ""}\\w*`,
-    "gi"
-  );
   console.log(req.body.keyword);
   console.log("query", query);
 
   let foundMovies = await Movie.find({
-    $or: [{ title: query }, { actors: query }, { director: query }],
+    $or: [
+      { title: { $regex: req.body.keyword, $options: "gi" } },
+      { actors: { $regex: req.body.keyword, $options: "gi" } },
+      { director: { $regex: req.body.keyword, $options: "gi" } },
+    ],
   }).exec();
 
   if (foundMovies) {
