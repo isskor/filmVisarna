@@ -7,6 +7,7 @@ import UserContextProvider from "./contexts/UserContext";
 import DetailPage from "./pages/DetailPage";
 import LoginPage from "./pages/LoginPage";
 import FilterContextProvider from "./contexts/FilterContext";
+import RegisterThxPage from "./pages/RegisterThxPage";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
 
               <Route exact path="/movies/:id">
                 <DetailPage />
+              </Route>
+              <Route exact path="/thank-you-for-registering">
+                <RegisterThxPage />
               </Route>
             </UserContextProvider>
           </FilterContextProvider>
