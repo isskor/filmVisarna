@@ -6,26 +6,29 @@ import MovieContextProvider from "./contexts/MovieContext";
 import UserContextProvider from "./contexts/UserContext";
 import DetailPage from "./pages/DetailPage";
 import LoginPage from "./pages/LoginPage";
+import FilterContextProvider from "./contexts/FilterContext";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <UserContextProvider>
-          <MovieContextProvider>
-            <Nav />
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
+        <MovieContextProvider>
+          <FilterContextProvider>
+            <UserContextProvider>
+              <Nav />
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/login">
+                <LoginPage />
+              </Route>
 
-            <Route exact path="/movies/:id">
-              <DetailPage />
-            </Route>
-          </MovieContextProvider>
-        </UserContextProvider>
+              <Route exact path="/movies/:id">
+                <DetailPage />
+              </Route>
+            </UserContextProvider>
+          </FilterContextProvider>
+        </MovieContextProvider>
       </BrowserRouter>
     </div>
   );

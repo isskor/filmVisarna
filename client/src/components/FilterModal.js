@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { FilterContext } from '../contexts/FilterContext';
+import { useContext } from 'react';
 
 const initState = {
   rated: [],
-  price: ['120'],
+  price: [],
   runTime: [],
   genres: [],
   language: [],
 };
 
 const FilterModal = ({ open, setOpen }) => {
+  const { filterMovies } = useContext(FilterContext);
   const [genreList, setGenreList] = useState([]);
   const [filters, setFilters] = useState(initState);
 
   const getGenres = (movies) => {
     const list = [];
-    movies.forEach((m) =>
-      list.push(...m.genres.split(',').map((el) => el.trim()))
-    );
+    movies.forEach((m) => {
+      return list.push(...m.genres);
+    });
+    console.log(list);
     const genreList = new Set(list);
     setGenreList([...genreList].sort());
   };
@@ -51,6 +55,8 @@ const FilterModal = ({ open, setOpen }) => {
     e.preventDefault();
     setOpen(false);
     // logic
+
+    filterMovies(filters);
   };
 
   return (
@@ -103,7 +109,7 @@ const FilterModal = ({ open, setOpen }) => {
                   <input
                     type='checkbox'
                     name='runTime'
-                    value={'60'}
+                    value={60}
                     checked={filters.runTime.includes('60')}
                     onChange={handleChange}
                   />
@@ -113,7 +119,7 @@ const FilterModal = ({ open, setOpen }) => {
                   <input
                     type='checkbox'
                     name='runTime'
-                    value={'120'}
+                    value={120}
                     checked={filters.runTime.includes('120')}
                     onChange={handleChange}
                   />
@@ -123,7 +129,7 @@ const FilterModal = ({ open, setOpen }) => {
                   <input
                     type='checkbox'
                     name='runTime'
-                    value={'180'}
+                    value={180}
                     checked={filters.runTime.includes('180')}
                     onChange={handleChange}
                   />
@@ -166,7 +172,7 @@ const FilterModal = ({ open, setOpen }) => {
               </ul>
             </form>
             <form className='row filter_form'>
-              <h5>Rated</h5>
+              <h5>Genres</h5>
               <ul className='row filter_group'>
                 {genreList?.map((genre) => (
                   <li className='col-md-3' key={genre}>
@@ -183,7 +189,7 @@ const FilterModal = ({ open, setOpen }) => {
               </ul>
             </form>
             <form className='row filter_form'>
-              <h5>Rated</h5>
+              <h5>Language</h5>
               <ul className='row filter_group'>
                 <li className='col-md-3'>
                   <label htmlFor='language'>English</label>

@@ -23,7 +23,7 @@ function DetailPage() {
                 '?controls="0"' +
                 '?rel="0"'
               }
-              allowfullscreen='true'
+              allowFullScreen={true}
             ></iframe>
           </div>
           <div className='info'>
@@ -47,7 +47,11 @@ function DetailPage() {
               <div className='whiteText'></div>
 
               <div className='grayText'> Genres </div>
-              <div className='genres'>{movie.genres}</div>
+              <div className='genres'>
+                {movie.genres.map((g, i) =>
+                  i !== movie.genres.length - 1 ? `${g}, ` : `${g}`
+                )}
+              </div>
 
               <div className='grayText'> Age Rating </div>
               <div className='whiteText'>{movie.rated}</div>
