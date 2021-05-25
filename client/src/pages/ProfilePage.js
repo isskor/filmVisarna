@@ -19,24 +19,82 @@ export default function ProfilePage() {
         <hr />
         <div className="profileAccount">
           <h3> My Details</h3>
-          <div className="profileAccountBox">
-            <div> hello </div>
-            <Form>
+
+          <Form>
+            <div className="profileAccountBox">
+              <div className="profileIcon" />
               <div className="profileAccountContent">
+                <div className="formController">
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label className="login-info">First name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder={loggedInUser.firstName}
+                      required
+                    />
+                  </Form.Group>{" "}
+                </div>
+              </div>
+              <div className="formController">
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label className="login-info">First name</Form.Label>
+                  <Form.Label className="login-info">Last name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={loggedInUser.lastName}
+                    required
+                  />
+                </Form.Group>
+              </div>
+            </div>
+
+            <div className="profileAccountBox">
+              <div className="lockIcon" />
+              <div className="profileAccountContent">
+                <div className="formController">
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label className="login-info">Password</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder={loggedInUser.firstName}
+                      required
+                    />
+                  </Form.Group>{" "}
+                </div>
+              </div>
+              <div className="formController">
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label className="login-info">
+                    Confirm Password
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     placeholder={loggedInUser.firstName}
                     required
                   />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                  REGISTER
-                </Button>
               </div>
-            </Form>
-          </div>
+            </div>
+
+            <div className="profileAccountBox">
+              <div className="emailIcon" />
+              <div className="profileAccountContent">
+                <div className="formController">
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label className="login-info">Email</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder={loggedInUser.email}
+                      required
+                    />
+                  </Form.Group>{" "}
+                </div>
+              </div>
+            </div>
+
+            <Button variant="primary" type="submit">
+              UPDATE INFO
+            </Button>
+          </Form>
         </div>
       </div>
     </div>
