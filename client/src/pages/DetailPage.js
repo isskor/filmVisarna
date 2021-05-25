@@ -10,17 +10,6 @@ function DetailPage() {
   const [date, setDate] = useState('Thu Jun 24 2021');
   const history = useParams();
   console.log(history);
-  console.log(date);
-  const bookings = [
-    new Date(2016, 7, 1),
-    new Date(2016, 7, 2),
-    new Date(2016, 7, 3),
-    new Date(2016, 7, 9),
-    new Date(2016, 7, 10),
-    new Date(2016, 7, 11),
-    new Date(2016, 7, 12),
-  ];
-
 
 
   useEffect(() => {
@@ -98,7 +87,7 @@ function DetailPage() {
           </div>
         </>
       )}
-          <BookingCalendar bookings={bookings} />
+         
     </div>
   );
 }

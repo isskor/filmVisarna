@@ -8,6 +8,7 @@ import DetailPage from "./pages/DetailPage";
 import LoginPage from "./pages/LoginPage";
 import FilterContextProvider from "./contexts/FilterContext";
 import Login from './components/Login'
+import Calendar from './components/Calendar'
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
               </Route>
               <Route exact path="/login">
                 <Login />
+              </Route>
+              <Route exact path="/calendar">
+                <Calendar />
               </Route>
               <Route exact path="/movies/:id">
                 <DetailPage />
