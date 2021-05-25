@@ -15,12 +15,11 @@
 
 .profileSideBar {
   display: flex;
-  border: 2px solid black;
   flex-direction: column;
   margin-top: 4vh;
   margin-left: 2%;
   width: 12%;
-  align-items: center;
+  align-items: start;
   text-align: center;
 }
 
@@ -81,7 +80,16 @@
   .profileMain {
     width: 98%;
     margin-right: 1%;
-    border: 2px solid black;
     margin-left: 1%;
+  }
+  .profileAccountBox {
+    flex-direction: column;
+    margin-right: 0px;
+  }
+  .profileAccount {
+    align-items: center;
+  }
+  .formController {
+    width: 100%;
   }
 }
