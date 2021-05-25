@@ -5,9 +5,9 @@ import styles from "../styles/login.module.css";
 import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  const { setLoginState } = useContext(UserContext);
   const history = useHistory();
-  const { users, setLoginState, setloggedInUser, login } =
-    useContext(UserContext);
+  const { login } = useContext(UserContext);
   const [Error, setError] = useState(false);
 
   const [userNameInput, setUserName] = useState("");
@@ -32,12 +32,14 @@ export default function Login() {
       alert("Error", user.error);
     } else {
       alert(`logged in ${user}`);
+      setLoginState(true);
       history.push("/");
+    
     }
   };
 
   return (
-    <Container>
+    <Container  className="mx-auto py-5">
       <h1 className="text-center login-info">Login</h1>
       <Form onSubmit={handleLogin}>
         <Alert

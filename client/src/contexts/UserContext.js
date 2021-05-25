@@ -34,7 +34,6 @@ const UserContextProvider = (props) => {
   };
 
   const createUser = async (user) => {
-    console.log("hello");
     let userToRegiser = await fetch(
       "http://localhost:3001/api/users/createUser",
       {
