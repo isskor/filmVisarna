@@ -18,6 +18,7 @@ function App() {
           <FilterContextProvider>
             <UserContextProvider>
               <Nav />
+
               <Route exact path="/">
                 <Home />
               </Route>

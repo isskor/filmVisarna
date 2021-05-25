@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { Alert } from "react-bootstrap";
 
 export const UserContext = createContext();
@@ -8,6 +8,20 @@ const UserContextProvider = (props) => {
   const [isMember, setIsMember] = useState(false);
   const [users, setUsers] = useState([]);
   const [loggedInUser, setloggedInUser] = useState({});
+
+  const whoami = async () => {
+    let sessionUser = await fetch("http://localhost:3001/api/users/whoami");
+    sessionUser = await sessionUser.json();
+    console.log("session user:", sessionUser);
+    if (sessionUser) {
+      setloggedInUser(sessionUser);
+    }
+  };
+
+  useEffect(() => {
+    whoami();
+    console.log("The logged in USER is: ", loggedInUser);
+  }, []);
 
   const login = async (email, password) => {
     let user = {
@@ -59,6 +73,7 @@ const UserContextProvider = (props) => {
     setloggedInUser,
     login,
     createUser,
+    whoami,
   };
   return (
     <UserContext.Provider value={values}>{props.children}</UserContext.Provider>

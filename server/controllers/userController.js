@@ -2,7 +2,13 @@ const User = require("../models/User");
 const Encrypt = require("../Encrypt");
 
 exports.whoami = (req, res) => {
-  res.json(req.session.user || null);
+  
+  if (req.session.user) {
+    res.json(req.session.user);
+  } else {
+    res.json("No session user");
+  }
+  
 };
 
 //Logic to create a user

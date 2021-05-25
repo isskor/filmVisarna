@@ -6,8 +6,8 @@ const mongoose = require("mongoose");
 const server = express();
 const movieRoutes = require("./routes/movieRoute");
 const userRoutes = require("./routes/userRoutes");
-const showTimesRoutes = require('./routes/showTimesRoute');
-const saloonRoutes = require('./routes/saloonRoute');
+const showTimesRoutes = require("./routes/showTimesRoute");
+const saloonRoutes = require("./routes/saloonRoute");
 server.use(cors());
 server.use(express.json());
 
@@ -35,7 +35,7 @@ mongoose
 
 server.use("/api", movieRoutes);
 server.use("/api/users", userRoutes);
-server.use('/api', showTimesRoutes);
-server.use('/api', saloonRoutes);
+server.use("/api", showTimesRoutes);
+server.use("/api", saloonRoutes);
 
 server.listen(3001, () => console.log("listening to" + 3001));
