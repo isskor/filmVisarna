@@ -33,8 +33,7 @@ body {
 
 .movie  {
   width:200px;
-
-  margin:1rem;
+  margin:1rem 4rem;
 }
 .movie img {
   max-width:100%;
@@ -60,3 +59,14 @@ body {
   color:#fff;
 }
 
+@media (min-width: 576px) {
+  .movie{
+    margin:1rem 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+ .movie{
+   margin:1.3rem;
+ }
+}
