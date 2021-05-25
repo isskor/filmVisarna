@@ -1,5 +1,5 @@
-const Movie = require("../models/movie");
-const axios = require("axios");
+const Movie = require('../models/movie');
+const axios = require('axios');
 
 exports.getMovies = async (req, res) => {
   let movies = await Movie.find().exec();
@@ -7,7 +7,7 @@ exports.getMovies = async (req, res) => {
 };
 
 exports.getMovieById = async (req, res) => {
-  console.log(req.params);
+  console.log('movieId', req.params);
   let movie = await Movie.findById(req.params.id).exec();
   res.json(movie);
 };
@@ -45,6 +45,41 @@ exports.findMovieByKeyword = async (req, res) => {
     res.send("No movies found...");
   }
 };
+exports.filterMovies = async (req, res) => {
+  console.log(req.body);
+  const { rated, price, runTime, genres, language } = req.body;
+
+  let filterData = {};
+
+  if (rated.length > 0) filterData = { ...filterData, rated: { $in: rated } };
+  if (price.length > 0)
+    filterData = {
+      ...filterData,
+      price: {
+        $gte: Math.min(...price),
+        $lte: Math.max(...price),
+      },
+    };
+
+  if (runTime.length > 0)
+    filterData = {
+      ...filterData,
+      runTime: { $gte: Math.min(...runTime), $lte: Math.max(...runTime) },
+    };
+
+  if (genres.length > 0)
+    filterData = { ...filterData, genres: { $in: genres } };
+
+  if (language.length > 0)
+    filterData = { ...filterData, language: { $in: language } };
+
+  const filteredMovies = await Movie.find(filterData).exec();
+  if (filteredMovies) {
+    res.json(filteredMovies);
+  } else {
+    res.send("Can't find movies");
+  }
+};
 
 // only for creating movies
 exports.createMovie = async (req, res) => {
@@ -54,15 +89,22 @@ exports.createMovie = async (req, res) => {
   for (let i = 0; i < query.length; i++) {
     try {
       const response = await axios.get(
-        `https://www.omdbapi.com/?apikey=64d07396&t=${query[i].name}`
+        // `https://www.omdbapi.com/embed/2d5b182c&t=${query[i].name}`
+        `http://www.omdbapi.com/?t=${query[i].name}&apikey=2d5b182c`
       );
       //   console.log(response.data.data);
       const p = price[Math.floor(Math.random() * 3)];
-      console.log(query[i].name);
+      // console.log(query[i].name);
       //   data.push({ ...response.data.data, price: p, trailer: query[i].trailer });
 
-      const time = response.data.Runtime.split(" ")[0];
+      const time = +response.data.Runtime.split(' ')[0];
+      const g = response.data.Genre.replace(/\s/g, '');
+      const genres = g.split(',');
       console.log(time);
+
+      const l = response.data.Language.replace(/\s/g, '');
+      const langs = l.split(',');
+      console.log(langs);
       const movie = await new Movie({
         title: response.data.Title,
         rated: response.data.Rated,
@@ -70,12 +112,13 @@ exports.createMovie = async (req, res) => {
         actors: response.data.Actors,
         director: response.data.Director,
         runTime: time,
-        genres: response.data.Genre,
-        language: response.data.Language,
+        genres: genres,
+        language: langs,
         poster: response.data.Poster,
         plot: response.data.Plot,
         price: price[Math.floor(Math.random() * 3)],
       }).save();
+      console.log(movie);
     } catch (err) {
       console.log(err.message);
     }
@@ -84,98 +127,98 @@ exports.createMovie = async (req, res) => {
 };
 const query = [
   {
-    name: "Dream Horse ",
-    trailer: "https://www.youtube.com/watch?v=ty_DAhC_CLc",
+    name: 'Dream Horse ',
+    trailer: 'https://www.youtube.com/embed/ty_DAhC_CLc',
   },
-  { name: "The Dry", trailer: "https://www.youtube.com/watch?v=VubvW5f6kro" },
+  { name: 'The Dry', trailer: 'https://www.youtube.com/embed/VubvW5f6kro' },
   {
-    name: "space jam: a new legacy",
-    trailer: "https://www.youtube.com/watch?v=olXYZOsXw_o",
-  },
-  {
-    name: "Favolacce",
-    trailer: "https://www.youtube.com/watch?v=lOfwpdHKPaQ",
+    name: 'space jam: a new legacy',
+    trailer: 'https://www.youtube.com/embed/olXYZOsXw_o',
   },
   {
-    name: "No Time to Die",
-    trailer: "https://www.youtube.com/watch?v=vw2FOYjCz38",
+    name: 'Favolacce',
+    trailer: 'https://www.youtube.com/embed/lOfwpdHKPaQ',
   },
   {
-    name: "american fighter",
-    trailer: "https://www.youtube.com/watch?v=b7grLW9U7N4",
+    name: 'No Time to Die',
+    trailer: 'https://www.youtube.com/embed/vw2FOYjCz38',
   },
   {
-    name: "new order",
-    trailer: "https://www.youtube.com/watch?v=9ZlrnTB2vkc",
+    name: 'american fighter',
+    trailer: 'https://www.youtube.com/embed/b7grLW9U7N4',
   },
   {
-    name: "Venom: Let There Be Carnage",
-    trailer: "https://www.youtube.com/watch?v=-ezfi6FQ8Ds",
+    name: 'new order',
+    trailer: 'https://www.youtube.com/embed/9ZlrnTB2vkc',
   },
   {
-    name: "godzilla vs. kong",
-    trailer: "https://www.youtube.com/watch?v=odM92ap8_c0",
+    name: 'Venom: Let There Be Carnage',
+    trailer: 'https://www.youtube.com/embed/-ezfi6FQ8Ds',
   },
   {
-    name: "the unholy",
-    trailer: "https://www.youtube.com/watch?v=NmQiJPLYzPI",
+    name: 'godzilla vs. kong',
+    trailer: 'https://www.youtube.com/embed/odM92ap8_c0',
   },
   {
-    name: "french exit",
-    trailer: "https://www.youtube.com/watch?v=bqMJeE15YiA",
+    name: 'the unholy',
+    trailer: 'https://www.youtube.com/embed/NmQiJPLYzPI',
   },
   {
-    name: "every breath you take",
-    trailer: "https://www.youtube.com/watch?v=tlMByNo3g8M",
+    name: 'french exit',
+    trailer: 'https://www.youtube.com/embed/bqMJeE15YiA',
   },
   {
-    name: "chaos walking}",
-    trailer: "https://www.youtube.com/watch?v=nRf4ZgzHoVw",
+    name: 'every breath you take',
+    trailer: 'https://www.youtube.com/embed/tlMByNo3g8M',
   },
   {
-    name: "raya and the last dragon",
-    trailer: "https://www.youtube.com/watch?v=1VIZ89FEjYI",
+    name: 'chaos walking}',
+    trailer: 'https://www.youtube.com/embed/nRf4ZgzHoVw',
   },
   {
-    name: "The Matrix 4 ",
-    trailer: "https://www.youtube.com/watch?v=PkhXLgu-mYM",
+    name: 'raya and the last dragon',
+    trailer: 'https://www.youtube.com/embed/1VIZ89FEjYI',
   },
   {
-    name: "the world to come",
-    trailer: "https://www.youtube.com/watch?v=RhQu4tcHLeU",
+    name: 'The Matrix 4 ',
+    trailer: 'https://www.youtube.com/embed/PkhXLgu-mYM',
   },
   {
-    name: "the father",
-    trailer: "https://www.youtube.com/watch?v=4TZb7YfK-JI",
+    name: 'the world to come',
+    trailer: 'https://www.youtube.com/embed/RhQu4tcHLeU',
   },
   {
-    name: "cosmic sin",
-    trailer: "https://www.youtube.com/watch?v=MNxsB6o6DJs",
+    name: 'the father',
+    trailer: 'https://www.youtube.com/embed/4TZb7YfK-JI',
   },
   {
-    name: "Spider-Man: No Way Home ",
-    trailer: "https://www.youtube.com/watch?v=r7M-XNGT5G0",
+    name: 'cosmic sin',
+    trailer: 'https://www.youtube.com/embed/MNxsB6o6DJs',
   },
   {
-    name: "spirit untamed",
-    trailer: "https://www.youtube.com/watch?v=9jG1nnQGpdI",
+    name: 'Spider-Man: No Way Home ',
+    trailer: 'https://www.youtube.com/embed/r7M-XNGT5G0',
   },
   {
-    name: "come true",
-    trailer: "https://www.youtube.com/watch?v=Hh3s-Fq-3Hs",
+    name: 'spirit untamed',
+    trailer: 'https://www.youtube.com/embed/9jG1nnQGpdI',
   },
   {
-    name: "a quiet place part ii",
-    trailer: "https://www.youtube.com/watch?v=BpdDN9d9Jio",
+    name: 'come true',
+    trailer: 'https://www.youtube.com/embed/Hh3s-Fq-3Hs',
   },
   {
-    name: "the courier",
-    trailer: "https://www.youtube.com/watch?v=oeYElSu3gEc",
+    name: 'a quiet place part ii',
+    trailer: 'https://www.youtube.com/embed/BpdDN9d9Jio',
   },
   {
-    name: "sas: red notice",
-    trailer: "https://www.youtube.com/watch?v=hRuUB6RKExQ",
+    name: 'the courier',
+    trailer: 'https://www.youtube.com/embed/zbR1A95Ll8Q',
   },
-  { name: "cruella", trailer: "https://www.youtube.com/watch?v=gmRKv7n2If8" },
-  { name: "happily", trailer: "https://www.youtube.com/watch?v=nagyNvw5Dmk" },
+  {
+    name: 'sas: red notice',
+    trailer: 'https://www.youtube.com/embed/hRuUB6RKExQ',
+  },
+  { name: 'Joker ', trailer: 'https://www.youtube.com/embed/zAGVQLHvwOY' },
+  { name: 'happily', trailer: 'https://www.youtube.com/embed/gyNvw5Dmk' },
 ];

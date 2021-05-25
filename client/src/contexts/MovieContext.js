@@ -51,6 +51,7 @@ const MovieContextProvider = (props) => {
     movies,
     movie,
     getMovieById,
+    setMovies,
     getMoviesByKeyword,
     getAllMovies,
   };

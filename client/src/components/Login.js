@@ -6,8 +6,7 @@ import { useHistory } from "react-router-dom";
 
 export default function Login() {
   const history = useHistory();
-  const { users, setLoginState, setloggedInUser, login } =
-    useContext(UserContext);
+  const { login } = useContext(UserContext);
   const [Error, setError] = useState(false);
 
   const [userNameInput, setUserName] = useState("");
