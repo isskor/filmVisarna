@@ -1,10 +1,10 @@
-import { useState } from "react";
-import FilterModal from "../components/FilterModal";
-import MovieBannerImage from "../components/MovieBannerImage";
-import { MovieContext } from "../contexts/MovieContext";
-import { useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { useState } from 'react';
+import FilterModal from '../components/FilterModal';
+import MovieBannerImage from '../components/MovieBannerImage';
+import { MovieContext } from '../contexts/MovieContext';
+import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 
 function Home() {
   const [openFilter, setOpenFilter] = useState(false);
@@ -23,23 +23,25 @@ function Home() {
     <div
       key={movie._id}
       onClick={() => handleClick(movie._id)}
-      className="movie"
+      className='movie'
     >
       <img src={movie.poster} alt={movie.title} />
-      <div className="movie-info">
+      <div className='movie-info'>
         <h3>{movie.title}</h3>
       </div>
     </div>
   ));
 
   return (
-    <div className="Home">
-      <MovieBannerImage />
-      <FilterModal open={openFilter} setOpen={setOpenFilter} />
-      <button onClick={() => setOpenFilter(true)}>filter</button>
+    <>
+      <div className='Home'>
+        <MovieBannerImage />
+        <button onClick={() => setOpenFilter(true)}>filter</button>
 
-      <Container className="movie-container">{movieitems}</Container>
-    </div>
+        <Container className='movie-container'>{movieitems}</Container>
+      </div>
+      <FilterModal open={openFilter} setOpen={setOpenFilter} />
+    </>
   );
 }
 
