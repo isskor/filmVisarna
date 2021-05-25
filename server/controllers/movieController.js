@@ -22,7 +22,7 @@ exports.findMovieByKeyword = async (req, res) => {
   console.log("query", query);
 
   let foundMovies = await Movie.find({
-    title: query,
+    $or: [{ title: query }, { actors: query }, { director: query }],
   }).exec();
 
   if (foundMovies) {
