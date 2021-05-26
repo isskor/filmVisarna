@@ -1,12 +1,3 @@
-import './App.scss';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Nav from './components/Navbar.js';
-import Home from './pages/Home';
-import MovieContextProvider from './contexts/MovieContext';
-import UserContextProvider from './contexts/UserContext';
-import DetailPage from './pages/DetailPage';
-import LoginPage from './pages/LoginPage';
-import FilterContextProvider from './contexts/FilterContext';
 import About from './pages/About';
 
 function App() {
@@ -20,12 +11,17 @@ function App() {
               <Route exact path='/'>
                 <Home />
               </Route>
-              <Route exact path='/login'>
+              <Route exact path="/loginpage">
                 <LoginPage />
               </Route>
-
-              <Route exact path='/movies/:id'>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/movies/:id">
                 <DetailPage />
+              </Route>
+              <Route exact path="/thank-you-for-registering">
+                <RegisterThxPage />
               </Route>
               <Route exact path='/about'>
                 <About />
