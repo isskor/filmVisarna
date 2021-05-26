@@ -1,3 +1,15 @@
+.searchComponent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 .registerThxPage {
   display: flex;
   justify-content: center;
@@ -7,5 +19,22 @@
   color: white;
   button {
     margin: 2rem;
+  }
+}
+
+  button {
+    margin: 0.5rem;
+  }
+  .resetButton {
+    background-color: rgb(231, 78, 78);
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .searchComponent {
+    form {
+      flex-direction: row;
+    }
   }
 }
