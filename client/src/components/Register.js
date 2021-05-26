@@ -2,8 +2,10 @@ import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
 import styles from "../styles/login.module.css";
 import { UserContext } from "../contexts/UserContext";
+import { useHistory } from "react-router-dom";
 
 export default function Register() {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -54,6 +56,7 @@ export default function Register() {
       password: password,
     };
     createUser(user);
+    history.push("/login");
   };
 
   return (
