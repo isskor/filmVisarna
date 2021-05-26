@@ -12,7 +12,7 @@ export default function LoginPage() {
     <div>
       <Container className="LoginPage mx-auto col-md-4 py-5">
       {toBeMember ? <Login /> : <Register />}
-        <p onClick={toggle}>{toBeMember ? "Are you not a member yet?" : " Back to login"}</p>
+        <p onClick={toggle}>{toBeMember ? "Not a member yet?" : " Back to login"}</p>
       </Container>
     </div>
   );

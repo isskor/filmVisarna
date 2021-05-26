@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
@@ -9,14 +9,15 @@ const {
   getMovies,
   getMovieById,
   filterMovies,
-} = require('../controllers/movieController');
+  findMovieByKeyword,
+} = require("../controllers/movieController");
 
 // routes
-
-router.post('/movie', createMovie);
-router.get('/movies', getMovies);
-router.get('/movies/:id', getMovieById);
-router.post('/filtered-movies', filterMovies);
+router.post("/movie", createMovie);
+router.get("/movies", getMovies);
+router.get("/movies/:id", getMovieById);
+router.post("/filtered-movies", filterMovies);
+router.post("/movies-by-keyword", findMovieByKeyword);
 
 // export
 module.exports = router;

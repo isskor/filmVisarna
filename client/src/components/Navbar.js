@@ -1,7 +1,10 @@
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
-function theNavbar() {
+function TheNavbar() {
+  const { loginState } = useContext(UserContext);
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Navbar.Brand>
@@ -12,11 +15,12 @@ function theNavbar() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
-          <Link to="/login">Sign In</Link>
-          <Link to="/login">Sign Up</Link> <Link to="/"> Checkout</Link>
+        { loginState ?  <Link to="/">Bookings</Link> :   <Link to="/loginpage">Sign In</Link>} 
+        
+           <Link to="/"> Checkout</Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
 }
-export default theNavbar;
+export default TheNavbar;
