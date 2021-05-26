@@ -48,6 +48,19 @@ const UserContextProvider = (props) => {
       Alert("User registered!");
     }
   };
+
+  const editUser = async (user) => {
+    let userToEdit = await fetch("http://localhost:3001/api/users/editUser", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+    if (userToEdit.success) {
+      Alert("User updated!");
+    }
+  };
   const values = {
     loginState,
     setLoginState,
@@ -59,6 +72,7 @@ const UserContextProvider = (props) => {
     setloggedInUser,
     login,
     createUser,
+    editUser,
   };
   return (
     <UserContext.Provider value={values}>{props.children}</UserContext.Provider>

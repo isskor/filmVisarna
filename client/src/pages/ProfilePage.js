@@ -14,7 +14,7 @@ export default function ProfilePage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
-  const { createUser } = useContext(UserContext);
+  const { editUser } = useContext(UserContext);
 
   useEffect(() => {
     if (confirmPassword === "") {
@@ -57,8 +57,8 @@ export default function ProfilePage() {
       email: email,
       password: password,
     };
-    createUser(user);
-    history.push("/login");
+    editUser(user);
+    history.push("/Profile");
   };
 
   return (
@@ -75,7 +75,7 @@ export default function ProfilePage() {
         <div className="profileAccount">
           <h3> My Details</h3>
 
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <div className="profileAccountBox">
               <div className="profileIcon" />
               <div className="profileAccountContent">
@@ -83,17 +83,19 @@ export default function ProfilePage() {
                   <Form.Group controlId="formBasicPassword">
                     <Form.Label className="login-info">First name</Form.Label>
                     <Form.Control
+                      onChange={firstNameInput}
                       type="text"
                       placeholder={loggedInUser.firstName}
                       required
                     />
-                  </Form.Group>{" "}
+                  </Form.Group>
                 </div>
               </div>
               <div className="formController">
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label className="login-info">Last name</Form.Label>
+                  <Form.Label className="login-info">Last Name</Form.Label>
                   <Form.Control
+                    onChange={lastNameInput}
                     type="text"
                     placeholder={loggedInUser.lastName}
                     required
@@ -109,8 +111,9 @@ export default function ProfilePage() {
                   <Form.Group controlId="formBasicPassword">
                     <Form.Label className="login-info">Password</Form.Label>
                     <Form.Control
+                      onChange={passwordInput}
                       type="password"
-                      placeholder="*********"
+                      placeholder="**********"
                       required
                     />
                   </Form.Group>
@@ -126,7 +129,7 @@ export default function ProfilePage() {
                     onChange={checkPassword}
                     type="password"
                     name="confirm"
-                    placeholder="*********"
+                    placeholder="**********"
                     required
                   />
                 </Form.Group>
@@ -137,14 +140,15 @@ export default function ProfilePage() {
               <div className="emailIcon" />
               <div className="profileAccountContent">
                 <div className="formController">
-                  <Form.Group controlId="formBasicPassword">
+                  <Form.Group controlId="formBasicEmail">
                     <Form.Label className="login-info">Email</Form.Label>
                     <Form.Control
-                      type="text"
+                      onChange={emailInput}
+                      type="email"
                       placeholder={loggedInUser.email}
                       required
                     />
-                  </Form.Group>{" "}
+                  </Form.Group>
                 </div>
               </div>
             </div>

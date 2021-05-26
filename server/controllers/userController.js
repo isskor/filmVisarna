@@ -21,6 +21,22 @@ exports.createUser = async (req, res) => {
   res.json({ success: true });
 };
 
+//Logic to edit a user
+exports.editUser = async (req, res) => {
+  req.body.password = Encrypt.encrypt(req.body.password);
+  console.log(req.body);
+
+  let updatedUser = await User.findByIdAndUpdate(user._id, {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password,
+  });
+
+  console.log("User updated in database", updatedUser);
+  res.json({ success: true });
+};
+
 //Logic to login a user
 exports.loginUser = async (req, res) => {
   let email = req.body.email;
