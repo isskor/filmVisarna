@@ -61,6 +61,7 @@ const UserContextProvider = (props) => {
       Alert("User updated!");
     }
   };
+
   const values = {
     loginState,
     setLoginState,

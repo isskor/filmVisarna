@@ -26,7 +26,7 @@ exports.editUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
   console.log(req.body);
 
-  let updatedUser = await User.findByIdAndUpdate(user._id, {
+  let updatedUser = await User.findByIdAndUpdate(req.body.user._id, {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
