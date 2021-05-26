@@ -11,5 +11,5 @@ exports.createBooking = async (req, res) => {
     });
   
     console.log(booking);
-    res.json({ success: true });
+    res.json(booking);
   };
