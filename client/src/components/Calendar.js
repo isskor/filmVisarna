@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback,Datepicker } from 'react';
+var util = require('util');
 
 function Calendar() {
  
@@ -23,7 +24,7 @@ function Calendar() {
         var invalid = [],
             labels = [];
     
-        mobiscroll.util.http.getJson('//trial.mobiscroll.com/getprices/?year=' + d.getFullYear() + '&month=' + d.getMonth(), (bookings) => {
+        util.http.getJson('//trial.mobiscroll.com/getprices/?year=' + d.getFullYear() + '&month=' + d.getMonth(), (bookings) => {
             for (var i = 0; i < bookings.length; ++i) {
                 var booking = bookings[i],
                     d = new Date(booking.d);
@@ -42,7 +43,7 @@ function Calendar() {
         }, 'jsonp');
     }
                                 
-    <mobiscroll.Datepicker 
+    <Datepicker 
         controls={['calendar']}
         min={min}
         max={max}
@@ -51,7 +52,7 @@ function Calendar() {
         onPageLoading={onPageLoadingSingle}
     />
   return (
-  
+  <h1>Calendar</h1>
   );
 }
 

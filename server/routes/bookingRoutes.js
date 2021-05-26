@@ -7,3 +7,6 @@ const { createBooking  } = require('../controllers/bookingsController');
 
 
 router.post("/createBooking", createBooking);
+
+module.exports = router;
+
