@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FilterModal from "../components/FilterModal";
 import MovieBannerImage from "../components/MovieBannerImage";
+import SearchComponent from "../components/SearchComponent";
 import { MovieContext } from "../contexts/MovieContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
@@ -19,7 +20,7 @@ function Home() {
   };
 
   const { movies } = useContext(MovieContext);
-  const movieitems = movies.map((movie) => (
+  const movieItems = movies.map((movie) => (
     <div
       key={movie._id}
       onClick={() => handleClick(movie._id)}
@@ -37,8 +38,14 @@ function Home() {
       <MovieBannerImage />
       <FilterModal open={openFilter} setOpen={setOpenFilter} />
       <button onClick={() => setOpenFilter(true)}>filter</button>
-
-      <Container className="movie-container">{movieitems}</Container>
+      <SearchComponent />
+      <Container className="movie-container">
+        {movies.length > 0 && movieItems ? (
+          movieItems
+        ) : (
+          <h3>No movies found...</h3>
+        )}
+      </Container>
     </div>
   );
 }

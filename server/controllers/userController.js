@@ -37,3 +37,4 @@ exports.loginUser = async (req, res) => {
   //Otherwise send back the user
   res.json(user);
 };
+
