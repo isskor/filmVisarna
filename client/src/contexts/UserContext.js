@@ -13,6 +13,7 @@ const UserContextProvider = (props) => {
     console.log("Logout clicked on");
     let userToLogOut = await fetch("http://localhost:3001/api/users/logout", {
       method: "GET",
+      credentials: "include",
     });
     console.log(userToLogOut);
     userToLogOut = await userToLogOut.json();
