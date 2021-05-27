@@ -7,14 +7,19 @@ const showTimes = require('../models/showTimes');
 
 // only for creating saloons
 
-exports.getShowtimes = async (req, res) => {
-  const { date, id } = req.query;
+exports.getSingleShowtime = async (req, res) => {
+  const { id } = req.query;
   console.log('query', req.query);
-  const shows = await showTimes.find().exec();
+  const show = await showTimes
+    .findById(id)
+    .populate('movie')
+    .populate('saloon')
+    .exec();
 
-  // res.json(shows);
-  console.log(shows);
+  res.json(show);
+  console.log(show);
 };
+
 exports.getShowtime = async (req, res) => {
   const { date, id } = req.query;
   console.log('query', req.query);
