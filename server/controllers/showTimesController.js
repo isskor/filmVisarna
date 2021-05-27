@@ -7,6 +7,14 @@ const showTimes = require('../models/showTimes');
 
 // only for creating saloons
 
+exports.getShowtimes = async (req, res) => {
+  const { date, id } = req.query;
+  console.log('query', req.query);
+  const shows = await showTimes.find().exec();
+
+  // res.json(shows);
+  console.log(shows);
+};
 exports.getShowtime = async (req, res) => {
   const { date, id } = req.query;
   console.log('query', req.query);
@@ -34,7 +42,8 @@ exports.createShowTime = async (req, res) => {
   let saloon = await Saloon.find().exec();
 
   for (let i = 0; i < dates.length; i++) {
-    let m = movies[Math.abs(Math.floor(Math.random() * movies.length - 1))];
+    let movIndex = i % (movies.length - 1);
+    let m = movies[movIndex];
     let d = dates[i];
     let ran = Math.abs(Math.floor(Math.random() * movies.length - 1));
 
@@ -56,7 +65,7 @@ exports.createShowTime = async (req, res) => {
     }).save();
   }
 
-  //   console.log(movies);
+  // console.log(movies);
   //   console.log(saloon);
   res.json('hello');
 };
