@@ -9,4 +9,6 @@ const saloonSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Saloon', saloonSchema);
+ module.exports = mongoose.model('Saloon', saloonSchema);
+
+

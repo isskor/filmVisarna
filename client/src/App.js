@@ -11,6 +11,7 @@ import FilterContextProvider from './contexts/FilterContext';
 import Login from './components/Login';
 import RegisterThxPage from './pages/RegisterThxPage';
 import ProfilePage from './pages/ProfilePage';
+import BookingSeatPage from './pages/BookingSeatPage';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
               </Route>
               <Route exact path='/login'>
                 <Login />
+              </Route>
+              <Route exact path='/bookingSeatPage'>
+                <BookingSeatPage />
               </Route>
               <Route exact path='/movies/:id'>
                 <DetailPage />

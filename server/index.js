@@ -10,6 +10,7 @@ const showTimesRoutes = require('./routes/showTimesRoute');
 const saloonRoutes = require('./routes/saloonRoute');
 
 server.use(cors({ credentials: true, origin: true }));
+const bookingRoutes = require('./routes/bookingRoutes');
 server.use(express.json());
 
 server.use(express.urlencoded({ extended: true }));
@@ -45,9 +46,25 @@ server.use(
   })
 );
 
-server.use('/api', movieRoutes);
+mongoose
+  .connect(
+    "mongodb+srv://filmVisarna:filmVisarna@cinemacluster.dsbop.mongodb.net/cinema",
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => console.log("db connected"))
+  .catch((err) => console.log(err));
+
+
+server.use("/api/users", userRoutes);
 server.use('/api', showTimesRoutes);
+server.use('/api', bookingRoutes);
 server.use('/api', saloonRoutes);
-server.use('/api/users', userRoutes);
+server.use("/api", movieRoutes);
+
 
 server.listen(3001, () => console.log('listening to' + 3001));

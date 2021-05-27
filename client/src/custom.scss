@@ -48,6 +48,11 @@ body {
   font-size:34px;
 }
 
+
+.react-calendar__tile--active {
+  background: $SpaceCadet;
+  color: white;
+}
 .login-info{
   color:#fff;
   .form-label p{
