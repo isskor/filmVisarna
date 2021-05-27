@@ -20,7 +20,7 @@ exports.getShowtime = async (req, res) => {
   console.log('query', req.query);
   const shows = await showTimes
     .find({ movie: id, date })
-    .populate('movie')
+    .populate('movie', 'title')
     .populate('saloon', 'name')
     .exec();
 
