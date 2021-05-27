@@ -21,6 +21,9 @@ const UserContextProvider = (props) => {
     console.log('session user***************:', sessionUser);
     if (sessionUser) {
       setloggedInUser(sessionUser);
+      setLoginState(true);
+    } else {
+      setLoginState(false);
     }
   };
 
@@ -48,8 +51,7 @@ const UserContextProvider = (props) => {
 
     if (userToLogin) {
       setloggedInUser(userToLogin);
-      // console.log('the logged in user is now:', userToLogin);
-      whoami();
+      setLoginState(true);
       return userToLogin;
     }
     console.log("Error user doesn't exist!");
