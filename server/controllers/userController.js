@@ -1,12 +1,22 @@
-const User = require('../models/User');
-const Encrypt = require('../Encrypt');
+const User = require("../models/User");
+const Encrypt = require("../Encrypt");
+
+exports.logout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send({ success: "logout" });
+    }
+  });
+};
 
 exports.whoami = (req, res) => {
   if (req.session.user) {
-    console.log('WHOAMI**************', req.session.user);
+    console.log("WHOAMI**************", req.session.user);
     res.json(req.session.user);
   } else {
-    res.json('No session user');
+    res.json({ error: "error" });
   }
 };
 
@@ -22,7 +32,7 @@ exports.createUser = async (req, res) => {
     password: req.body.password,
   });
 
-  console.log('New user added to database', user);
+  console.log("New user added to database", user);
   res.json({ success: true });
 };
 
@@ -31,7 +41,7 @@ exports.editUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
   console.log(req.body);
 
-  let updatedUser = await User.findByIdAndUpdate(req.body.user._id, {
+  let updatedUser = await User.findByIdAndUpdate(req.session.user._id, {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -51,7 +61,7 @@ exports.loginUser = async (req, res) => {
 
   //If database could not find user send back error
   if (!user) {
-    return res.status(404).json({ error: 'Wrong credentials' });
+    return res.status(404).json({ error: "Wrong credentials" });
   }
   user.password = null;
   req.session.user = user;
@@ -62,4 +72,3 @@ exports.loginUser = async (req, res) => {
     res.send(req.session.user);
   });
 };
-

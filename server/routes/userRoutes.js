@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 const {
@@ -6,11 +6,13 @@ const {
   loginUser,
   whoami,
   editUser,
+  logout,
 } = require("../controllers/userController");
 
 router.post("/createUser", createUser);
 router.post("/loginUser", loginUser);
 router.post("/editUser", editUser);
 router.get("/whoami", whoami);
+router.get("/logout", logout);
 
 module.exports = router;

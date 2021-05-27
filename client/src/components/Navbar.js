@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 function TheNavbar() {
-  const { loginState } = useContext(UserContext);
+  const { loggedInUser } = useContext(UserContext);
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Navbar.Brand>
@@ -15,7 +15,7 @@ function TheNavbar() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
-          {loginState ? (
+          {loggedInUser ? (
             <div>
               <Link to="/Profile">My Profile</Link>
               <Link to="/">Checkout</Link>
