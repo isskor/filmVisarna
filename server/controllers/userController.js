@@ -46,3 +46,4 @@ exports.loginUser = async (req, res) => {
     res.send(req.session.user);
   });
 };
+
