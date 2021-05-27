@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { FilterContext } from '../contexts/FilterContext';
 import { useContext } from 'react';
-
-const initState = {
-  rated: [],
-  price: [],
-  runTime: [],
-  genres: [],
-  language: [],
-};
+import useToggle from './useToggle';
 
 const FilterModal = ({ open, setOpen }) => {
-  const { filterMovies } = useContext(FilterContext);
+  const { filterMovies, filters, handleChange } = useContext(FilterContext);
   const [genreList, setGenreList] = useState([]);
-  const [filters, setFilters] = useState(initState);
+  const [priceEl, priceToggle] = useToggle('price');
+  const [lengthEl, lengthToggle] = useToggle('length');
+  const [ratedEl, ratedToggle] = useToggle('rated');
+  const [genresEl, genresToggle] = useToggle('genres');
+  const [languageEl, languageToggle] = useToggle('language');
 
   const getGenres = (movies) => {
     const list = [];
@@ -36,21 +33,6 @@ const FilterModal = ({ open, setOpen }) => {
     fetchMovies();
   }, []);
 
-  console.log(filters);
-
-  const handleChange = (e) => {
-    let type = e.target.name;
-
-    if (filters[type].includes(e.target.value)) {
-      return setFilters({
-        ...filters,
-        [type]: filters[type].filter((f) => f !== e.target.value),
-      });
-    }
-
-    setFilters({ ...filters, [type]: [...filters[type], e.target.value] });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setOpen(false);
@@ -67,8 +49,17 @@ const FilterModal = ({ open, setOpen }) => {
           <div className='filter_container'>
             <h3>Filter</h3>
             <form className='row filter_form'>
-              <h5>Price</h5>
-              <ul className='row filter_group'>
+              <div className='filter_header' onClick={priceToggle}>
+                <h5>Price</h5>
+                <div>
+                  <span
+                    className={`caret ${priceEl ? 'toggle_open' : ''}`}
+                  ></span>
+                </div>
+              </div>{' '}
+              <ul
+                className={`row filter_group ${priceEl ? 'toggle_group' : ''}`}
+              >
                 <li className='col-md-3'>
                   <label htmlFor='price'>120kr</label>
                   <input
@@ -102,8 +93,17 @@ const FilterModal = ({ open, setOpen }) => {
               </ul>
             </form>
             <form className='row filter_form'>
-              <h5>Length</h5>
-              <ul className='row filter_group'>
+              <div className='filter_header' onClick={lengthToggle}>
+                <h5>Length</h5>
+                <div>
+                  <span
+                    className={`caret ${lengthEl ? 'toggle_open' : ''}`}
+                  ></span>
+                </div>
+              </div>
+              <ul
+                className={`row filter_group ${lengthEl ? 'toggle_group' : ''}`}
+              >
                 <li className='col-md-3'>
                   <label htmlFor='runTime'>less than 1h</label>
                   <input
@@ -137,8 +137,17 @@ const FilterModal = ({ open, setOpen }) => {
               </ul>
             </form>
             <form className='row filter_form'>
-              <h5>Rated</h5>
-              <ul className='row filter_group'>
+              <div className='filter_header' onClick={ratedToggle}>
+                <h5>Rated</h5>
+                <div>
+                  <span
+                    className={`caret ${ratedEl ? 'toggle_open' : ''}`}
+                  ></span>
+                </div>
+              </div>
+              <ul
+                className={`row filter_group ${ratedEl ? 'toggle_group' : ''}`}
+              >
                 <li className='col-md-3'>
                   <label htmlFor='rated'>PG</label>
                   <input
@@ -172,8 +181,17 @@ const FilterModal = ({ open, setOpen }) => {
               </ul>
             </form>
             <form className='row filter_form'>
-              <h5>Genres</h5>
-              <ul className='row filter_group'>
+              <div className='filter_header' onClick={genresToggle}>
+                <h5>Genres</h5>
+                <div>
+                  <span
+                    className={`caret ${genresEl ? 'toggle_open' : ''}`}
+                  ></span>
+                </div>
+              </div>
+              <ul
+                className={`row filter_group ${genresEl ? 'toggle_group' : ''}`}
+              >
                 {genreList?.map((genre) => (
                   <li className='col-md-3' key={genre}>
                     <label htmlFor='genres'>{genre}</label>
@@ -189,8 +207,19 @@ const FilterModal = ({ open, setOpen }) => {
               </ul>
             </form>
             <form className='row filter_form'>
-              <h5>Language</h5>
-              <ul className='row filter_group'>
+              <div className='filter_header' onClick={languageToggle}>
+                <h5>Language</h5>
+                <div>
+                  <span
+                    className={`caret ${languageEl ? 'toggle_open' : ''}`}
+                  ></span>
+                </div>
+              </div>
+              <ul
+                className={`row filter_group ${
+                  languageEl ? 'toggle_group' : ''
+                }`}
+              >
                 <li className='col-md-3'>
                   <label htmlFor='language'>English</label>
                   <input

@@ -1,19 +1,42 @@
-import { createContext, useState, useEffect } from "react";
-import { MovieContext } from "../contexts/MovieContext";
-import { useContext } from "react";
+import { createContext, useState, useEffect } from 'react';
+import { MovieContext } from '../contexts/MovieContext';
+import { useContext } from 'react';
 
 export const FilterContext = createContext();
+
+const initState = {
+  rated: [],
+  price: [],
+  runTime: [],
+  genres: [],
+  language: [],
+};
 
 const FilterContextProvider = (props) => {
   const { setMovies } = useContext(MovieContext);
 
+  const [filters, setFilters] = useState(initState);
+
+  const handleChange = (e) => {
+    let type = e.target.name;
+
+    if (filters[type].includes(e.target.value)) {
+      return setFilters({
+        ...filters,
+        [type]: filters[type].filter((f) => f !== e.target.value),
+      });
+    }
+
+    setFilters({ ...filters, [type]: [...filters[type], e.target.value] });
+  };
+
   const filterMovies = async (data) => {
     let returnMovies = await fetch(
-      "http://localhost:3001/api/filtered-movies",
+      'http://localhost:3001/api/filtered-movies',
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "content-type": "application/json",
+          'content-type': 'application/json',
         },
         body: JSON.stringify(data),
       }
@@ -22,11 +45,15 @@ const FilterContextProvider = (props) => {
     if (returnMovies) {
       setMovies(returnMovies);
     } else {
-      alert("No movies found");
+      alert('No movies found');
     }
   };
 
-  const values = { filterMovies };
+  const resetFilters = () => {
+    setFilters(initState);
+  };
+
+  const values = { filterMovies, handleChange, filters, resetFilters };
 
   return (
     <FilterContext.Provider value={values}>
