@@ -105,8 +105,10 @@ const UserContextProvider = (props) => {
       },
       body: JSON.stringify(user),
     });
+    userToEdit = await userToEdit.json();
     if (userToEdit.success) {
-      Alert("User updated!");
+      console.log("Here is userEdit.user", userToEdit.user);
+      setloggedInUser(userToEdit.user);
     }
   };
 

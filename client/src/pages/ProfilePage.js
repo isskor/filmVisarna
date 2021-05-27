@@ -14,7 +14,7 @@ export default function ProfilePage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
-  const { editUser } = useContext(UserContext);
+  const { editUser, whoami } = useContext(UserContext);
 
   useEffect(() => {
     if (confirmPassword === "") {
@@ -66,7 +66,7 @@ export default function ProfilePage() {
       password: password,
     };
     editUser(user);
-    history.push("/Profile");
+    whoami();
   };
 
   return (

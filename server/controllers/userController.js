@@ -47,9 +47,14 @@ exports.editUser = async (req, res) => {
     email: req.body.email,
     password: req.body.password,
   });
+  updatedUser.password = null;
+  req.session.user = updatedUser;
 
-  console.log("User updated in database", updatedUser);
-  res.json({ success: true });
+  req.session.save((err) => {
+    if (err) return console.log(err);
+
+    res.json({ success: true, user: updatedUser });
+  });
 };
 
 //Logic to login a user
