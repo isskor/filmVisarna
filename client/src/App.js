@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import FilterContextProvider from './contexts/FilterContext';
 import Login from './components/Login';
 import RegisterThxPage from './pages/RegisterThxPage';
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
               </Route>
               <Route exact path='/thank-you-for-registering'>
                 <RegisterThxPage />
+              </Route>
+              <Route exact path="/Profile">
+                <ProfilePage />
               </Route>
             </UserContextProvider>
           </FilterContextProvider>

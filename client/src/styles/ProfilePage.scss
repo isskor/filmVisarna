@@ -1,0 +1,42 @@
+.profileContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.profileMain {
+  width: 60%;
+  margin-right: 2%;
+  border: 2px solid black;
+  margin-left: 5%;
+  margin-top: 5vh;
+  height: 90vh;
+}
+
+.profileSideBar {
+  display: flex;
+  border: 2px solid black;
+  flex-direction: column;
+  margin-top: 4vh;
+  margin-left: 2%;
+  width: 12%;
+  align-items: center;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .profileContainer {
+    flex-direction: column;
+  }
+  .profileSideBar {
+    width: 100%;
+    margin-left: 0%;
+    flex-direction: row;
+  }
+  .profileMain {
+    width: 98%;
+    margin-right: 1%;
+    border: 2px solid black;
+    margin-left: 1%;
+  }
+}
