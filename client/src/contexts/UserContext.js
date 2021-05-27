@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from 'react';
-import { Alert } from 'react-bootstrap';
 
 export const UserContext = createContext();
 
@@ -7,7 +6,23 @@ const UserContextProvider = (props) => {
   const [loginState, setLoginState] = useState(false);
   const [isMember, setIsMember] = useState(false);
   const [users, setUsers] = useState([]);
-  const [loggedInUser, setloggedInUser] = useState({});
+  const [loggedInUser, setloggedInUser] = useState(null);
+
+  const logout = async () => {
+    console.log('Logout clicked on');
+    let userToLogOut = await fetch('http://localhost:3001/api/users/logout', {
+      method: 'GET',
+      credentials: 'include',
+    });
+    console.log(userToLogOut);
+    userToLogOut = await userToLogOut.json();
+    if (userToLogOut.success) {
+      setLoginState(false);
+      setIsMember(false);
+      setloggedInUser(null);
+      console.log('Log Out Succesful');
+    }
+  };
 
   const whoami = async () => {
     let sessionUser = await fetch('http://localhost:3001/api/users/whoami', {
@@ -19,12 +34,14 @@ const UserContextProvider = (props) => {
     });
     sessionUser = await sessionUser.json();
     console.log('session user***************:', sessionUser);
-    if (sessionUser) {
-      setloggedInUser(sessionUser);
-      setLoginState(true);
-    } else {
+    if (sessionUser.error) {
+      setloggedInUser(null);
       setLoginState(false);
+      console.log("Error user doesn't exist!");
+      return;
     }
+    setloggedInUser(sessionUser);
+    setLoginState(true);
   };
 
   useEffect(() => {
@@ -48,13 +65,18 @@ const UserContextProvider = (props) => {
     });
 
     userToLogin = await userToLogin.json();
+    console.log(userToLogin);
 
-    if (userToLogin) {
-      setloggedInUser(userToLogin);
-      setLoginState(true);
-      return userToLogin;
+    if (userToLogin.error) {
+      setloggedInUser(null);
+      setLoginState(false);
+      console.log("Error user doesn't exist!");
+      return;
     }
-    console.log("Error user doesn't exist!");
+
+    setloggedInUser(userToLogin);
+    setLoginState(true);
+    return userToLogin;
   };
 
   const createUser = async (user) => {
@@ -69,9 +91,26 @@ const UserContextProvider = (props) => {
       }
     );
     if (userToRegiser.success) {
-      Alert('User registered!');
+      alert('User registered!');
     }
   };
+
+  const editUser = async (user) => {
+    let userToEdit = await fetch('http://localhost:3001/api/users/editUser', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+    userToEdit = await userToEdit.json();
+    if (userToEdit.success) {
+      console.log('Here is userEdit.user', userToEdit.user);
+      setloggedInUser(userToEdit.user);
+    }
+  };
+
   const values = {
     loginState,
     setLoginState,
@@ -83,7 +122,9 @@ const UserContextProvider = (props) => {
     setloggedInUser,
     login,
     createUser,
+    editUser,
     whoami,
+    logout,
   };
   return (
     <UserContext.Provider value={values}>{props.children}</UserContext.Provider>
