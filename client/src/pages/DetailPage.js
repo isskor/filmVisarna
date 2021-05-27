@@ -2,7 +2,7 @@ import { MovieContext } from '../contexts/MovieContext';
 import { useContext, useEffect,useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ShowTimes from '../components/ShowTimes';
-import BookingCalendar from 'react-booking-calendar';
+
 
 function DetailPage() {
   const { movie, getMovieById } = useContext(MovieContext);
