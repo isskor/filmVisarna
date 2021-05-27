@@ -61,10 +61,10 @@ mongoose
 
 
 server.use("/api/users", userRoutes);
-server.use('/api/showtimes', showTimesRoutes);
-server.use('/api/bookings', bookingRoutes);
-server.use('/api/', saloonRoutes);
-server.use("/api/", movieRoutes);
+server.use('/api', showTimesRoutes);
+server.use('/api', bookingRoutes);
+server.use('/api', saloonRoutes);
+server.use("/api", movieRoutes);
 
 
 server.listen(3001, () => console.log('listening to' + 3001));
