@@ -1,8 +1,7 @@
 import { MovieContext } from '../contexts/MovieContext';
-import { useContext, useEffect,useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ShowTimes from '../components/ShowTimes';
-
 
 function DetailPage() {
   const { movie, getMovieById } = useContext(MovieContext);
@@ -10,8 +9,7 @@ function DetailPage() {
   const [date, setDate] = useState('Thu Jun 24 2021');
   const history = useParams();
   console.log(history);
-
-
+  console.log(date);
   useEffect(() => {
     getMovieById(history.id);
     fetchShowtimes(history.id, date);
@@ -81,13 +79,8 @@ function DetailPage() {
             <div className='showTimes row'> Show times </div>
             <ShowTimes showTimes={showTimes} />
           </div>
-          <div className='booking'>
-            <div className='showTimes'> Show times </div>
-  
-          </div>
         </>
       )}
-         
     </div>
   );
 }
