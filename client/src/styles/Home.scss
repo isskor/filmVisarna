@@ -10,6 +10,17 @@
     justify-content: center;
     align-items: center;
   }
+.registerThxPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  color: white;
+  button {
+    margin: 2rem;
+  }
+}
 
   button {
     margin: 0.5rem;
