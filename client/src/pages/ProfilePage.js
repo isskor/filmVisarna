@@ -29,6 +29,14 @@ export default function ProfilePage() {
     }
   }, [password, confirmPassword]);
 
+  useEffect(() => {
+    if (loggedInUser) {
+      setEmail(loggedInUser.email);
+      setFirstName(loggedInUser.firstName);
+      setLastName(loggedInUser.lastName);
+    }
+  }, [loggedInUser]);
+
   const emailInput = (e) => {
     setEmail(e.target.value);
   };
@@ -69,7 +77,7 @@ export default function ProfilePage() {
         <Link to="/Bookings">Previous Bookings</Link>
       </div>
       <div className="profileMain">
-        <h2> Hello {loggedInUser.firstName} </h2>{" "}
+        <h2> Hello {loggedInUser?.firstName} </h2>{" "}
         <h4> Here you can view your bookings and account settings</h4>
         <hr />
         <div className="profileAccount">
@@ -85,7 +93,7 @@ export default function ProfilePage() {
                     <Form.Control
                       onChange={firstNameInput}
                       type="text"
-                      placeholder={loggedInUser.firstName}
+                      value={firstName}
                       required
                     />
                   </Form.Group>
@@ -97,7 +105,7 @@ export default function ProfilePage() {
                   <Form.Control
                     onChange={lastNameInput}
                     type="text"
-                    placeholder={loggedInUser.lastName}
+                    value={lastName}
                     required
                   />
                 </Form.Group>
@@ -145,7 +153,7 @@ export default function ProfilePage() {
                     <Form.Control
                       onChange={emailInput}
                       type="email"
-                      placeholder={loggedInUser.email}
+                      value={email}
                       required
                     />
                   </Form.Group>

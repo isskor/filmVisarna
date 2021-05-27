@@ -11,7 +11,7 @@ const {
 
 router.post("/createUser", createUser);
 router.post("/loginUser", loginUser);
-router.post("/editUser", editUser);
+router.put("/editUser", editUser);
 router.get("/whoami", whoami);
 router.get("/logout", logout);
 
