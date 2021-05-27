@@ -4,7 +4,8 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 function TheNavbar() {
-  const { loggedInUser } = useContext(UserContext);
+  const { loggedInUser, logout } = useContext(UserContext);
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Navbar.Brand>
@@ -19,7 +20,9 @@ function TheNavbar() {
             <div>
               <Link to="/Profile">My Profile</Link>
               <Link to="/">Checkout</Link>
-              <Link to="/">Sign out</Link>
+              <Link onClick={logout} to="/">
+                Sign out
+              </Link>
             </div>
           ) : (
             <div>

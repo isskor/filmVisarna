@@ -10,13 +10,16 @@ const UserContextProvider = (props) => {
   const [loggedInUser, setloggedInUser] = useState(null);
 
   const logout = async () => {
+    console.log("Logout clicked on");
     let userToLogOut = await fetch("http://localhost:3001/api/users/logout", {
       method: "GET",
     });
+    console.log(userToLogOut);
+    userToLogOut = await userToLogOut.json();
     if (userToLogOut.success) {
       setLoginState(false);
       setIsMember(false);
-      setLoginState(null);
+      setloggedInUser(null);
       console.log("Log Out Succesful");
     }
   };
