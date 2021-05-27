@@ -40,7 +40,7 @@ function DetailPage() {
           </div>
           <div className='info'>
             <div className='cover'>
-              <img src={movie.poster} />
+              <img src={movie.poster} alt={movie.title}/>
             </div>
             <div className='mainInfo'>
               <div className='title'> {movie.title} </div>
