@@ -5,10 +5,8 @@ const Schema = mongoose.Schema;
 const bookingSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: 'User' },
-    movie: { type: Schema.Types.ObjectId, ref: 'Movie' },
-    // seatRows: [{ row: String, seats: [String] }],
+     seatRows: [],
     showtime: { type: Schema.Types.ObjectId, ref: 'ShowTime' },
-    saloon: { type: Schema.Types.ObjectId, ref: 'Saloon' }
   },
   { timestamps: true }
 );
