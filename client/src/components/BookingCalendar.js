@@ -2,15 +2,19 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 
 function BookingCalendar() {
-  const [value, onChange] = useState(new Date());
-  
+  const [date, SetDate] = useState(new Date());
    
+const onChange = (date) => {
+  SetDate(date);
+}
+
   return (
     <div>
     <Calendar
       onChange={onChange}
-      value={value}
+      value={date}
     />
+    <h1>{date.toString()}</h1>
   </div>
   );
 }

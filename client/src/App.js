@@ -8,7 +8,7 @@ import DetailPage from "./pages/DetailPage";
 import LoginPage from "./pages/LoginPage";
 import FilterContextProvider from "./contexts/FilterContext";
 import Login from './components/Login'
-import Calendar from './components/Calendar'
+import BookingCalendar from './components/BookingCalendar'
 import ProfilePage from "./pages/ProfilePage";
 import About from './pages/About';
 import RegisterThxPage from './pages/RegisterThxPage';
@@ -37,8 +37,9 @@ function App() {
                 <Login />
               </Route>
               <Route exact path='/movies/:id'>
-              <Route exact path="/calendar">
-                <Calendar />
+              </Route>
+              <Route exact path="/bookingcalendar">
+                <BookingCalendar />
               </Route>
               <Route exact path="/movies/:id">
                 <DetailPage />
@@ -55,6 +56,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
-
+  }
 
 export default App;
