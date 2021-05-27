@@ -1,8 +1,13 @@
-const User = require("../models/User");
-const Encrypt = require("../Encrypt");
+const User = require('../models/User');
+const Encrypt = require('../Encrypt');
 
 exports.whoami = (req, res) => {
-  res.json(req.session.user || null);
+  if (req.session.user) {
+    console.log('WHOAMI**************', req.session.user);
+    res.json(req.session.user);
+  } else {
+    res.json('No session user');
+  }
 };
 
 //Logic to create a user
@@ -17,7 +22,7 @@ exports.createUser = async (req, res) => {
     password: req.body.password,
   });
 
-  console.log("New user added to database", user);
+  console.log('New user added to database', user);
   res.json({ success: true });
 };
 
@@ -30,10 +35,15 @@ exports.loginUser = async (req, res) => {
 
   //If database could not find user send back error
   if (!user) {
-    res.status(404).json({ error: "Wrong credentials" });
+    return res.status(404).json({ error: 'Wrong credentials' });
   }
   user.password = null;
   req.session.user = user;
-  //Otherwise send back the user
-  res.json(user);
+
+  req.session.save((err) => {
+    if (err) return console.log(err);
+
+    res.send(req.session.user);
+  });
 };
+
