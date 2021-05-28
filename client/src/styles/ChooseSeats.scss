@@ -29,17 +29,45 @@
   }
 
   .seat_selected {
-    background: blue;
+    background: #119afe;
   }
 
   .seat_booked {
-    background: red !important;
+    background: rgb(78, 78, 78) !important;
   }
   .seat_preview {
-    background: green;
+    background: rgb(73, 112, 185);
   }
 }
 
 .seat_error {
-  color: red;
+  color: rgb(250, 120, 120);
+}
+.selected_seats {
+  color: white;
+  margin-top: 3rem;
+}
+
+.seat_info {
+  display: flex;
+  gap: 2rem;
+  color: white;
+  margin-bottom: 3rem;
+  .seat_color {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+  }
+  .seat_info--booked {
+    display: flex;
+    .seat_color {
+      background: rgb(78, 78, 78);
+    }
+  }
+  .seat_info--selected {
+    display: flex;
+    .seat_color {
+      background: #119afe;
+    }
+  }
 }

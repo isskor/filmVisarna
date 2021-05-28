@@ -14,28 +14,20 @@ const ChooseSeat = ({ seats }) => {
     setSeatError(null);
     // max length per row, so we can calculate when to go backwards
     let maxLength = row.seats.length;
-
     // splits the seat name so we can get the number
     let splitSeat = seat.split('');
-
     let seatRow = splitSeat[0];
-
     let seatNumber = +splitSeat[1];
     // if seats are >= 10 we want to add the last 2 el. to get 11, 12 etc.
-    console.log(splitSeat);
     if (splitSeat.length > 2) {
       seatNumber = [Number(splitSeat[1] + splitSeat[2])];
     }
-
     // initialize empty array
     let seatsToChoose = [];
-
     // for each ticket quantity we want to mark the following seats to match quantity
     for (let i = 0; i < seatQuantity; i++) {
-      console.log(seatNumber);
       // marks the next seat
       let nextNumber = +seatNumber + i;
-      console.log('max', maxLength);
       // go backwards
       if (seatNumber > maxLength - seatQuantity) {
         nextNumber = +seatNumber - i;
@@ -43,13 +35,9 @@ const ChooseSeat = ({ seats }) => {
       // push to seat array
       seatsToChoose.push(seatRow + nextNumber);
     }
-
-    console.log(seatsToChoose);
-
     // sets the array in preview
     setPreview(seatsToChoose);
   };
-  console.log('prev', preview);
 
   const checkIfBooked = (booked, selected) => {
     // compares to arrays, if any el in booked is present in selected return true,
@@ -67,8 +55,37 @@ const ChooseSeat = ({ seats }) => {
     setSelected(preview);
   };
 
+  const sortSeats = (toSort) => {
+    return toSort.sort((a, b) => {
+      let splitA = a.split('');
+      let splitB = b.split('');
+
+      let seatNumberA = +splitA[1];
+      let seatNumberB = +splitB[1];
+      // if seats are >= 10 we want to add the last 2 el. to get 11, 12 etc.
+      if (splitA[2]) {
+        seatNumberA = Number(splitA[1] + splitA[2]);
+      }
+      if (splitB[2]) {
+        seatNumberB = Number(splitB[1] + splitB[2]);
+      }
+
+      return seatNumberA - seatNumberB;
+    });
+  };
+
   return (
-    <div className='col seat_table'>
+    <div className='col seat_table' onMouseLeave={() => setPreview([])}>
+      <div className=' seat_info'>
+        <div className='seat_info--booked'>
+          <div className='seat_color'></div>
+          <p>Booked</p>
+        </div>
+        <div className='seat_info--selected'>
+          <div className='seat_color'></div>
+          <p>Selected</p>
+        </div>
+      </div>
       {seats?.map((row) => (
         <div className='SeatRow' key={row.row}>
           <span className='SeatRow_name'>{row.row}</span>
@@ -96,15 +113,21 @@ const ChooseSeat = ({ seats }) => {
                   key={i}
                   onMouseOver={() => handleHover(s, row)}
                   onClick={handleSelect}
-                >
-                  {s}
-                </div>
+                ></div>
               );
             })}
           </div>
         </div>
       ))}
       {seatError && <p className='seat_error'>{seatError}</p>}
+      <div className=' selected_seats'>
+        <p>
+          Selected Seats:{' '}
+          {sortSeats(selected).map((s) => (
+            <span> {s},</span>
+          ))}
+        </p>
+      </div>
     </div>
   );
 };

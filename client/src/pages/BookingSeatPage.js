@@ -37,7 +37,7 @@ export default function BookingSeatPage() {
           <div className='col-4 text-end'>
             <img src={showTime?.movie.poster} alt='' />
           </div>
-          <div className='col-8'>
+          <div className='col-7'>
             <div className='row'>
               <h1>{showTime?.movie.title}</h1>
               <div className='col-3 showtime_info--text'>
