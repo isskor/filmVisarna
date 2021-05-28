@@ -1,0 +1,73 @@
+.seat_table {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.SeatRow {
+  color: white;
+  display: flex;
+  margin: 1rem;
+
+  .SeatRow_name {
+    flex: 0.5;
+  }
+
+  .seats {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .seat {
+    height: 20px;
+    width: 20px;
+    background: white;
+    cursor: pointer;
+  }
+
+  .seat_col {
+    margin-right: 1rem;
+  }
+
+  .seat_selected {
+    background: #119afe;
+  }
+
+  .seat_booked {
+    background: rgb(78, 78, 78) !important;
+  }
+  .seat_preview {
+    background: rgb(73, 112, 185);
+  }
+}
+
+.seat_error {
+  color: rgb(250, 120, 120);
+}
+.selected_seats {
+  color: white;
+  margin-top: 3rem;
+}
+
+.seat_info {
+  display: flex;
+  gap: 2rem;
+  color: white;
+  margin-bottom: 3rem;
+  .seat_color {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+  }
+  .seat_info--booked {
+    display: flex;
+    .seat_color {
+      background: rgb(78, 78, 78);
+    }
+  }
+  .seat_info--selected {
+    display: flex;
+    .seat_color {
+      background: #119afe;
+    }
+  }
+}

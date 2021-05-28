@@ -34,11 +34,11 @@ function App() {
               <Route exact path='/login'>
                 <Login />
               </Route>
-              <Route exact path='/bookingSeatPage'>
-                <BookingSeatPage />
-              </Route>
               <Route exact path='/movies/:id'>
                 <DetailPage />
+              </Route>
+              <Route exact path='/showtime/:id'>
+                <BookingSeatPage />
               </Route>
               <Route exact path='/thank-you-for-registering'>
                 <RegisterThxPage />
