@@ -12,6 +12,7 @@ import Login from './components/Login';
 import RegisterThxPage from './pages/RegisterThxPage';
 import ProfilePage from './pages/ProfilePage';
 import BookingSeatPage from './pages/BookingSeatPage';
+import BookingCalendar from './components/BookingCalendar.js';
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
               </Route>
               <Route exact path='/movies/:id'>
                 <DetailPage />
+              </Route>
+              <Route exact path='/calendar'>
+                <BookingCalendar />
               </Route>
               <Route exact path='/showtime/:id'>
                 <BookingSeatPage />
