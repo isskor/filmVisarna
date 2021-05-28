@@ -26,27 +26,54 @@ export default function BookingSeatPage() {
 
   return (
     <div className='container-fluid'>
-      <div className='row justify-content-between showtime_info'>
-        <div className='col-3'>
-          <p>Back</p>
+      <div className='booking_header'>
+        <div className='row justify-content-between showtime_info'>
+          <div className='col-3'>
+            <p>Back</p>
+          </div>
         </div>
-        <div className='col-3 showtime_info--text'>
-          <span>{showTime?.saloon.name}</span>
-          <span>{showTime?.time}</span>
-          <span>{showTime?.date}</span>
+        <div className='row '>
+          <div className='col-4 text-end'>
+            <img src={showTime?.movie.poster} alt='' />
+          </div>
+          <div className='col-8'>
+            <div className='row'>
+              <h1>{showTime?.movie.title}</h1>
+              <div className='col-3 showtime_info--text'>
+                <span className='showtime_info--title'>Saloon</span>
+                <span>{showTime?.saloon.name}</span>
+                <span className='showtime_info--title'>Time</span>
+                <span>{showTime?.time}</span>
+                <span className='showtime_info--title'>Date</span>
+                <span>{showTime?.date}</span>
+              </div>
+            </div>
+            <div className='row ticket_quantity'>
+              <div className='ticket_group'>
+                <span>Adult x Price</span>
+                <div className='ticket_minus'>-</div>
+                <span>Q</span>
+                <div className='ticket_plus'>+</div>
+              </div>
+              <div className='ticket_group'>
+                <span>Adult x Price</span>
+                <div className='ticket_minus'>-</div>
+                <span>Q</span>
+                <div className='ticket_plus'>+</div>
+              </div>
+              <div className='ticket_group'>
+                <span>Adult x Price</span>
+                <div className='ticket_minus'>-</div>
+                <span>Q</span>
+                <div className='ticket_plus'>+</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className='row '>
-        <div className='col-3'>
-          <img src={showTime?.movie.poster} alt='' />
-        </div>
-        <div className='col-3'>
-          <h1>{showTime?.movie.title}</h1>
-        </div>
-      </div>
-      <div className='row'>
-        <div className='col-12 text-center '>
-          <h2>Choose your seats</h2>
+        <div className='row'>
+          <div className='col-12 text-center '>
+            <h2>Choose your seats</h2>
+          </div>
         </div>
       </div>
     </div>
