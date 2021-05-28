@@ -15,6 +15,12 @@ export default function Register() {
   const [isValid, setIsValid] = useState(false);
   const { createUser } = useContext(UserContext);
 
+  // useState variabler för varje input som görs i formuläret, email, password, firstName, lastName
+  //confirmpassword som används för att jämföra om det är samma lösenord i båda lösenordsformulären
+  // useEffecten nedan sätter condition för att lösenordet stämmer överens och om det är längre än 4 karaktärer
+  // isValid är variablen som är true eller false, och därmed ser till om röda utropstecknet syns på frontend eller inte
+  // createuser hämtas ifrån usercontext för att användas här
+
   useEffect(() => {
     if (confirmPassword === "") {
       setInputValidation(true);
