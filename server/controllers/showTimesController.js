@@ -33,8 +33,8 @@ exports.getShowtime = async (req, res) => {
   console.log(shows);
 };
 
-exports.BookShowtime = async (req, res) => {
-  const { showTime, seats } = req.query;
+exports.bookShowtime = async (req, res) => {
+  const { showTime, seats } = req.body;
   //   console.log(req.query);
   const shows = await showTimes
     .findOneAndUpdate({ id: showTime }, { $push: { booking: seats } })
