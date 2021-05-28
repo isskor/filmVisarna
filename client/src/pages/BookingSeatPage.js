@@ -6,6 +6,13 @@ import ChooseSeat from "../components/ChooseSeat";
 export default function BookingSeatPage() {
   const { fetchOneShowtime } = useContext(MovieContext);
   const [showTime, setShowTime] = useState(null);
+  let init = {
+    adult: { price: showTime?.movie.price, quantity: 0 },
+    senior: { price: showTime?.movie.price * 0.8, quantity: 0 },
+    junior: { price: showTime?.movie.price * 0.7, quantity: 0 },
+  };
+  const [tickets, setTickets] = useState({});
+  console.log(tickets);
   const { id } = useParams();
 
   const fetchShow = useCallback(
@@ -18,16 +25,40 @@ export default function BookingSeatPage() {
     [id, fetchOneShowtime]
   );
 
-  const prices = [
-    { standardPrice: showTime?.movie.price },
-    { seniorPrice: showTime?.movie.price * 0.8 },
-    { juniorPrice: showTime?.movie.price * 0.7 },
-  ];
+  let totalPrice = 0;
+
+  const handleQuantity = (type, minus) => {
+    if (minus) {
+      if (tickets[type].quantity === 0) return;
+
+      setTickets({
+        ...tickets,
+        [type]: { ...tickets[type], quantity: tickets[type].quantity - 1 },
+      });
+    } else {
+      setTickets({
+        ...tickets,
+        [type]: { ...tickets[type], quantity: tickets[type].quantity + 1 },
+      });
+    }
+  };
+
+  const getTotalPrice = () => {
+    const test = Object.values(tickets);
+    const test2 = test.reduce((a, b) => {
+      return a + b.price * b.quantity;
+    }, 0);
+    console.log(test2);
+  };
 
   useEffect(() => {
     console.log(id);
     fetchShow(id);
   }, [id, fetchShow]);
+
+  useEffect(() => {
+    setTickets(init);
+  }, [showTime]);
 
   console.log(showTime);
 
@@ -57,27 +88,45 @@ export default function BookingSeatPage() {
             </div>
             <div className="row ticket_quantity">
               <div className="ticket_group">
-                <span>Adult Price: {standardPrice}</span>
-                <div className="ticket_minus" onClick={addStandardPrice}>
+                <span>Adult Price: {tickets?.adult?.price}</span>
+                <div
+                  className="ticket_minus"
+                  onClick={() => handleQuantity("adult", "minus")}
+                >
                   -
                 </div>
-                <span>{standardQuantity}</span>
-                <div className="ticket_plus">+</div>
+                <span>{tickets?.adult?.quantity}</span>
+                <div
+                  className="ticket_plus"
+                  onClick={() => handleQuantity("adult")}
+                >
+                  +
+                </div>
               </div>
 
               <div className="ticket_group">
-                <span>Senior Price: {seniorPrice}</span>
+                <span>Senior Price: {tickets?.senior?.price}</span>
                 <div className="ticket_minus">-</div>
-                <span></span>
-                <div className="ticket_plus">+</div>
+                <span>{tickets?.senior?.quantity}</span>
+                <div
+                  className="ticket_plus"
+                  onClick={() => handleQuantity("senior")}
+                >
+                  +
+                </div>
               </div>
               <div className="ticket_group">
-                <span>Junior Price: {juniorPrice}</span>
+                <span>Junior Price: {tickets?.junior?.price}</span>
                 <div className="ticket_minus">-</div>
-                <span></span>
-                <div className="ticket_plus">+</div>
-                <p> Totalprice: {totalStandardPrice}</p>
+                <span>{tickets?.junior?.quantity}</span>
+                <div
+                  className="ticket_plus"
+                  onClick={() => handleQuantity("junior")}
+                >
+                  +
+                </div>
               </div>
+              <p> Total price: {getTotalPrice()} </p>
             </div>
           </div>
         </div>
