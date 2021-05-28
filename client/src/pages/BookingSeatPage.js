@@ -71,6 +71,8 @@ export default function BookingSeatPage() {
       },
       body: JSON.stringify({ showTime: showTime._id, seats: selected }),
     });
+    fetchShow(id);
+    setSelected([]);
   };
 
   return (
