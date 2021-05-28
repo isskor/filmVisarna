@@ -44,11 +44,11 @@ export default function BookingSeatPage() {
   };
 
   const getTotalPrice = () => {
-    const test = Object.values(tickets);
-    const test2 = test.reduce((a, b) => {
+    const ticketArray = Object.values(tickets);
+    const sum = ticketArray.reduce((a, b) => {
       return a + b.price * b.quantity;
     }, 0);
-    console.log(test2);
+    return sum;
   };
 
   useEffect(() => {
@@ -106,7 +106,12 @@ export default function BookingSeatPage() {
 
               <div className="ticket_group">
                 <span>Senior Price: {tickets?.senior?.price}</span>
-                <div className="ticket_minus">-</div>
+                <div
+                  className="ticket_minus"
+                  onClick={() => handleQuantity("senior", "minus")}
+                >
+                  -
+                </div>
                 <span>{tickets?.senior?.quantity}</span>
                 <div
                   className="ticket_plus"
@@ -117,7 +122,12 @@ export default function BookingSeatPage() {
               </div>
               <div className="ticket_group">
                 <span>Junior Price: {tickets?.junior?.price}</span>
-                <div className="ticket_minus">-</div>
+                <div
+                  className="ticket_minus"
+                  onClick={() => handleQuantity("junior", "minus")}
+                >
+                  -
+                </div>
                 <span>{tickets?.junior?.quantity}</span>
                 <div
                   className="ticket_plus"
