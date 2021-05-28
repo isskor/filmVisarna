@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 
-const ChooseSeat = ({ seats }) => {
-  // todo -> should be taken from ticket quantity
-  const [seatQuantity, setSeatQuantity] = useState(5);
-  const [selected, setSelected] = useState([]);
+const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
   const [preview, setPreview] = useState([]);
-  const [booked, setBooked] = useState(['B1', 'C11']);
   const [seatError, setSeatError] = useState(null);
 
   // on Mouse Over set preview
@@ -25,11 +21,16 @@ const ChooseSeat = ({ seats }) => {
     // initialize empty array
     let seatsToChoose = [];
     // for each ticket quantity we want to mark the following seats to match quantity
-    for (let i = 0; i < seatQuantity; i++) {
+    let numOfTickets = Object.values(tickets).reduce(
+      (a, b) => a + b.quantity,
+      0
+    );
+
+    for (let i = 0; i < numOfTickets; i++) {
       // marks the next seat
       let nextNumber = +seatNumber + i;
       // go backwards
-      if (seatNumber > maxLength - seatQuantity) {
+      if (seatNumber > maxLength - numOfTickets) {
         nextNumber = +seatNumber - i;
       }
       // push to seat array

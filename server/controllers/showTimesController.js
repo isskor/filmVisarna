@@ -32,15 +32,20 @@ exports.getShowtime = async (req, res) => {
   res.json(shows);
   console.log(shows);
 };
-
-exports.bookShowtime = async (req, res) => {
-  const { showTime, seats } = req.body;
-  //   console.log(req.query);
-  const shows = await showTimes
-    .findOneAndUpdate({ id: showTime }, { $push: { booking: seats } })
-    .exec();
-  res.json(shows);
-};
+// moved to booking controller
+// exports.bookShowtime = async (req, res) => {
+//   const { showTime, seats } = req.body;
+//   console.log(req.body);
+//   try {
+//     const shows = await showTimes
+//       .findOneAndUpdate({ _id: showTime }, { $push: { booked: seats } })
+//       .exec();
+//     console.log(shows);
+//     res.json(shows);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 exports.createShowTime = async (req, res) => {
   let movies = await Movie.find().exec();
