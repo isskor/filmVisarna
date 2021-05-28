@@ -1,0 +1,29 @@
+.seat_table {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.SeatRow {
+  color: white;
+  display: flex;
+  margin: 1rem;
+
+  .SeatRow_name {
+    flex: 0.5;
+  }
+
+  .seats {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .seat {
+    height: 20px;
+    width: 20px;
+    background: white;
+  }
+
+  .seat_col {
+    margin-right: 1rem;
+  }
+}

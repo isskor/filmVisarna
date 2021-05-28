@@ -17,7 +17,6 @@ const FilterModal = ({ open, setOpen }) => {
     movies.forEach((m) => {
       return list.push(...m.genres);
     });
-    console.log(list);
     const genreList = new Set(list);
     setGenreList([...genreList].sort());
   };

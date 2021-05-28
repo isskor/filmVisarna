@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext, useCallback } from 'react';
 import { MovieContext } from '../contexts/MovieContext';
+import ChooseSeat from '../components/ChooseSeat';
 
 export default function BookingSeatPage() {
   const { fetchOneShowtime } = useContext(MovieContext);
@@ -74,6 +75,7 @@ export default function BookingSeatPage() {
           <div className='col-12 text-center '>
             <h2>Choose your seats</h2>
           </div>
+          <ChooseSeat seats={showTime?.saloon.seatRows} />
         </div>
       </div>
     </div>
