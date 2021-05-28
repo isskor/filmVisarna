@@ -21,9 +21,25 @@
     height: 20px;
     width: 20px;
     background: white;
+    cursor: pointer;
   }
 
   .seat_col {
     margin-right: 1rem;
   }
+
+  .seat_selected {
+    background: blue;
+  }
+
+  .seat_booked {
+    background: red !important;
+  }
+  .seat_preview {
+    background: green;
+  }
+}
+
+.seat_error {
+  color: red;
 }
