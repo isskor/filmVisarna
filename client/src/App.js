@@ -1,4 +1,15 @@
 import About from './pages/About';
+import './App.scss';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Nav from './components/Navbar.js';
+import Home from './pages/Home';
+import MovieContextProvider from './contexts/MovieContext';
+import UserContextProvider from './contexts/UserContext';
+import DetailPage from './pages/DetailPage';
+import LoginPage from './pages/LoginPage';
+import FilterContextProvider from './contexts/FilterContext';
+import Login from './components/Login';
+import RegisterThxPage from './pages/RegisterThxPage';
 
 function App() {
   return (
@@ -11,16 +22,22 @@ function App() {
               <Route exact path='/'>
                 <Home />
               </Route>
-              <Route exact path="/loginpage">
-                <LoginPage />
-              </Route>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Route exact path="/movies/:id">
+              <Route exact path='/movies/:id'>
                 <DetailPage />
               </Route>
-              <Route exact path="/thank-you-for-registering">
+              <Route exact path='/about'>
+                <About />
+              </Route>
+              <Route exact path='/loginpage'>
+                <LoginPage />
+              </Route>
+              <Route exact path='/login'>
+                <Login />
+              </Route>
+              <Route exact path='/movies/:id'>
+                <DetailPage />
+              </Route>
+              <Route exact path='/thank-you-for-registering'>
                 <RegisterThxPage />
               </Route>
               <Route exact path='/about'>
