@@ -1,0 +1,40 @@
+.showtime_info--text {
+  color: white;
+  display: flex;
+  flex-direction: column;
+
+  //   gap: 2rem;
+  span {
+    font-size: 1rem;
+  }
+  .showtime_info--title {
+    margin-left: -1rem;
+  }
+}
+
+.ticket_quantity {
+  margin-top: 2rem;
+  .ticket_group {
+    color: white;
+    display: flex;
+    gap: 1rem;
+    margin: 1rem;
+
+    .ticket_plus,
+    .ticket_minus {
+      height: 30px;
+      width: 30px;
+      background: white;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      span {
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}

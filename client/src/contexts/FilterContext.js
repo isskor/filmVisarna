@@ -19,14 +19,14 @@ const FilterContextProvider = (props) => {
 
   const handleChange = (e) => {
     let type = e.target.name;
-
+    // remove from filters object if already exist
     if (filters[type].includes(e.target.value)) {
       return setFilters({
         ...filters,
         [type]: filters[type].filter((f) => f !== e.target.value),
       });
     }
-
+    // add filter to specific type
     setFilters({ ...filters, [type]: [...filters[type], e.target.value] });
   };
 

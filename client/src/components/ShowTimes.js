@@ -1,4 +1,5 @@
 import React from 'react';
+import TicketsButton from './TicketsButton';
 
 const ShowTimes = ({ showTimes }) => {
   console.log('ss', showTimes);
@@ -11,7 +12,7 @@ const ShowTimes = ({ showTimes }) => {
             <div className='col-2'>{s.saloon.name}</div>
             <div className='col-2'>{s.time}</div>
             <div className='col ticket_btn'>
-              <button>Tickets</button>
+              <TicketsButton showtimeID={s._id}>Tickets</TicketsButton>
             </div>
           </div>
         ))
