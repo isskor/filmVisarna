@@ -1,75 +1,116 @@
 .booking_header {
-  // display: grid;
+  margin-top: 2rem;
+  display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 120px repeat(auto, 1fr);
+  gap: 3rem 1rem;
 
-  gap: 1rem;
-
-  .showtime_info {
-    grid-area: 1/2/1/9;
+  .arrow_back {
+    grid-area: 1/1/1/12;
+  }
+  .showtime_info--text {
+    grid-area: 4/1/4/12;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    .showtime_info--text {
+    // justify-content: flex-end;
+    color: white;
+    display: flex;
+    gap: 3rem;
+
+    .showtime_info_group {
       display: flex;
-      justify-content: flex-end;
-      color: white;
-      display: flex;
-
-      gap: 3rem;
-
-      .showtime_info_group {
-        display: flex;
-        flex-direction: column;
-        span {
-          font-size: 1.2rem;
-          font-weight: 200;
-        }
-
-        :first-child {
-          font-size: 0.9rem;
-          border-bottom: 2px solid $DarkBlue;
-        }
+      flex-direction: column;
+      span {
+        font-size: 1.2rem;
+        font-weight: 200;
+      }
+      :first-child {
+        font-size: 0.9rem;
+        border-bottom: 3px solid $DarkBlue;
       }
     }
   }
 
   .showtime_poster {
-    // grid-area: 2/2/2/3;
-    grid-area: 2/2/2/12;
+    grid-area: 2/1/2/12;
+    justify-self: center;
   }
   .showtime_title {
-    grid-area: 3/4/2/8;
+    grid-area: 3/1/3/12;
+    // grid-area: 3/4/2/8;
     color: white;
   }
   .showtime_tickets {
-    grid-area: 2/4/2/8;
+    // grid-area: 2/4/2/8;
+    grid-area: 5/1/5/12;
     // align-self: end;
-    padding-top: 5rem;
+    // padding-top: 5rem;
   }
 
   .showtime_ticket--summary {
     // grid-area: 2/9/2/12;
+    // margin-left: 2rem;
     grid-area: 3/1/3/12;
-    margin-left: 2rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    background: linear-gradient(145deg, #2b3a5b, #24314d);
-    box-shadow: 5px 5px 11px #182134, -5px -5px 11px #223257;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    .ticket_summary--row {
-      margin: 1rem 0;
-    }
-    .ticket_summary--total {
-      margin-top: auto;
-      flex-grow: 1 100%;
+  }
 
-      h4 {
-        margin: 1rem 0;
+  @media (min-width: 768px) {
+    .showtime_poster {
+      grid-area: 2/1/2/2;
+      // grid-area: 2/1/2/12;
+      justify-self: center;
+      img {
+        max-width: 200px;
       }
+    }
+    .showtime_title {
+      grid-area: 2/3/2/8;
+      color: white;
+    }
+    .showtime_tickets {
+      grid-area: 2/3/2/12;
+
+      padding-top: 2rem;
+    }
+
+    .showtime_info--text {
+      grid-area: 1/1/1/12;
+      justify-self: end;
+    }
+  }
+  @media (min-width: 992px) {
+    .showtime_title {
+      grid-area: 2/2/2/8;
+      color: white;
+    }
+    .showtime_tickets {
+      grid-area: 2/2/2/8;
+      padding-top: 5rem;
+    }
+    .showtime_ticket--summary {
+      grid-area: 2/9/2/13;
+      margin: 0;
+    }
+  }
+  @media (min-width: 1200px) {
+    .showtime_poster {
+      img {
+        max-width: 300px;
+      }
+    }
+  }
+  @media (min-width: 1600px) {
+    .showtime_poster {
+      grid-area: 2/2/2/3;
+    }
+    .showtime_title {
+      grid-area: 2/3/2/8;
+      color: white;
+    }
+    .showtime_tickets {
+      grid-area: 2/3/2/8;
+      align-self: end;
+    }
+    .showtime_ticket--summary {
+      grid-area: 2/9/2/12;
     }
   }
 }
@@ -98,17 +139,20 @@
   // grid-area: 2/9/2/12;
   padding: 2rem;
   border-radius: 1rem;
+  margin: 5rem auto;
   background: linear-gradient(145deg, #2b3a5b, #24314d);
   box-shadow: 5px 5px 11px #182134, -5px -5px 11px #223257;
   color: white;
   display: flex;
   flex-direction: column;
+
+  min-height: 350px;
+  max-width: 700px;
   .ticket_summary--row {
     margin: 1rem 0;
   }
   .ticket_summary--total {
     margin-top: auto;
-    flex-grow: 1 100%;
 
     h4 {
       margin: 1rem 0;
@@ -146,6 +190,7 @@
     .ticket_minus {
       height: 35px;
       width: 35px;
+      min-width: 35px;
       border-radius: 5px;
       background: linear-gradient(145deg, #2b3a5b, #24314d);
       box-shadow: 2px 2px 5px #182134, -2px -2px 5px #2c3342;

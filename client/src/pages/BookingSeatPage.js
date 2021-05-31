@@ -82,29 +82,25 @@ export default function BookingSeatPage() {
   return (
     <div className='container-fluid'>
       <div className='booking_header'>
-        <div
-          className='row justify-content-between showtime_info'
-          onClick={() => history.goBack()}
-        >
-          <div className='col-4 arrow_back'>
-            <div className='arrow'></div>
-            <p className='back_btn'>Back</p>
+        <div className=' arrow_back' onClick={() => history.goBack()}>
+          <div className='arrow'></div>
+          <p className='back_btn'>Back</p>
+        </div>
+        <div className=' showtime_info--text'>
+          <div className='showtime_info_group'>
+            <span>Saloon</span>
+            <span>{showTime?.saloon.name}</span>
           </div>
-          <div className='col-8 showtime_info--text'>
-            <div className='showtime_info_group'>
-              <span>Saloon</span>
-              <span>{showTime?.saloon.name}</span>
-            </div>
-            <div className='showtime_info_group'>
-              <span>Time</span>
-              <span>{showTime?.time}</span>
-            </div>
-            <div className='showtime_info_group'>
-              <span>Date</span>
-              <span>{showTime?.date}</span>
-            </div>
+          <div className='showtime_info_group'>
+            <span>Time</span>
+            <span>{showTime?.time}</span>
+          </div>
+          <div className='showtime_info_group'>
+            <span>Date</span>
+            <span>{showTime?.date}</span>
           </div>
         </div>
+
         <div className='showtime_poster'>
           <img src={showTime?.movie.poster} alt='' />
         </div>
@@ -131,7 +127,7 @@ export default function BookingSeatPage() {
             handleQuantity={handleQuantity}
           />
         </div>
-        <div className='showtime_ticket--summary d-none'>
+        <div className='showtime_ticket--summary d-none d-lg-flex'>
           <TicketSummary
             tickets={tickets}
             selected={selected}
@@ -153,7 +149,7 @@ export default function BookingSeatPage() {
         />
       </div>
 
-      <div className='showtime_ticket--summary d-sm-none'>
+      <div className='showtime_ticket--summary d-lg-none'>
         <TicketSummary
           tickets={tickets}
           selected={selected}
