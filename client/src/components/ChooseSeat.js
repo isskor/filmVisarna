@@ -56,27 +56,8 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
     setSelected(preview);
   };
 
-  const sortSeats = (toSort) => {
-    return toSort.sort((a, b) => {
-      let splitA = a.split('');
-      let splitB = b.split('');
-
-      let seatNumberA = +splitA[1];
-      let seatNumberB = +splitB[1];
-      // if seats are >= 10 we want to add the last 2 el. to get 11, 12 etc.
-      if (splitA[2]) {
-        seatNumberA = Number(splitA[1] + splitA[2]);
-      }
-      if (splitB[2]) {
-        seatNumberB = Number(splitB[1] + splitB[2]);
-      }
-
-      return seatNumberA - seatNumberB;
-    });
-  };
-
   return (
-    <div className='col seat_table' onMouseLeave={() => setPreview([])}>
+    <div className=' seat_table' onMouseLeave={() => setPreview([])}>
       <div className=' seat_info'>
         <div className='seat_info--booked'>
           <div className='seat_color'></div>
@@ -114,21 +95,13 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
                   key={i}
                   onMouseOver={() => handleHover(s, row)}
                   onClick={handleSelect}
-                >{s}</div>
+                ></div>
               );
             })}
           </div>
         </div>
       ))}
       {seatError && <p className='seat_error'>{seatError}</p>}
-      <div className=' selected_seats'>
-        <p>
-          Selected Seats:{' '}
-          {sortSeats(selected).map((s) => (
-            <span> {s},</span>
-          ))}
-        </p>
-      </div>
     </div>
   );
 };
