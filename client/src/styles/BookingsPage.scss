@@ -1,0 +1,12 @@
+.bookingsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  min-height: 100vh;
+  padding-top: 10rem;
+  button {
+    margin: 1rem;
+  }
+}
