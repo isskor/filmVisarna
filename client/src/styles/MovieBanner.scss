@@ -17,8 +17,7 @@
   .CarouselCaption {
     background-color: rgba(46, 46, 46, 0.295);
     min-width: 70%;
-    h3 {
-      font-family: "Lato", sans-serif;
+    h2 {
       letter-spacing: 0.1rem;
       font-size: 2rem;
     }
@@ -46,7 +45,7 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .CarouselCaption {
-    h3 {
+    h2 {
       font-size: 4rem !important;
     }
   }

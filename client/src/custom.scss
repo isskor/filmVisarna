@@ -22,6 +22,13 @@ body {
   color: #fff;
 }
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 70px;
+}
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link:focus {
   color: $QueenBlue;
