@@ -1,0 +1,40 @@
+.footerContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  background: $QueenBlue;
+  padding-bottom: 20px;
+  color: #fff;
+  height: 20vh;
+  flex-direction: column;
+  padding-top: 2rem;
+}
+
+.footerMain {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 60%;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgb(6, 0, 56);
+}
+
+.footerMainSection {
+  display: flex;
+  border: 1px solid gray;
+  flex: 33%;
+  max-width: 33%;
+  flex-direction: column;
+}
+
+.footerLink {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.footerBottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
