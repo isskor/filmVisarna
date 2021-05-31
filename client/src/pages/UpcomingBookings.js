@@ -13,7 +13,7 @@ const UpcomingBookings = () => {
           <TicketCard key={index} booking={booking} />
         ))
       ) : (
-        <h3>You have no upcoming bookings</h3>
+        <h3>You have no upcoming bookings...</h3>
       )}
     </div>
   );
