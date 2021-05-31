@@ -10,7 +10,7 @@ function TheNavbar() {
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Navbar.Brand>
         <Link to="/">
-          <img src="/assets/logo.svg" alt="Logo" />
+          <h1> Filmvisarna </h1>
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -7,6 +7,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: machine;
+  src: url(./Machine\ Regular.ttf);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -17,7 +22,10 @@ p {
 }
 
 h1,
-h2,
+h2 {
+  font-family: "machine" !important;
+}
+
 h3,
 h4,
 h5,
