@@ -1,15 +1,27 @@
-const Booking = require("../models/Bookings");
+const Booking = require('../models/Bookings');
 const axios = require('axios');
+const showTimes = require('../models/showTimes');
 
 
-exports.createBooking = async (req, res) => {
+exports.bookShowtime = async (req, res) => {
+  const { showTime, seats } = req.body;
+  console.log(req.body);
+  console.log(req.session);
+  try {
+    // update showtime with pushed booked:[new seats]
+    await showTimes
+      .findOneAndUpdate({ _id: showTime }, { $push: { booked: seats } })
+      .exec();
 
-    let booking = await Booking.create({
-      user: req.body.user,
-      seatRows: req.body.seatRows,
-      showtime: req.body.showtime
+    // create booking with user
+    const booking = await Booking.create({
+      user: req.session.user._id,
+      seatRows: seats,
+      showtime: showTime,
     });
-  
-    console.log(booking);
+
     res.json(booking);
-  };
+  } catch (err) {
+    console.log(err);
+  }
+};
