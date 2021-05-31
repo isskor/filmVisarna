@@ -10,6 +10,7 @@ exports.createBooking = async (req, res) => {
 exports.bookShowtime = async (req, res) => {
   const { showTime, seats } = req.body;
   console.log(req.body);
+  console.log(req.session);
   try {
     // update showtime with pushed booked:[new seats]
     await showTimes
@@ -18,7 +19,7 @@ exports.bookShowtime = async (req, res) => {
 
     // create booking with user
     const booking = await Booking.create({
-      user: req.session.user,
+      user: req.session.user._id,
       seatRows: seats,
       showtime: showTime,
     });

@@ -114,7 +114,7 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
                   key={i}
                   onMouseOver={() => handleHover(s, row)}
                   onClick={handleSelect}
-                ></div>
+                >{s}</div>
               );
             })}
           </div>

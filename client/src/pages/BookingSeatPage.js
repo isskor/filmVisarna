@@ -69,6 +69,7 @@ export default function BookingSeatPage() {
       headers: {
         'content-type': 'application/json',
       },
+      credentials: 'include',
       body: JSON.stringify({ showTime: showTime._id, seats: selected }),
     });
     fetchShow(id);
