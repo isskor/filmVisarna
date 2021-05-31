@@ -11,9 +11,9 @@ $QueenBlue: #4d648d;
 $BeauBlue: #d0e1f9;
 $DarkBlue: #1c1f36;
 
-@import '~bootstrap/scss/bootstrap';
-@import '../node_modules/bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@900&display=swap');
+@import "~bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@900&display=swap");
 
 body {
   background-color: $SpaceCadet;
