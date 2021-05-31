@@ -24,13 +24,17 @@ export default function Footer() {
           <p className="footerLink"> iOS Download </p>
         </div>
       </div>
+      <hr />
       <div className="footerBottom">
-        <div className="footerSocials">
-          <div className="twitter"> </div>
-          <div className="youtube"> </div>
-          <div className="instagram"> </div>
-          <div className="facebook"> </div>
+        <div className="footerSection2 ">
+          <div className="footerSocials">
+            <div className="twitter"> </div>
+            <div className="youtube"> </div>
+            <div className="instagram"> </div>
+            <div className="facebook"> </div>
+          </div>
         </div>
+        <div className="footerSection2 "></div>
         <p> © Filmvisarna 2015 to 2021. All rights reserved. </p>
       </div>
     </div>
