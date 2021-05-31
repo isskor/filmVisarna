@@ -7,7 +7,7 @@ const {
   bookShowtime,
 } = require('../controllers/bookingsController');
 
-router.post('/createBooking', createBooking);
+// router.post('/createBooking', createBooking);
 router.put('/bookShowtime', bookShowtime);
 
 module.exports = router;

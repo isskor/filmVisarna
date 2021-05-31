@@ -49,6 +49,7 @@ export default function Register() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!isValid) return
     let user = {
       firstName: firstName,
       lastName: lastName,

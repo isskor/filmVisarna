@@ -8,7 +8,7 @@ export default function Login() {
   const { setLoginState } = useContext(UserContext);
   const history = useHistory();
   const { login } = useContext(UserContext);
-  const [Error, setError] = useState(false);
+  const [error, setError] = useState(false);
 
   const [userNameInput, setUserName] = useState('');
   const [passwordInput, setPassword] = useState('');
@@ -29,9 +29,8 @@ export default function Login() {
     console.log('user', user);
 
     if (user.error) {
-      alert('Error', user.error);
+      setError(true)
     } else {
-      alert(`logged in ${user}`);
       setLoginState(true);
       history.push('/');
     }
@@ -44,7 +43,7 @@ export default function Login() {
         <Alert
           variant={'danger'}
           className={`${styles.Alert} ${
-            Error ? styles.Alert.active : styles.Alert.inactive
+            error ? styles.Alert_active : styles.Alert_inactive
           }`}
         >
           You did not enter the correct credentials

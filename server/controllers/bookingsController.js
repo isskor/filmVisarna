@@ -2,10 +2,6 @@ const Booking = require('../models/Bookings');
 const axios = require('axios');
 const showTimes = require('../models/showTimes');
 
-exports.createBooking = async (req, res) => {
-  console.log(booking);
-  res.json(booking);
-};
 
 exports.bookShowtime = async (req, res) => {
   const { showTime, seats } = req.body;

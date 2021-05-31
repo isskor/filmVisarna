@@ -71,7 +71,7 @@ const UserContextProvider = (props) => {
       setloggedInUser(null);
       setLoginState(false);
       console.log("Error user doesn't exist!");
-      return;
+      return userToLogin
     }
 
     setloggedInUser(userToLogin);
