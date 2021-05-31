@@ -12,7 +12,7 @@
 }
 
 .footerMain {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -20,6 +20,14 @@
 }
 
 .footerMainSection {
+  display: flex;
+  border: 1px solid gray;
+  flex: 33%;
+  max-width: 33%;
+  flex-direction: column;
+}
+
+.footerMainSection2 {
   display: flex;
   border: 1px solid gray;
   flex: 33%;
@@ -41,7 +49,7 @@
   margin-top: auto;
   margin-bottom: auto;
   justify-content: space-evenly;
-  border-top: 1px solid rgb(6, 0, 56);
+  width: 100%;
 }
 .footerSocials {
   display: flex;
