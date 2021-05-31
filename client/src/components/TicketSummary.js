@@ -26,7 +26,6 @@ const TicketSummary = ({ tickets, selected, getTotalPrice, submitBooking }) => {
         {Object.entries(tickets).map((t) => {
           if (t[1].quantity > 0) {
             const { quantity, price } = t[1];
-
             return (
               <div className='ticket_summary--row'>
                 <span style={{ textTransform: 'capitalize' }}>
@@ -34,6 +33,8 @@ const TicketSummary = ({ tickets, selected, getTotalPrice, submitBooking }) => {
                 </span>
               </div>
             );
+          } else {
+            return null;
           }
         })}
       </div>

@@ -2,6 +2,15 @@
   max-width: 700px;
   margin: 0 auto;
   user-select: none;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  @media (min-width: 1200px) {
+    margin-bottom: 5rem;
+  }
+}
+
+.seat_info {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .SeatRow {

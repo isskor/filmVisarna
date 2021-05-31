@@ -11,7 +11,6 @@
   .showtime_info--text {
     grid-area: 4/1/4/12;
     display: flex;
-    // justify-content: flex-end;
     color: white;
     display: flex;
     gap: 3rem;
@@ -36,26 +35,19 @@
   }
   .showtime_title {
     grid-area: 3/1/3/12;
-    // grid-area: 3/4/2/8;
     color: white;
   }
   .showtime_tickets {
-    // grid-area: 2/4/2/8;
     grid-area: 5/1/5/12;
-    // align-self: end;
-    // padding-top: 5rem;
   }
 
   .showtime_ticket--summary {
-    // grid-area: 2/9/2/12;
-    // margin-left: 2rem;
     grid-area: 3/1/3/12;
   }
 
   @media (min-width: 768px) {
     .showtime_poster {
       grid-area: 2/1/2/2;
-      // grid-area: 2/1/2/12;
       justify-self: center;
       img {
         max-width: 200px;
@@ -98,6 +90,9 @@
     }
   }
   @media (min-width: 1600px) {
+    .arrow_back {
+      grid-area: 1/2/1/12;
+    }
     .showtime_poster {
       grid-area: 2/2/2/3;
     }
@@ -136,7 +131,6 @@
 }
 
 .showtime_ticket--summary {
-  // grid-area: 2/9/2/12;
   padding: 2rem;
   border-radius: 1rem;
   margin: 5rem auto;
@@ -145,12 +139,13 @@
   color: white;
   display: flex;
   flex-direction: column;
-
   min-height: 350px;
   max-width: 700px;
+
   .ticket_summary--row {
     margin: 1rem 0;
   }
+
   .ticket_summary--total {
     margin-top: auto;
 
@@ -162,12 +157,14 @@
 
 .showtime_tickets {
   margin-top: 2rem;
+
   h4 {
     margin-left: 0.5rem;
     color: white;
     padding: 0.5rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
+
   .ticket_group {
     color: white;
     display: flex;
@@ -188,23 +185,23 @@
     }
     .ticket_plus,
     .ticket_minus {
+      font-size: 1.5rem;
+      color: white;
       height: 35px;
       width: 35px;
       min-width: 35px;
       border-radius: 5px;
       background: linear-gradient(145deg, #2b3a5b, #24314d);
       box-shadow: 2px 2px 5px #182134, -2px -2px 5px #2c3342;
-
-      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.5rem;
       cursor: pointer;
+
       span {
+        color: white;
         display: inline-block;
         padding-bottom: 6px;
-        color: white;
         user-select: none;
       }
 

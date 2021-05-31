@@ -28,7 +28,7 @@ export default function BookingSeatPage() {
       setShowTime(show);
       setBooked(show.booked);
     },
-    [id, fetchOneShowtime]
+    [fetchOneShowtime]
   );
 
   const handleQuantity = (type, minus) => {
@@ -67,7 +67,7 @@ export default function BookingSeatPage() {
   console.log(showTime);
 
   const submitBooking = async () => {
-    let booking = await fetch('http://localhost:3001/api/bookShowtime', {
+    await fetch('http://localhost:3001/api/bookShowtime', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
