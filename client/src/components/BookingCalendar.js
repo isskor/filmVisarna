@@ -7,7 +7,7 @@ function BookingCalendar() {
   const [date, SetDate] = useState(new Date());
   const { fetchShowtimeByDate } = useContext(MovieContext);
   const [showTimes, setShowTimes] = useState([]);
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
   
 const onChange = (date) => {
   SetDate(date);
@@ -18,6 +18,7 @@ const onChange = (date) => {
 const fetchShow = useCallback(
   async (date) => {
     console.log(date);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const shows = await fetchShowtimeByDate(date.toLocaleDateString(undefined, options));
     console.log(shows);
     setShowTimes(shows);

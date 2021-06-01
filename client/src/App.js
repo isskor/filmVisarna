@@ -50,7 +50,6 @@ function App() {
               <Route exact path="/Profile">
                 <ProfilePage />
               </Route>
-              <Footer />
             </UserContextProvider>
           </FilterContextProvider>
         </MovieContextProvider>
