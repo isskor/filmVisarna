@@ -51,13 +51,13 @@
     text-align: center;
     padding: 0.75em 0.5em;
     background: none;
-
+    border-bottom: 5px solid  #1C1F36;
   }
 
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
-    outline: 5px solid  #A3B2CC;
- 
+    border-bottom: 5px solid  #19aaff;
+    color: #19aaff;
   }
 
   // Medium devices (tablets, 768px and up)
