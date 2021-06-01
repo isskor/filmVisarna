@@ -16,26 +16,26 @@ import BookingCalendar from './components/BookingCalendar.js';
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <BrowserRouter>
         <MovieContextProvider>
           <FilterContextProvider>
             <UserContextProvider>
               <Nav />
-              <Route exact path='/'>
+              <Route exact path="/">
                 <Home />
               </Route>
 
-              <Route exact path='/about'>
+              <Route exact path="/about">
                 <About />
               </Route>
-              <Route exact path='/loginpage'>
+              <Route exact path="/loginpage">
                 <LoginPage />
               </Route>
-              <Route exact path='/login'>
+              <Route exact path="/login">
                 <Login />
               </Route>
-              <Route exact path='/movies/:id'>
+              <Route exact path="/movies/:id">
                 <DetailPage />
               </Route>
               <Route exact path='/calendar'>
@@ -44,12 +44,13 @@ function App() {
               <Route exact path='/showtime/:id'>
                 <BookingSeatPage />
               </Route>
-              <Route exact path='/thank-you-for-registering'>
+              <Route exact path="/thank-you-for-registering">
                 <RegisterThxPage />
               </Route>
-              <Route exact path='/Profile'>
+              <Route exact path="/Profile">
                 <ProfilePage />
               </Route>
+              <Footer />
             </UserContextProvider>
           </FilterContextProvider>
         </MovieContextProvider>

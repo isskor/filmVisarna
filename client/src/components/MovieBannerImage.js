@@ -12,7 +12,7 @@ const MovieBannerImage = () => {
             alt="First slide"
           />
           <Carousel.Caption className="CarouselCaption">
-            <h3>A Quiet Place Part II</h3>
+            <h2>A Quiet Place Part II</h2>
             <button>Book tickets now</button>
           </Carousel.Caption>
         </Carousel.Item>
@@ -23,7 +23,7 @@ const MovieBannerImage = () => {
             alt="Second slide"
           />
           <Carousel.Caption className="CarouselCaption">
-            <h3>Cruella</h3>
+            <h2>Cruella</h2>
             <button>Book tickets now</button>
           </Carousel.Caption>
         </Carousel.Item>
@@ -34,7 +34,7 @@ const MovieBannerImage = () => {
             alt="Third slide"
           />
           <Carousel.Caption className="CarouselCaption">
-            <h3>Godzilla vs. Kong</h3>
+            <h2>Godzilla vs. Kong</h2>
             <button>Book tickets now</button>
           </Carousel.Caption>
         </Carousel.Item>

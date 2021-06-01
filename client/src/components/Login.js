@@ -8,7 +8,7 @@ export default function Login() {
   const { setLoginState } = useContext(UserContext);
   const history = useHistory();
   const { login } = useContext(UserContext);
-  const [Error, setError] = useState(false);
+  const [error, setError] = useState(false);
  // hämtar setLoginState ifrån userContext, för att kunna sätta den till true vid inloggning
  // use history används för att kunna göra history.push till home vid inloggning
  // loginmetoden hämtas ifrån userContext för att användas vid login
@@ -31,15 +31,12 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     const user = await login(userNameInput, passwordInput);
-    console.log('user', user);
 
     if (user.error) {
-      alert("Error", user.error);
-      setError(true);
+      setError(true)
     } else {
-      alert(`logged in ${user.firstName}`);
       setLoginState(true);
-      history.push("/");
+      history.push('/');
     }
   };
 
