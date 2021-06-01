@@ -3,7 +3,7 @@ import { UserContext } from "../contexts/UserContext";
 import TicketCard from "../components/TicketCard";
 import { useHistory } from "react-router-dom";
 
-const UpcomingBookings = () => {
+const PreviousBookings = () => {
   const { userBookings, loggedInUser, getUserBookings } =
     useContext(UserContext);
 
@@ -19,7 +19,7 @@ const UpcomingBookings = () => {
     //Get showtimes date value
     let showtimeDate = new Date(booking.showtime.date);
     //Subtract the two and return true of false if the showtime has passed or not
-    return showtimeDate < todaysDate;
+    return showtimeDate > todaysDate;
   };
 
   //Function that checks if bookings exists so page dosen't crash
@@ -33,7 +33,7 @@ const UpcomingBookings = () => {
 
   return (
     <div className="bookingsWrapper">
-      <h1>Upcoming bookings</h1>
+      <h1>Previous bookings</h1>
       {loggedInUser && bookingsStored() ? (
         userBookings.map((booking, index) => {
           return countDate(booking) ? (
@@ -42,7 +42,7 @@ const UpcomingBookings = () => {
         })
       ) : (
         <>
-          <h3>You have no upcoming bookings...</h3>
+          <h3>You have no previous bookings...</h3>
           <button onClick={() => history.push("/")}>Go to home</button>
         </>
       )}
@@ -50,4 +50,4 @@ const UpcomingBookings = () => {
   );
 };
 
-export default UpcomingBookings;
+export default PreviousBookings;

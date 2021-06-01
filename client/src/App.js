@@ -1,19 +1,20 @@
-import About from './pages/About';
-import './App.scss';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Nav from './components/Navbar.js';
-import Home from './pages/Home';
-import MovieContextProvider from './contexts/MovieContext';
-import UserContextProvider from './contexts/UserContext';
-import DetailPage from './pages/DetailPage';
-import LoginPage from './pages/LoginPage';
-import FilterContextProvider from './contexts/FilterContext';
-import Login from './components/Login';
-import RegisterThxPage from './pages/RegisterThxPage';
-import ProfilePage from './pages/ProfilePage';
-import BookingSeatPage from './pages/BookingSeatPage';
+import About from "./pages/About";
+import "./App.scss";
+import { BrowserRouter, Route } from "react-router-dom";
+import Nav from "./components/Navbar.js";
+import Home from "./pages/Home";
+import MovieContextProvider from "./contexts/MovieContext";
+import UserContextProvider from "./contexts/UserContext";
+import DetailPage from "./pages/DetailPage";
+import LoginPage from "./pages/LoginPage";
+import FilterContextProvider from "./contexts/FilterContext";
+import Login from "./components/Login";
+import RegisterThxPage from "./pages/RegisterThxPage";
+import ProfilePage from "./pages/ProfilePage";
+import BookingSeatPage from "./pages/BookingSeatPage";
 import UpcomingBookings from "./pages/UpcomingBookings";
-import BookingCalendar from './components/BookingCalendar.js';
+import PreviousBookings from "./pages/PreviousBookings";
+import BookingCalendar from "./components/BookingCalendar.js";
 
 function App() {
   return (
@@ -26,7 +27,6 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
-
               <Route exact path="/about">
                 <About />
               </Route>
@@ -39,10 +39,9 @@ function App() {
               <Route exact path="/movies/:id">
                 <DetailPage />
               </Route>
-              <Route exact path='/calendar'>
+              <Route exact path="/calendar">
                 <BookingCalendar />
               </Route>
-              <Route exact path='/showtime/:id'>
               <Route exact path="/showtime/:id">
                 <BookingSeatPage />
               </Route>
@@ -54,6 +53,9 @@ function App() {
               </Route>
               <Route exact path="/upcoming-bookings">
                 <UpcomingBookings />
+              </Route>
+              <Route exact path="/previous-bookings">
+                <PreviousBookings />
               </Route>
             </UserContextProvider>
           </FilterContextProvider>

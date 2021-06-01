@@ -121,7 +121,8 @@ const UserContextProvider = (props) => {
       return;
     }
     allUserBookings = await allUserBookings.json();
-    setUserBookings(userBookings);
+    console.log(allUserBookings);
+    setUserBookings(allUserBookings);
   };
 
   const values = {
@@ -138,6 +139,8 @@ const UserContextProvider = (props) => {
     editUser,
     whoami,
     logout,
+    userBookings,
+    getUserBookings,
   };
   return (
     <UserContext.Provider value={values}>{props.children}</UserContext.Provider>

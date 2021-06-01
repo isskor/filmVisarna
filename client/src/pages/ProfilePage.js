@@ -5,8 +5,8 @@ import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 export default function ProfilePage() {
-  const { loggedInUser } = useContext(UserContext);
-  const history = useHistory();
+  const { loggedInUser, editUser, getUserBookings } = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -14,7 +14,10 @@ export default function ProfilePage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
-  const { editUser } = useContext(UserContext);
+
+  useEffect(() => {
+    getUserBookings();
+  }, []);
 
   useEffect(() => {
     if (confirmPassword === "") {
@@ -74,7 +77,7 @@ export default function ProfilePage() {
       <div className="profileSideBar">
         <Link to="/Profile">My Profile</Link>
         <Link to="/upcoming-bookings">Upcoming Bookings</Link>
-        <Link to="/Bookings">Previous Bookings</Link>
+        <Link to="/previous-bookings">Previous Bookings</Link>
       </div>
       <div className="profileMain">
         <h2> Hello {loggedInUser?.firstName} </h2>{" "}

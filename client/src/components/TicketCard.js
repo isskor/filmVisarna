@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 const TicketCard = (props) => {
+  let showtime = props.booking.showtime;
+  const { loggedInUser } = useContext(UserContext);
+
   return (
     <div className="ticketCard">
       <div className="topContainer">
@@ -12,18 +16,18 @@ const TicketCard = (props) => {
       <div className="bottomContainer">
         <div className="bottomLeftContainer">
           <div className="movieTitleContainer">
-            <h3>{props.booking.title}</h3>
+            <h3>{showtime.movie.title}</h3>
             <span>Movie</span>
-            <h3>August Ronnle</h3>
+            <h3>{loggedInUser.firstName}</h3>
             <span>Name</span>
           </div>
           <div className="movieTimeContainer">
             <div>
-              <h5>55</h5>
-              <span>Seat</span>
+              <h5>{showtime.saloon.name}</h5>
+              <span>Saloon</span>
             </div>
             <div>
-              <h5>12:15</h5>
+              <h5>{showtime.date}</h5>
               <span>Time</span>
             </div>
           </div>
