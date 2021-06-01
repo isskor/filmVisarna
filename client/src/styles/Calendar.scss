@@ -1,0 +1,74 @@
+.react-calendar {
+    width: 80%;
+    max-width: 100%;
+    line-height: 1.125em;
+    color:$QueenBlue;
+  }
+
+  .react-calendar__navigation {
+    margin-bottom: 1em;
+  }
+  .react-calendar__navigation button {
+    min-width: 44px;
+    background: none;
+    text-transform: uppercase;
+    font-family: "machine" ;
+  }
+  .react-calendar__navigation span {
+    font-family: "machine" ;
+    font-size: 1rem;
+  }
+
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1em;
+  }
+
+  .react-calendar__month-view__weekdays abbr[title], abbr[data-bs-original-title] {
+    text-decoration: none;
+    cursor:pointer;
+    font-size: 0.7rem;
+  }
+  .react-calendar__month-view__weekdays__weekday {
+    padding: 0.5em;
+  }
+
+  .react-calendar__month-view__days__day--weekend {
+    color:#A3B2CC;
+  }
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #fff;
+  }
+  .react-calendar__year-view .react-calendar__tile,
+  .react-calendar__decade-view .react-calendar__tile,
+  .react-calendar__century-view .react-calendar__tile {
+    padding: 2em 0.5em;
+  }
+  .react-calendar__tile {
+    max-width: 100%;
+    text-align: center;
+    padding: 0.75em 0.5em;
+    background: none;
+
+  }
+
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus {
+    outline: 5px solid  #A3B2CC;
+ 
+  }
+
+  // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+ 
+    .react-calendar__navigation span {
+        font-family: "machine" ;
+        font-size: 2rem;
+      }
+      .react-calendar__month-view__weekdays abbr[title], abbr[data-bs-original-title] {
+        font-size: 1.3rem;
+      }
+  }
+  

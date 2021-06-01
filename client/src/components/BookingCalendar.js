@@ -2,6 +2,7 @@ import { useState, useContext, useCallback } from 'react';
 import Calendar from 'react-calendar';
 import { MovieContext } from '../contexts/MovieContext';
 import ShowTimes from '../components/ShowTimes';
+import { Container } from 'react-bootstrap';
 
 function BookingCalendar() {
   const [date, SetDate] = useState(new Date());
@@ -28,11 +29,13 @@ const fetchShow = useCallback(
 
   return (
     <div>
-    <Calendar
+     
+    <Calendar  className='mx-auto py-5'
       onChange={onChange}
       value={date}
     />
-    <h1>{date.toString()}</h1>
+  
+
     <div className='showTimes row'> Show times </div>
             <ShowTimes showTimes={showTimes} />
   </div>

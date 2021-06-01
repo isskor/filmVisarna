@@ -2,7 +2,7 @@ $theme-colors: (
   "info": #fff,
   "danger": #fe7f50,
   "success": #4d648d,
-  "warning": #fe5050,
+  "warning": #9B1D20,
   "primary": #283655,
 );
 $RaisinBlack: #1e1f26;
@@ -48,6 +48,9 @@ body {
   padding: 1rem;
   text-transform: uppercase;
   font-size: 34px;
+ h3{
+  font-family: "machine" ;
+ }
 }
 
 .react-calendar__tile--active {
