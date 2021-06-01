@@ -3,10 +3,10 @@
     display: none;
   }
   
-  .Alert.active {
+.Alert_active {
     display: block;
   }
   
-  .Alert.inactive {
+ .Alert_inactive {
     display: none;
   }

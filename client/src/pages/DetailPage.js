@@ -1,12 +1,12 @@
-import { MovieContext } from '../contexts/MovieContext';
-import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ShowTimes from '../components/ShowTimes';
+import { MovieContext } from "../contexts/MovieContext";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ShowTimes from "../components/ShowTimes";
 
 function DetailPage() {
   const { movie, getMovieById } = useContext(MovieContext);
   const [showTimes, setShowTimes] = useState([]);
-  const [date, setDate] = useState('Thu Jun 24 2021');
+  const [date, setDate] = useState("Thu Jun 24 2021");
   const history = useParams();
   console.log(history);
   console.log(date);
@@ -27,7 +27,7 @@ function DetailPage() {
     <div>
       {movie && (
         <>
-          <div className='trailer'>
+          <div className="trailer">
             <iframe
               src={
                 movie.trailer +
@@ -38,45 +38,45 @@ function DetailPage() {
               allowFullScreen={true}
             ></iframe>
           </div>
-          <div className='info'>
-            <div className='cover'>
-              <img src={movie.poster} />
+          <div className="info">
+            <div className="cover">
+              <img src={movie.poster} alt={movie.title} />
             </div>
-            <div className='mainInfo'>
-              <div className='title'> {movie.title} </div>
+            <div className="mainInfo">
+              <h2 className="title"> {movie.title} </h2>
 
-              <div className='grayText'> Directors </div>
-              <div className='director'> {movie.director}</div>
+              <div className="grayText"> Directors </div>
+              <div className="director"> {movie.director}</div>
 
-              <div className='grayText'> Cast </div>
-              <div className='whiteText'>{movie.actors}</div>
+              <div className="grayText"> Cast </div>
+              <div className="whiteText">{movie.actors}</div>
 
-              <div className='grayText'> Plot </div>
-              <div className='whiteText'>{movie.plot}</div>
+              <div className="grayText"> Plot </div>
+              <div className="whiteText">{movie.plot}</div>
             </div>
-            <div className='sideInfo'>
-              <div className='grayText'> Release Date </div>
-              <div className='whiteText'></div>
+            <div className="sideInfo">
+              <div className="grayText"> Release Date </div>
+              <div className="whiteText"></div>
 
-              <div className='grayText'> Genres </div>
-              <div className='genres'>
+              <div className="grayText"> Genres </div>
+              <div className="genres">
                 {movie.genres.map((g, i) =>
                   i !== movie.genres.length - 1 ? `${g}, ` : `${g}`
                 )}
               </div>
 
-              <div className='grayText'> Age Rating </div>
-              <div className='whiteText'>{movie.rated}</div>
+              <div className="grayText"> Age Rating </div>
+              <div className="whiteText">{movie.rated}</div>
 
-              <div className='grayText'> Length </div>
-              <div className='whiteText'>{movie.runTime} min </div>
+              <div className="grayText"> Length </div>
+              <div className="whiteText">{movie.runTime} min </div>
 
-              <div className='grayText'> Language </div>
-              <div className='whiteText'>{movie.language}</div>
+              <div className="grayText"> Language </div>
+              <div className="whiteText">{movie.language}</div>
             </div>
           </div>
-          <div className='booking container mx-auto'>
-            <div className='showTimes row'> Show times </div>
+          <div className="booking container mx-auto">
+            <div className="showTimes row"> Show times </div>
             <ShowTimes showTimes={showTimes} />
           </div>
         </>

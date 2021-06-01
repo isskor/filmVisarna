@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from 'react';
 
 export const MovieContext = createContext();
 
@@ -17,10 +17,10 @@ const MovieContextProvider = (props) => {
   };
 
   const getMoviesByKeyword = async (keyword) => {
-    let movies = await fetch("http://localhost:3001/api/movies-by-keyword", {
-      method: "POST",
+    let movies = await fetch('http://localhost:3001/api/movies-by-keyword', {
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify(keyword),
     });
@@ -33,7 +33,7 @@ const MovieContextProvider = (props) => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/movies")
+    fetch('http://localhost:3001/api/movies')
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);
@@ -41,12 +41,29 @@ const MovieContextProvider = (props) => {
   }, []);
 
   const getAllMovies = async () => {
-    fetch("http://localhost:3001/api/movies")
+    fetch('http://localhost:3001/api/movies')
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);
       });
   };
+
+  const fetchShowtimes = async (id, date) => {
+    fetch(`http://localhost:3001/api/showtime?id=${id}&date=${date}`)
+      .then((res) => res.json())
+      .then((data) => {
+        return data;
+      });
+  };
+  const fetchOneShowtime = async (id) => {
+    return fetch(`http://localhost:3001/api/OneShowtime?id=${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+  };
+
   const values = {
     movies,
     movie,
@@ -54,6 +71,8 @@ const MovieContextProvider = (props) => {
     setMovies,
     getMoviesByKeyword,
     getAllMovies,
+    fetchShowtimes,
+    fetchOneShowtime,
   };
 
   return (
