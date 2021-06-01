@@ -101,3 +101,32 @@
     }
   }
 }
+
+.single_seat--select {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.switch_ctn {
+  width: 40px;
+  height: 22px;
+  border-radius: 15px;
+  background: #283655;
+  box-shadow: inset 6px 6px 11px #151d2d, inset -6px -6px 11px #3b4f7d;
+  position: relative;
+  .switch {
+    position: absolute;
+    border-radius: 1rem;
+    width: 18px;
+    height: 18px;
+    background: gray;
+    margin-top: 2px;
+    transition: all 0.3s ease;
+  }
+  .switch-singel {
+    transform: translateX(100%);
+    background: #119afe;
+  }
+}

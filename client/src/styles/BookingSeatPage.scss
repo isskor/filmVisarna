@@ -24,7 +24,6 @@
       }
       :first-child {
         font-size: 0.9rem;
-        border-bottom: 3px solid $DarkBlue;
       }
     }
   }
@@ -132,10 +131,11 @@
 
 .showtime_ticket--summary {
   padding: 2rem;
-  border-radius: 1rem;
+  // border-radius: 1rem;
   margin: 5rem auto;
-  background: linear-gradient(145deg, #2b3a5b, #24314d);
-  box-shadow: 5px 5px 11px #182134, -5px -5px 11px #223257;
+  // background: linear-gradient(145deg, #2b3a5b, #24314d);
+  // box-shadow: 5px 5px 11px #182134, -5px -5px 11px #223257;
+  // border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   display: flex;
   flex-direction: column;
@@ -220,4 +220,8 @@
   h2 {
     margin: 2rem;
   }
+}
+
+.seat_error {
+  color: rgb(250, 120, 120);
 }

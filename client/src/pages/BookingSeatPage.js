@@ -10,6 +10,8 @@ export default function BookingSeatPage() {
   const [showTime, setShowTime] = useState(null);
   const [selected, setSelected] = useState([]);
   const [booked, setBooked] = useState([]);
+  const [error, setError] = useState(null);
+
   let init = {
     adult: { price: showTime?.movie.price, quantity: 0 },
     senior: { price: showTime?.movie.price * 0.8, quantity: 0 },
@@ -32,6 +34,7 @@ export default function BookingSeatPage() {
   );
 
   const handleQuantity = (type, minus) => {
+    setSelected([]);
     if (minus) {
       if (tickets[type].quantity === 0) return;
 
@@ -67,6 +70,15 @@ export default function BookingSeatPage() {
   console.log(showTime);
 
   const submitBooking = async () => {
+    let numOfTickets = Object.values(tickets).reduce(
+      (a, b) => a + b.quantity,
+      0
+    );
+    if (selected.length - 1 < numOfTickets) {
+      setError('Please select a seat for all tickets');
+      return;
+    }
+
     await fetch('http://localhost:3001/api/bookShowtime', {
       method: 'PUT',
       headers: {
@@ -110,7 +122,6 @@ export default function BookingSeatPage() {
         </div>
         <div className='showtime_tickets'>
           <h4>Tickets</h4>
-
           <TicketGroup
             tickets={tickets}
             type={'adult'}
@@ -133,6 +144,7 @@ export default function BookingSeatPage() {
             selected={selected}
             getTotalPrice={getTotalPrice}
             submitBooking={submitBooking}
+            error={error}
           />
         </div>
       </div>
@@ -146,6 +158,7 @@ export default function BookingSeatPage() {
           selected={selected}
           setSelected={setSelected}
           booked={booked}
+          setError={setError}
         />
       </div>
 
@@ -154,7 +167,9 @@ export default function BookingSeatPage() {
           tickets={tickets}
           selected={selected}
           getTotalPrice={getTotalPrice}
+          setError={setError}
           submitBooking={submitBooking}
+          error={error}
         />
       </div>
     </div>

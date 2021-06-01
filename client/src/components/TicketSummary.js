@@ -1,6 +1,12 @@
 import React from 'react';
 
-const TicketSummary = ({ tickets, selected, getTotalPrice, submitBooking }) => {
+const TicketSummary = ({
+  tickets,
+  selected,
+  getTotalPrice,
+  submitBooking,
+  error,
+}) => {
   const sortSeats = (toSort) => {
     return toSort.sort((a, b) => {
       let splitA = a.split('');
@@ -51,6 +57,11 @@ const TicketSummary = ({ tickets, selected, getTotalPrice, submitBooking }) => {
         <h4>Total: {getTotalPrice()}kr</h4>
       </div>
       <button onClick={submitBooking}>Book Seats</button>
+      {error && (
+        <p className='text-center' style={{ color: '#fa7878' }}>
+          {error}
+        </p>
+      )}
     </>
   );
 };

@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 
-const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
+const ChooseSeat = ({
+  seats,
+  tickets,
+  selected,
+  setSelected,
+  booked,
+  setError,
+}) => {
   const [preview, setPreview] = useState([]);
   const [seatError, setSeatError] = useState(null);
+  const [singleSeat, setSingleSeat] = useState(true);
+
+  let numOfTickets = Object.values(tickets).reduce((a, b) => a + b.quantity, 0);
 
   // on Mouse Over set preview
   const handleHover = (seat, row) => {
     // clean error
     setSeatError(null);
+    setError(null);
     // max length per row, so we can calculate when to go backwards
     let maxLength = row.seats.length;
     // splits the seat name so we can get the number
@@ -21,10 +32,6 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
     // initialize empty array
     let seatsToChoose = [];
     // for each ticket quantity we want to mark the following seats to match quantity
-    let numOfTickets = Object.values(tickets).reduce(
-      (a, b) => a + b.quantity,
-      0
-    );
 
     for (let i = 0; i < numOfTickets; i++) {
       // marks the next seat
@@ -38,6 +45,15 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
     }
     // sets the array in preview
     setPreview(seatsToChoose);
+  };
+
+  const handleSingleSelect = (seat) => {
+    if (selected.includes(seat)) {
+      setSelected(selected.filter((s) => s !== seat));
+    } else {
+      if (selected.length + 1 > numOfTickets) return;
+      setSelected([...selected, seat]);
+    }
   };
 
   const checkIfBooked = (booked, selected) => {
@@ -56,8 +72,20 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
     setSelected(preview);
   };
 
+  const toggleSingle = () => {
+    setSingleSeat(!singleSeat);
+    setSelected([]);
+    setPreview([]);
+  };
+
   return (
     <div className=' seat_table' onMouseLeave={() => setPreview([])}>
+      <div className='single_seat--select'>
+        <div className='switch_ctn' onClick={toggleSingle}>
+          <div className={`switch ${singleSeat ? 'switch-singel' : ''}`}></div>
+        </div>
+        single seat
+      </div>
       <div className=' seat_info'>
         <div className='seat_info--booked'>
           <div className='seat_color'></div>
@@ -93,8 +121,12 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
                   }
                   `}
                   key={i}
-                  onMouseOver={() => handleHover(s, row)}
-                  onClick={handleSelect}
+                  onMouseOver={
+                    singleSeat ? () => null : () => handleHover(s, row)
+                  }
+                  onClick={
+                    singleSeat ? () => handleSingleSelect(s) : handleSelect
+                  }
                 ></div>
               );
             })}
