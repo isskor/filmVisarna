@@ -1,6 +1,7 @@
 const Booking = require('../models/Bookings');
 const axios = require('axios');
 const showTimes = require('../models/showTimes');
+const mongoose = require('mongoose');
 
 exports.bookShowtime = async (req, res) => {
   const { showTime, seats, tickets } = req.body;
@@ -24,4 +25,10 @@ exports.bookShowtime = async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+exports.CartBookings = async (req, res) => {
+  let ids = req.body.map((booking) => mongoose.Types.ObjectId(booking));
+  const bookings = await Booking.find({_id:{$in:ids}}) 
+  res.json(bookings)
 };
