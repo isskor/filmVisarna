@@ -80,6 +80,10 @@ export default function BookingSeatPage() {
       setError('Please select a seat for all tickets');
       return;
     }
+    if (numOfTickets === 0) {
+      setError('Please choose your tickets');
+      return;
+    }
 
     const booking = await fetch('http://localhost:3001/api/bookShowtime', {
       method: 'PUT',
@@ -95,8 +99,8 @@ export default function BookingSeatPage() {
         })),
       }),
     });
-    const bookingJson = await booking.json()
-    setCart([...cart, bookingJson._id])
+    const bookingJson = await booking.json();
+    setCart([...cart, bookingJson._id]);
     fetchShow(id);
     setSelected([]);
   };
