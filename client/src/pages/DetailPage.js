@@ -28,7 +28,7 @@ function DetailPage() {
       {movie && (
         <>
           <div className="trailer">
-            <iframe
+            <iframe title="Trailer"
               src={
                 movie.trailer +
                 '?frameborder="0"' +
