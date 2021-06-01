@@ -2,11 +2,12 @@ import { MovieContext } from "../contexts/MovieContext";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ShowTimes from "../components/ShowTimes";
+import Calendar from 'react-calendar';
 
 function DetailPage() {
   const { movie, getMovieById } = useContext(MovieContext);
   const [showTimes, setShowTimes] = useState([]);
-  const [date, setDate] = useState("Thu Jun 24 2021");
+  const [date, SetDate] = useState(new Date());
   const history = useParams();
   console.log(history);
   console.log(date);
@@ -22,6 +23,11 @@ function DetailPage() {
         setShowTimes(data);
       });
   };
+
+  const onChange = (date) => {
+    SetDate(date);
+    fetchShowtimes(history.id, date);
+  }
 
   return (
     <div>
@@ -76,6 +82,11 @@ function DetailPage() {
             </div>
           </div>
           <div className="booking container mx-auto">
+
+          <Calendar className='mx-auto py-5'
+        onChange={onChange}
+        value={date}
+      />
             <div className="showTimes row"> Show times </div>
             <ShowTimes showTimes={showTimes} />
           </div>
