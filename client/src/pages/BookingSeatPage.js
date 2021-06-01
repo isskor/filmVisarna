@@ -4,9 +4,11 @@ import { MovieContext } from '../contexts/MovieContext';
 import ChooseSeat from '../components/ChooseSeat';
 import TicketSummary from '../components/TicketSummary';
 import TicketGroup from '../components/TicketGroup';
+import { CartContext } from '../contexts/CartContext';
 
 export default function BookingSeatPage() {
   const { fetchOneShowtime } = useContext(MovieContext);
+  const { cart, setCart } = useContext(CartContext);
   const [showTime, setShowTime] = useState(null);
   const [selected, setSelected] = useState([]);
   const [booked, setBooked] = useState([]);
@@ -79,7 +81,7 @@ export default function BookingSeatPage() {
       return;
     }
 
-    await fetch('http://localhost:3001/api/bookShowtime', {
+    const booking = await fetch('http://localhost:3001/api/bookShowtime', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -93,6 +95,8 @@ export default function BookingSeatPage() {
         })),
       }),
     });
+    const bookingJson = await booking.json()
+    setCart([...cart, bookingJson._id])
     fetchShow(id);
     setSelected([]);
   };
