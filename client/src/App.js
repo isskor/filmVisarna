@@ -14,6 +14,7 @@ import RegisterThxPage from "./pages/RegisterThxPage";
 import ProfilePage from "./pages/ProfilePage";
 import BookingSeatPage from "./pages/BookingSeatPage";
 import Footer from "./components/Footer";
+import CartContextProvider from "./contexts/CartContext";
 
 
 function App() {
@@ -23,35 +24,37 @@ function App() {
         <MovieContextProvider>
           <FilterContextProvider>
             <UserContextProvider>
-              <Nav />
-              <Route exact path="/">
-                <Home />
-              </Route>
+              <CartContextProvider>
+                <Nav />
+                <Route exact path="/">
+                  <Home />
+                </Route>
 
-              <Route exact path="/about">
-                <About />
-              </Route>
-              <Route exact path="/loginpage">
-                <LoginPage />
-              </Route>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Route exact path="/movies/:id">
-                <DetailPage />
-              </Route>
-              <Route exact path="/showtime/:id">
-                <BookingSeatPage />
-              </Route>
-              <Route exact path="/thank-you-for-registering">
-                <RegisterThxPage />
-              </Route>
-              <Route exact path="/Profile">
-                <ProfilePage />
-              </Route>
-              <Route exact path='/checkout'>
-                <CheckoutPage />
-              </Route>
+                <Route exact path="/about">
+                  <About />
+                </Route>
+                <Route exact path="/loginpage">
+                  <LoginPage />
+                </Route>
+                <Route exact path="/login">
+                  <Login />
+                </Route>
+                <Route exact path="/movies/:id">
+                  <DetailPage />
+                </Route>
+                <Route exact path="/showtime/:id">
+                  <BookingSeatPage />
+                </Route>
+                <Route exact path="/thank-you-for-registering">
+                  <RegisterThxPage />
+                </Route>
+                <Route exact path="/Profile">
+                  <ProfilePage />
+                </Route>
+                <Route exact path='/checkout'>
+                  <CheckoutPage />
+                </Route>
+              </CartContextProvider>
             </UserContextProvider>
           </FilterContextProvider>
         </MovieContextProvider>
