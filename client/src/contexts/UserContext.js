@@ -7,6 +7,7 @@ const UserContextProvider = (props) => {
   const [isMember, setIsMember] = useState(false);
   const [users, setUsers] = useState([]);
   const [loggedInUser, setloggedInUser] = useState(null);
+  const [userBookings, setUserBookings] = useState(null);
 
   const logout = async () => {
     console.log("Logout clicked on");
@@ -109,6 +110,18 @@ const UserContextProvider = (props) => {
       console.log("Here is userEdit.user", userToEdit.user);
       setloggedInUser(userToEdit.user);
     }
+  };
+
+  const getUserBookings = async () => {
+    let allUserBookings = await fetch(
+      "http://localhost:3001/api/get-user-bookings"
+    );
+    if (allUserBookings.error) {
+      alert("error");
+      return;
+    }
+    allUserBookings = await allUserBookings.json();
+    setUserBookings(userBookings);
   };
 
   const values = {

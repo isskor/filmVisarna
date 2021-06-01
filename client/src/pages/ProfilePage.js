@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 
 export default function ProfilePage() {
   const { loggedInUser } = useContext(UserContext);
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
