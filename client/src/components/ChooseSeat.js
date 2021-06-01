@@ -10,7 +10,7 @@ const ChooseSeat = ({
 }) => {
   const [preview, setPreview] = useState([]);
   const [seatError, setSeatError] = useState(null);
-  const [singleSeat, setSingleSeat] = useState(true);
+  const [singleSeat, setSingleSeat] = useState(false);
 
   let numOfTickets = Object.values(tickets).reduce((a, b) => a + b.quantity, 0);
 

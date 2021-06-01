@@ -74,7 +74,7 @@ export default function BookingSeatPage() {
       (a, b) => a + b.quantity,
       0
     );
-    if (selected.length - 1 < numOfTickets) {
+    if (selected.length < numOfTickets) {
       setError('Please select a seat for all tickets');
       return;
     }
@@ -85,7 +85,13 @@ export default function BookingSeatPage() {
         'content-type': 'application/json',
       },
       credentials: 'include',
-      body: JSON.stringify({ showTime: showTime._id, seats: selected }),
+      body: JSON.stringify({
+        showTime: showTime._id,
+        seats: selected,
+        tickets: Object.entries(tickets).map(([key, value]) => ({
+          [key]: value,
+        })),
+      }),
     });
     fetchShow(id);
     setSelected([]);
