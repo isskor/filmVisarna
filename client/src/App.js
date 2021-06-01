@@ -1,3 +1,4 @@
+import CheckoutPage from './pages/CheckoutPage';
 import About from "./pages/About";
 import "./App.scss";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -13,6 +14,7 @@ import RegisterThxPage from "./pages/RegisterThxPage";
 import ProfilePage from "./pages/ProfilePage";
 import BookingSeatPage from "./pages/BookingSeatPage";
 import Footer from "./components/Footer";
+
 
 function App() {
   return (
@@ -47,7 +49,9 @@ function App() {
               <Route exact path="/Profile">
                 <ProfilePage />
               </Route>
-              <Footer />
+              <Route exact path='/checkout'>
+                <CheckoutPage />
+              </Route>
             </UserContextProvider>
           </FilterContextProvider>
         </MovieContextProvider>
