@@ -18,8 +18,8 @@ const onChange = (date) => {
 const fetchShow = useCallback(
   async (date) => {
     console.log(date);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const shows = await fetchShowtimeByDate(date.toLocaleDateString(undefined, options));
+
+    const shows = await fetchShowtimeByDate(date.toDateString());
     console.log(shows);
     setShowTimes(shows);
   },

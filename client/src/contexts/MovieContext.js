@@ -64,7 +64,7 @@ const MovieContextProvider = (props) => {
       });
   };
   const fetchShowtimeByDate = async (date) => {
-    return fetch(`http://localhost:3001/api/OneShowtime?id=${date}`)
+    return fetch(`http://localhost:3001/api/showdate?date=${date}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
