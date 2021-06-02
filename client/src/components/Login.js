@@ -9,10 +9,10 @@ export default function Login() {
   const history = useHistory();
   const { login } = useContext(UserContext);
   const [error, setError] = useState(false);
- // hämtar setLoginState ifrån userContext, för att kunna sätta den till true vid inloggning
- // use history används för att kunna göra history.push till home vid inloggning
- // loginmetoden hämtas ifrån userContext för att användas vid login
- // Error och settError används för att visa en alertruta vid fel inmatning i formulären
+  // hämtar setLoginState ifrån userContext, för att kunna sätta den till true vid inloggning
+  // use history används för att kunna göra history.push till home vid inloggning
+  // loginmetoden hämtas ifrån userContext för att användas vid login
+  // Error och settError används för att visa en alertruta vid fel inmatning i formulären
 
   const [userNameInput, setUserName] = useState('');
   const [passwordInput, setPassword] = useState('');
@@ -26,14 +26,14 @@ export default function Login() {
     setPassword(e.target.value);
     setError(false);
   };
-// handleUsername och handlePassword tar emot userinput och lägger de i usestate ovan
+  // handleUsername och handlePassword tar emot userinput och lägger de i usestate ovan
 
   const handleLogin = async (e) => {
     e.preventDefault();
     const user = await login(userNameInput, passwordInput);
 
     if (user.error) {
-      setError(true)
+      setError(true);
     } else {
       setLoginState(true);
       history.push('/');

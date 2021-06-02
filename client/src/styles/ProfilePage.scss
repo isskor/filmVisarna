@@ -1,7 +1,6 @@
 .profileContainer {
   display: flex;
   flex-direction: row;
-  // height: 100vh;
   color: white;
 }
 
@@ -10,7 +9,10 @@
   margin-right: 2%;
   margin-left: 5%;
   margin-top: 5vh;
-  // height: 90vh;
+}
+
+#showDiv {
+  opacity: 0;
 }
 
 .profileSideBar {
@@ -58,6 +60,11 @@
   width: 50px;
   background: url("../assets/lock.png");
   background-repeat: no-repeat;
+}
+
+.resultText {
+  margin-top: 30px;
+  font-size: 1.3rem;
 }
 
 .emailIcon {

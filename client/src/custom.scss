@@ -1,30 +1,35 @@
 $theme-colors: (
-  "info": #fff,
-  "danger": #fe7f50,
-  "success": #4d648d,
-  "warning": #fe5050,
-  "primary": #283655,
+  'info': #fff,
+  'danger': #fe7f50,
+  'success': #4d648d,
+  'warning': #fe5050,
+  'primary': #283655,
 );
 $RaisinBlack: #1e1f26;
 $SpaceCadet: #283655;
 $QueenBlue: #4d648d;
 $BeauBlue: #d0e1f9;
 $DarkBlue: #1c1f36;
+$HoverBlue: #19aaff;
 
-@import "~bootstrap/scss/bootstrap";
-@import "../node_modules/bootstrap/scss/bootstrap";
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@900&display=swap");
+@import '~bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap/scss/bootstrap';
 
 body {
-  background-color: $SpaceCadet;
-}
-.navbar-dark .navbar-nav .nav-link {
+  background-color: $DarkBlue;
   color: #fff;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link:focus {
-  color: $QueenBlue;
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 70px;
+}
+.navbar a:hover,
+.navbar a:focus {
+  color: $HoverBlue;
 }
 .movie-container {
   display: flex;
@@ -42,25 +47,15 @@ body {
 
 .movie-info {
   padding: 1rem;
-  font-family: "Bebas Neue", cursive;
-  color: #fff;
   text-transform: uppercase;
   font-size: 34px;
+  h3 {
+    font-family: 'machine';
+  }
 }
 
 .react-calendar__tile--active {
   background: $SpaceCadet;
-  color: white;
-}
-.login-info {
-  color: #fff;
-  .form-label p {
-    color: #fff;
-  }
-}
-
-.LoginPage p {
-  color: #fff;
 }
 
 @media (min-width: 576px) {
@@ -82,5 +77,4 @@ body {
   padding-bottom: 0.75rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  color: white;
 }

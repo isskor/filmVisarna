@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 
-const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
+const ChooseSeat = ({
+  seats,
+  tickets,
+  selected,
+  setSelected,
+  booked,
+  setError,
+}) => {
   const [preview, setPreview] = useState([]);
   const [seatError, setSeatError] = useState(null);
+  const [singleSeat, setSingleSeat] = useState(false);
+
+  let numOfTickets = Object.values(tickets).reduce((a, b) => a + b.quantity, 0);
 
   // on Mouse Over set preview
   const handleHover = (seat, row) => {
     // clean error
     setSeatError(null);
+    setError(null);
     // max length per row, so we can calculate when to go backwards
     let maxLength = row.seats.length;
     // splits the seat name so we can get the number
@@ -21,10 +32,6 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
     // initialize empty array
     let seatsToChoose = [];
     // for each ticket quantity we want to mark the following seats to match quantity
-    let numOfTickets = Object.values(tickets).reduce(
-      (a, b) => a + b.quantity,
-      0
-    );
 
     for (let i = 0; i < numOfTickets; i++) {
       // marks the next seat
@@ -38,6 +45,15 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
     }
     // sets the array in preview
     setPreview(seatsToChoose);
+  };
+
+  const handleSingleSelect = (seat) => {
+    if (selected.includes(seat)) {
+      setSelected(selected.filter((s) => s !== seat));
+    } else {
+      if (selected.length + 1 > numOfTickets) return;
+      setSelected([...selected, seat]);
+    }
   };
 
   const checkIfBooked = (booked, selected) => {
@@ -56,27 +72,20 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
     setSelected(preview);
   };
 
-  const sortSeats = (toSort) => {
-    return toSort.sort((a, b) => {
-      let splitA = a.split('');
-      let splitB = b.split('');
-
-      let seatNumberA = +splitA[1];
-      let seatNumberB = +splitB[1];
-      // if seats are >= 10 we want to add the last 2 el. to get 11, 12 etc.
-      if (splitA[2]) {
-        seatNumberA = Number(splitA[1] + splitA[2]);
-      }
-      if (splitB[2]) {
-        seatNumberB = Number(splitB[1] + splitB[2]);
-      }
-
-      return seatNumberA - seatNumberB;
-    });
+  const toggleSingle = () => {
+    setSingleSeat(!singleSeat);
+    setSelected([]);
+    setPreview([]);
   };
 
   return (
-    <div className='col seat_table' onMouseLeave={() => setPreview([])}>
+    <div className=' seat_table' onMouseLeave={() => setPreview([])}>
+      <div className='single_seat--select'>
+        <div className='switch_ctn' onClick={toggleSingle}>
+          <div className={`switch ${singleSeat ? 'switch-singel' : ''}`}></div>
+        </div>
+        single seat
+      </div>
       <div className=' seat_info'>
         <div className='seat_info--booked'>
           <div className='seat_color'></div>
@@ -112,23 +121,19 @@ const ChooseSeat = ({ seats, tickets, selected, setSelected, booked }) => {
                   }
                   `}
                   key={i}
-                  onMouseOver={() => handleHover(s, row)}
-                  onClick={handleSelect}
-                >{s}</div>
+                  onMouseOver={
+                    singleSeat ? () => null : () => handleHover(s, row)
+                  }
+                  onClick={
+                    singleSeat ? () => handleSingleSelect(s) : handleSelect
+                  }
+                ></div>
               );
             })}
           </div>
         </div>
       ))}
       {seatError && <p className='seat_error'>{seatError}</p>}
-      <div className=' selected_seats'>
-        <p>
-          Selected Seats:{' '}
-          {sortSeats(selected).map((s) => (
-            <span> {s},</span>
-          ))}
-        </p>
-      </div>
     </div>
   );
 };

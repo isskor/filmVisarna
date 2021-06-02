@@ -25,13 +25,13 @@ const SearchComponent = () => {
     <div className='searchComponent'>
       <form onSubmit={findMovies}>
         <input
-          placeholder='Search for a movie'
+          placeholder='Search, by name or actor or director'
           onChange={handleInput}
           value={keyword}
           type='text'
         />
         <div>
-          <button type='submit'>Search movies</button>
+          <button type='submit'>Search</button>
           <button onClick={() => resetMovies()} className='resetButton'>
             Reset
           </button>
