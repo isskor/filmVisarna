@@ -46,6 +46,7 @@ exports.getUserBookings = async (req, res) => {
 
   if (userBookings) {
     res.json(userBookings);
+    console.log("userBookings!!!!", userBookings);
   } else {
     res.json({ error: "error no bookings found" });
   }

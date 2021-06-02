@@ -114,13 +114,15 @@ const UserContextProvider = (props) => {
 
   const getUserBookings = async () => {
     let allUserBookings = await fetch(
-      "http://localhost:3001/api/get-user-bookings"
+      "http://localhost:3001/api/get-user-bookings",
+      { method: "GET", credentials: "include" }
     );
     if (allUserBookings.error) {
       alert("error");
       return;
     }
     allUserBookings = await allUserBookings.json();
+
     console.log("allUserBookings, ", allUserBookings);
     setUserBookings(allUserBookings);
   };
