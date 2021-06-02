@@ -92,7 +92,6 @@
 }
 
 .showTime_card {
-  border-bottom: 1px solid white;
   padding: 2rem 1rem 1rem;
 
   .ticket_btn {
@@ -110,4 +109,9 @@
     margin-top: -80px;
     margin-bottom: 40px;
   }
+  .showTime_card {
+    padding: 1rem 1rem;
+    font-size:0.7rem;
+  }
+  
 }
