@@ -18,8 +18,8 @@ const TicketCard = (props) => {
           <div className="movieTitleContainer">
             <h3>{showtime.movie.title}</h3>
             <span>Movie</span>
-            <h3>{loggedInUser.firstName}</h3>
-            <span>Name</span>
+            <h3>{showtime.date}</h3>
+            <span>Date</span>
           </div>
           <div className="movieTimeContainer">
             <div>
@@ -27,7 +27,7 @@ const TicketCard = (props) => {
               <span>Saloon</span>
             </div>
             <div>
-              <h5>{showtime.date}</h5>
+              <h5>{showtime.time}</h5>
               <span>Time</span>
             </div>
           </div>

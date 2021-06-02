@@ -39,21 +39,24 @@ const PreviousBookings = () => {
         //Maps out each booking
         userBookings.map((booking, index) => {
           //CountDate checks if the booking.date is greater than todays that, if true render that booking
-          return countDate(booking)
-            ? <h2 key={index + 1}>{booking.showtime.movie.title}</h2> &&
-                //Renders a ticketCard for each booked seat in that booking
-                booking.seatRows.map((bookingSeat) => {
-                  return (
-                    <>
-                      <TicketCard
-                        key={index}
-                        booking={booking}
-                        bookingSeat={bookingSeat}
-                      />
-                    </>
-                  );
-                })
-            : null;
+          return countDate(booking) ? (
+            <>
+              {" "}
+              <h2 key={index + 1}>{booking.showtime.movie.title}</h2>
+              {/* Renders a ticketCard for each booked seat in that booking */}
+              {booking.seatRows.map((bookingSeat) => {
+                return (
+                  <>
+                    <TicketCard
+                      key={index}
+                      booking={booking}
+                      bookingSeat={bookingSeat}
+                    />
+                  </>
+                );
+              })}
+            </>
+          ) : null;
         })
       ) : (
         <>

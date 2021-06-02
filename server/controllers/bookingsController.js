@@ -20,7 +20,6 @@ exports.bookShowtime = async (req, res) => {
       showtime: showTime,
       tickets: tickets,
     });
-
     res.json(booking);
   } catch (err) {
     console.log(err);
