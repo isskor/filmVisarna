@@ -6,7 +6,7 @@ const CartContextProvider = (props) => {
     const [cart, setCart] = useState([]);
     const [cartBookings, setCartBookings ] = useState([]);
 
-    const values = { cart, setCart };
+    const values = { cart, setCart, cartBookings };
 
     const getCartBookings = async () => {
         let bookings = await fetch('http://localhost:3001/api/cartBookings', {

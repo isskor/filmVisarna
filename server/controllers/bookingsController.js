@@ -29,6 +29,14 @@ exports.bookShowtime = async (req, res) => {
 
 exports.CartBookings = async (req, res) => {
   let ids = req.body.map((booking) => mongoose.Types.ObjectId(booking));
-  const bookings = await Booking.find({_id:{$in:ids}}) 
-  res.json(bookings)
+  const bookings = await Booking.find({ _id: { $in: ids } })
+    .populate({
+      path: 'showtime',
+      populate: {
+        path: 'movie',
+        model: 'Movie',
+      },
+    })
+    .exec();
+  res.json(bookings);
 };

@@ -29,11 +29,11 @@ const TicketSummary = ({
     <>
       <h4>Summary</h4>
       <div className='ticket_summary'>
-        {Object.entries(tickets).map((t) => {
+        {Object.entries(tickets).map((t, i) => {
           if (t[1].quantity > 0) {
             const { quantity, price } = t[1];
             return (
-              <div className='ticket_summary--row'>
+              <div className='ticket_summary--row' key={i}>
                 <span style={{ textTransform: 'capitalize' }}>
                   {t[0]} x {quantity} @ {price} kr
                 </span>
@@ -49,7 +49,7 @@ const TicketSummary = ({
           <p>
             Selected Seats:{' '}
             {sortSeats(selected).map((s) => (
-              <span> {s},</span>
+              <span key={s}> {s},</span>
             ))}
           </p>
         </div>
