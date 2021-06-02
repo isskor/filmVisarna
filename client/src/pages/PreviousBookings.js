@@ -37,7 +37,10 @@ const PreviousBookings = () => {
       {loggedInUser && bookingsStored() ? (
         userBookings.map((booking, index) => {
           return countDate(booking) ? (
-            <TicketCard key={index} booking={booking} />
+            <>
+              <h2>{booking.showtime.movie.title}</h2>
+              <TicketCard key={index} booking={booking} />
+            </>
           ) : null;
         })
       ) : (
