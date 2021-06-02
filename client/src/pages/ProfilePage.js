@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
-import { Container, Form, Button, Alert } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
 
 export default function ProfilePage() {
   const { loggedInUser } = useContext(UserContext);
-  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -14,7 +12,7 @@ export default function ProfilePage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
-  const { editUser, whoami } = useContext(UserContext);
+  const { editUser, getUserBookings } = useContext(UserContext);
   const [editSuccess, setEditSuccess] = useState(0);
 
   useEffect(() => {
@@ -22,7 +20,6 @@ export default function ProfilePage() {
   }, []);
 
   useEffect(() => {
-    if (confirmPassword === "") {
     if (confirmPassword === "") {
       setInputValidation(true);
     } else {
