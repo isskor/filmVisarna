@@ -103,6 +103,7 @@ export default function BookingSeatPage() {
     setCart([...cart, bookingJson._id]);
     fetchShow(id);
     setSelected([]);
+    history.push("/checkout")
   };
 
   return (
