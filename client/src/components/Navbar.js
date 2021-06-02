@@ -18,6 +18,7 @@ function TheNavbar() {
         <Nav className="ml-auto">
           {loggedInUser ? (
             <div>
+               <Link to="/calendar">Calendar</Link>
               <Link to="/Profile">My Profile</Link>
               <Link to="/">Checkout</Link>
               <Link onClick={logout} to="/">
@@ -26,6 +27,7 @@ function TheNavbar() {
             </div>
           ) : (
             <div>
+               <Link to="/calendar">Calendar</Link>
               <Link to="/loginpage">Sign In</Link>
               <Link to="/loginpage">Register</Link>
             </div>

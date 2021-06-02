@@ -20,6 +20,19 @@ exports.getSingleShowtime = async (req, res) => {
   console.log(show);
 };
 
+exports.getShowtimeByDate = async (req, res) => {
+  const { date } = req.query;
+  console.log('query', req.query);
+  const show = await showTimes
+    .find({date:date})
+    .populate('movie')
+    .populate('saloon')
+    .exec();
+
+  res.json(show);
+  console.log(show);
+};
+
 exports.getShowtime = async (req, res) => {
   const { date, id } = req.query;
   console.log('query', req.query);
