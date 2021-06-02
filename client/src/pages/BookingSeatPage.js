@@ -1,13 +1,19 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect, useContext, useCallback } from "react";
-import { MovieContext } from "../contexts/MovieContext";
-import ChooseSeat from "../components/ChooseSeat";
+import { useParams, useHistory } from 'react-router-dom';
+import { useState, useEffect, useContext, useCallback } from 'react';
+import { MovieContext } from '../contexts/MovieContext';
+import ChooseSeat from '../components/ChooseSeat';
+import TicketSummary from '../components/TicketSummary';
+import TicketGroup from '../components/TicketGroup';
+import { CartContext } from '../contexts/CartContext';
 
 export default function BookingSeatPage() {
   const { fetchOneShowtime } = useContext(MovieContext);
+  const { cart, setCart } = useContext(CartContext);
   const [showTime, setShowTime] = useState(null);
   const [selected, setSelected] = useState([]);
   const [booked, setBooked] = useState([]);
+  const [error, setError] = useState(null);
+
   let init = {
     adult: { price: showTime?.movie.price, quantity: 0 },
     senior: { price: showTime?.movie.price * 0.8, quantity: 0 },
@@ -16,6 +22,7 @@ export default function BookingSeatPage() {
   const [tickets, setTickets] = useState({});
   console.log(tickets);
   const { id } = useParams();
+  const history = useHistory();
 
   const fetchShow = useCallback(
     async (id) => {
@@ -25,10 +32,11 @@ export default function BookingSeatPage() {
       setShowTime(show);
       setBooked(show.booked);
     },
-    [id, fetchOneShowtime]
+    [fetchOneShowtime]
   );
 
   const handleQuantity = (type, minus) => {
+    setSelected([]);
     if (minus) {
       if (tickets[type].quantity === 0) return;
 
@@ -64,113 +72,120 @@ export default function BookingSeatPage() {
   console.log(showTime);
 
   const submitBooking = async () => {
-    let booking = await fetch("http://localhost:3001/api/bookShowtime", {
-      method: "PUT",
+    let numOfTickets = Object.values(tickets).reduce(
+      (a, b) => a + b.quantity,
+      0
+    );
+    if (selected.length < numOfTickets) {
+      setError('Please select a seat for all tickets');
+      return;
+    }
+    if (numOfTickets === 0) {
+      setError('Please choose your tickets');
+      return;
+    }
+
+    const booking = await fetch('http://localhost:3001/api/bookShowtime', {
+      method: 'PUT',
       headers: {
         "content-type": "application/json",
       },
-      credentials: "include",
-      body: JSON.stringify({ showTime: showTime._id, seats: selected }),
+      credentials: 'include',
+      body: JSON.stringify({
+        showTime: showTime._id,
+        seats: selected,
+        tickets: Object.entries(tickets).map(([key, value]) => ({
+          [key]: value,
+        })),
+      }),
     });
+    const bookingJson = await booking.json();
+    setCart([...cart, bookingJson._id]);
     fetchShow(id);
     setSelected([]);
+    history.push("/checkout")
   };
 
   return (
-    <div className="container-fluid">
-      <div className="booking_header">
-        <div className="row justify-content-between showtime_info">
-          <div className="col-3">
-            <p>Back</p>
+    <div className='container-fluid'>
+      <div className='booking_header'>
+        <div className=' arrow_back' onClick={() => history.goBack()}>
+          <div className='arrow'></div>
+          <p className='back_btn'>Back</p>
+        </div>
+        <div className=' showtime_info--text'>
+          <div className='showtime_info_group'>
+            <span>Saloon</span>
+            <span>{showTime?.saloon.name}</span>
+          </div>
+          <div className='showtime_info_group'>
+            <span>Time</span>
+            <span>{showTime?.time}</span>
+          </div>
+          <div className='showtime_info_group'>
+            <span>Date</span>
+            <span>{showTime?.date}</span>
           </div>
         </div>
-        <div className="row ">
-          <div className="col-4 text-end">
-            <img src={showTime?.movie.poster} alt="" />
-          </div>
-          <div className="col-7">
-            <div className="row">
-              <h1>{showTime?.movie.title}</h1>
-              <div className="col-3 showtime_info--text">
-                <span className="showtime_info--title">Saloon</span>
-                <span>{showTime?.saloon.name}</span>
-                <span className="showtime_info--title">Time</span>
-                <span>{showTime?.time}</span>
-                <span className="showtime_info--title">Date</span>
-                <span>{showTime?.date}</span>
-              </div>
-            </div>
-            <div className="row ticket_quantity">
-              <div className="ticket_group">
-                <span>Adult Price: {tickets?.adult?.price}</span>
-                <div
-                  className="ticket_minus"
-                  onClick={() => handleQuantity("adult", "minus")}
-                >
-                  -
-                </div>
-                <span>{tickets?.adult?.quantity}</span>
-                <div
-                  className="ticket_plus"
-                  onClick={() => handleQuantity("adult")}
-                >
-                  +
-                </div>
-              </div>
 
-              <div className="ticket_group">
-                <span>Senior Price: {tickets?.senior?.price}</span>
-                <div
-                  className="ticket_minus"
-                  onClick={() => handleQuantity("senior", "minus")}
-                >
-                  -
-                </div>
-                <span>{tickets?.senior?.quantity}</span>
-                <div
-                  className="ticket_plus"
-                  onClick={() => handleQuantity("senior")}
-                >
-                  +
-                </div>
-              </div>
-              <div className="ticket_group">
-                <span>Junior Price: {tickets?.junior?.price}</span>
-                <div
-                  className="ticket_minus"
-                  onClick={() => handleQuantity("junior", "minus")}
-                >
-                  -
-                </div>
-                <span>{tickets?.junior?.quantity}</span>
-                <div
-                  className="ticket_plus"
-                  onClick={() => handleQuantity("junior")}
-                >
-                  +
-                </div>
-              </div>
-              <p> Total price: {getTotalPrice()} </p>
-            </div>
-          </div>
+        <div className='showtime_poster'>
+          <img src={showTime?.movie.poster} alt='' />
         </div>
-        <div className="row">
-          <div className="col-12 text-center ">
-            <h2>Choose your seats</h2>
-          </div>
-          <ChooseSeat
-            seats={showTime?.saloon.seatRows}
+
+        <div className='showtime_title'>
+          <h1>{showTime?.movie.title}</h1>
+        </div>
+        <div className='showtime_tickets'>
+          <h4>Tickets</h4>
+          <TicketGroup
             tickets={tickets}
-            selected={selected}
-            setSelected={setSelected}
-            booked={booked}
+            type={'adult'}
+            handleQuantity={handleQuantity}
+          />
+          <TicketGroup
+            tickets={tickets}
+            type={'senior'}
+            handleQuantity={handleQuantity}
+          />
+          <TicketGroup
+            tickets={tickets}
+            type={'junior'}
+            handleQuantity={handleQuantity}
           />
         </div>
-        <div className="row">
-          <div className="col text-center">
-            <button onClick={submitBooking}>Book Seats</button>
-          </div>
+        <div className='showtime_ticket--summary d-none d-lg-flex'>
+          <TicketSummary
+            tickets={tickets}
+            selected={selected}
+            getTotalPrice={getTotalPrice}
+            submitBooking={submitBooking}
+            error={error}
+          />
         </div>
+      </div>
+      <div className='row choose_seat'>
+        <div className='col-12 text-center '>
+          <h2>Choose your seats</h2>
+        </div>
+        <ChooseSeat
+          seats={showTime?.saloon.seatRows}
+          tickets={tickets}
+          selected={selected}
+          setSelected={setSelected}
+          booked={booked}
+          setError={setError}
+        />
+      </div>
+
+      <div className='showtime_ticket--summary d-lg-none'>
+        <TicketSummary
+          tickets={tickets}
+          selected={selected}
+          getTotalPrice={getTotalPrice}
+          setError={setError}
+          submitBooking={submitBooking}
+          error={error}
+        />
       </div>
     </div>
   );

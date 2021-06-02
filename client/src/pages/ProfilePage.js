@@ -5,8 +5,8 @@ import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 export default function ProfilePage() {
-  const { loggedInUser, editUser, getUserBookings } = useContext(UserContext);
-
+  const { loggedInUser } = useContext(UserContext);
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -14,12 +14,15 @@ export default function ProfilePage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
+  const { editUser, whoami } = useContext(UserContext);
+  const [editSuccess, setEditSuccess] = useState(0);
 
   useEffect(() => {
     getUserBookings();
   }, []);
 
   useEffect(() => {
+    if (confirmPassword === "") {
     if (confirmPassword === "") {
       setInputValidation(true);
     } else {
@@ -70,6 +73,14 @@ export default function ProfilePage() {
     };
     editUser(user);
     setPassword("");
+    toggleEditText();
+  };
+
+  const toggleEditText = () => {
+    setEditSuccess(true);
+    setTimeout(() => {
+      setEditSuccess(false);
+    }, 10000);
   };
 
   return (
@@ -167,6 +178,11 @@ export default function ProfilePage() {
               <Button variant="primary" type="submit">
                 UPDATE INFO
               </Button>
+              {editSuccess ? (
+                <p className="resultText"> User has been edited! </p>
+              ) : (
+                ""
+              )}
             </Container>
           </Form>
         </div>
