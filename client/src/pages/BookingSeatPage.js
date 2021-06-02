@@ -103,7 +103,7 @@ export default function BookingSeatPage() {
     setCart([...cart, bookingJson._id]);
     fetchShow(id);
     setSelected([]);
-    history.push("/checkout")
+    history.push('/checkout');
   };
 
   return (
@@ -113,20 +113,6 @@ export default function BookingSeatPage() {
           <div className='arrow'></div>
           <p className='back_btn'>Back</p>
         </div>
-        <div className=' showtime_info--text'>
-          <div className='showtime_info_group'>
-            <span>Saloon</span>
-            <span>{showTime?.saloon.name}</span>
-          </div>
-          <div className='showtime_info_group'>
-            <span>Time</span>
-            <span>{showTime?.time}</span>
-          </div>
-          <div className='showtime_info_group'>
-            <span>Date</span>
-            <span>{showTime?.date}</span>
-          </div>
-        </div>
 
         <div className='showtime_poster'>
           <img src={showTime?.movie.poster} alt='' />
@@ -134,6 +120,20 @@ export default function BookingSeatPage() {
 
         <div className='showtime_title'>
           <h1>{showTime?.movie.title}</h1>
+          <div className=' showtime_info--text'>
+            <div className='showtime_info_group'>
+              <span>Saloon</span>
+              <span>{showTime?.saloon.name}</span>
+            </div>
+            <div className='showtime_info_group'>
+              <span>Time</span>
+              <span>{showTime?.time}</span>
+            </div>
+            <div className='showtime_info_group'>
+              <span>Date</span>
+              <span>{showTime?.date}</span>
+            </div>
+          </div>
         </div>
         <div className='showtime_tickets'>
           <h4>Tickets</h4>
