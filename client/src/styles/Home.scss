@@ -13,17 +13,12 @@
       background: transparent;
       border: none;
       outline: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      color: white;
+      border-bottom: 1px solid#19aaff;
+      color: rgb(25,170,255);
+     opacity:1.0;
       min-width: 35ch;
       margin-bottom: 8px;
       margin-right: 1rem;
-      &:placeholder-shown {
-        color: white;
-      }
-    }
-    input:placeholder {
-      color: white !important;
     }
   }
   .registerThxPage {
@@ -36,13 +31,14 @@
     button {
       margin: 2rem;
     }
+
   }
 
   button {
     margin: 0.5rem;
   }
   .resetButton {
-    // background-color: $HoverBlue;
+    background-color: $HoverBlue;
   }
 }
 
