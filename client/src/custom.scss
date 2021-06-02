@@ -10,13 +10,14 @@ $SpaceCadet: #283655;
 $QueenBlue: #4d648d;
 $BeauBlue: #d0e1f9;
 $DarkBlue: #1c1f36;
+$HoverBlue: #19aaff;
 
-@import "~bootstrap/scss/bootstrap";
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap/scss/bootstrap';
 
 body {
-  background-color: #1C1F36;
-  color:#fff;
+  background-color: $DarkBlue;
+  color: #fff;
 }
 
 .navbar-brand {
@@ -26,9 +27,9 @@ body {
   padding: 0;
   height: 70px;
 }
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link:focus {
-  color: $QueenBlue;
+.navbar a:hover,
+.navbar a:focus {
+  color: $HoverBlue;
 }
 .movie-container {
   display: flex;
@@ -50,9 +51,9 @@ body {
   color: #fff;
   text-transform: uppercase;
   font-size: 34px;
- h3{
-  font-family: "machine" ;
- }
+  h3 {
+    font-family: 'machine';
+  }
 }
 
 .react-calendar__tile--active {
