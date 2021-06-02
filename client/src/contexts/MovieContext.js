@@ -63,6 +63,14 @@ const MovieContextProvider = (props) => {
         return data;
       });
   };
+  const fetchShowtimeByDate = async (date) => {
+    return fetch(`http://localhost:3001/api/showdate?date=${date}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+  };
 
   const values = {
     movies,
@@ -73,6 +81,7 @@ const MovieContextProvider = (props) => {
     getAllMovies,
     fetchShowtimes,
     fetchOneShowtime,
+    fetchShowtimeByDate,
   };
 
   return (
