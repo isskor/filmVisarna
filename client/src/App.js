@@ -15,6 +15,7 @@ import ProfilePage from "./pages/ProfilePage";
 import BookingSeatPage from "./pages/BookingSeatPage";
 import Footer from "./components/Footer";
 import CartContextProvider from "./contexts/CartContext";
+import BookingCalendar from './components/BookingCalendar.js';
 
 
 function App() {
@@ -55,6 +56,9 @@ function App() {
                   <CheckoutPage />
                 </Route>
               </CartContextProvider>
+              <Route exact path='/calendar'>
+                <BookingCalendar />
+              </Route>
             </UserContextProvider>
           </FilterContextProvider>
         </MovieContextProvider>

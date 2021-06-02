@@ -13,13 +13,10 @@ $DarkBlue: #1c1f36;
 
 @import "~bootstrap/scss/bootstrap";
 @import "../node_modules/bootstrap/scss/bootstrap";
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@900&display=swap");
 
 body {
-  background-color: $SpaceCadet;
-}
-.navbar-dark .navbar-nav .nav-link {
-  color: #fff;
+  background-color: #1C1F36;
+  color:#fff;
 }
 
 .navbar-brand {
@@ -49,25 +46,15 @@ body {
 
 .movie-info {
   padding: 1rem;
-  font-family: 'Bebas Neue', cursive;
-  color: #fff;
   text-transform: uppercase;
   font-size: 34px;
+ h3{
+  font-family: "machine" ;
+ }
 }
 
 .react-calendar__tile--active {
   background: $SpaceCadet;
-  color: white;
-}
-.login-info {
-  color: #fff;
-  .form-label p {
-    color: #fff;
-  }
-}
-
-.LoginPage p {
-  color: #fff;
 }
 
 @media (min-width: 576px) {
@@ -89,5 +76,4 @@ body {
   padding-bottom: 0.75rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  color: white;
 }

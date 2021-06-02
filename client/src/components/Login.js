@@ -47,7 +47,7 @@ export default function Login() {
         <Alert
           variant={'danger'}
           className={`${styles.Alert} ${
-            error ? styles.Alert_active : styles.Alert_inactive
+            Error ? styles.Alert_active : styles.Alert_inactive
           }`}
         >
           You did not enter the correct credentials
