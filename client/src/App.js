@@ -55,15 +55,16 @@ function App() {
                 <Route exact path='/checkout'>
                   <CheckoutPage />
                 </Route>
+                <Route exact path='/calendar'>
+                  <BookingCalendar />
+                </Route>
+                <Footer />
               </CartContextProvider>
-              <Route exact path='/calendar'>
-                <BookingCalendar />
-              </Route>
             </UserContextProvider>
           </FilterContextProvider>
         </MovieContextProvider>
       </BrowserRouter>
-    </div>
+    </div >
   );
 }
 
