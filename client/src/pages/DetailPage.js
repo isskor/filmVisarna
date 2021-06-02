@@ -17,7 +17,7 @@ function DetailPage() {
   }, [date, history.id]);
 
   const fetchShowtimes = async (id, date) => {
-    fetch(`http://localhost:3001/api/showtime?id=${id}&date=${date}`)
+    fetch(`http://localhost:3001/api/showtime?id=${id}&date=${date.toDateString()}`)
       .then((res) => res.json())
       .then((data) => {
         setShowTimes(data);
