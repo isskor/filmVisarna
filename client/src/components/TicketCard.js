@@ -33,7 +33,7 @@ const TicketCard = (props) => {
           </div>
         </div>
         <div className="bottomRightContainer">
-          <h2>55</h2>
+          <h2>{props.bookingSeat}</h2>
           <span>Seat</span>
           <img
             src="https://sv.qr-code-generator.com/wp-content/themes/qr/new_structure/markets/basic_market/generator/dist/generator/assets/images/websiteQRCode_noFrame.png"

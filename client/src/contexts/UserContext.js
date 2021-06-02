@@ -121,7 +121,7 @@ const UserContextProvider = (props) => {
       return;
     }
     allUserBookings = await allUserBookings.json();
-    console.log(allUserBookings);
+    console.log("allUserBookings, ", allUserBookings);
     setUserBookings(allUserBookings);
   };
 
