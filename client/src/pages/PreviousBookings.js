@@ -34,20 +34,25 @@ const PreviousBookings = () => {
   return (
     <div className="bookingsWrapper">
       <h1>Previous bookings</h1>
+      {/*Checks if loggedInUserExists and that users bookings has been stored*/}
       {loggedInUser && bookingsStored() ? (
+        //Maps out each booking
         userBookings.map((booking, index) => {
+          //CountDate checks if the booking.date is greater than todays that, if true render that booking
           return countDate(booking)
-            ? booking.seatRows.map((bookingSeat) => {
-                return (
-                  <>
-                    <TicketCard
-                      key={index}
-                      booking={booking}
-                      bookingSeat={bookingSeat}
-                    />
-                  </>
-                );
-              })
+            ? <h2 key={index + 1}>{booking.showtime.movie.title}</h2> &&
+                //Renders a ticketCard for each booked seat in that booking
+                booking.seatRows.map((bookingSeat) => {
+                  return (
+                    <>
+                      <TicketCard
+                        key={index}
+                        booking={booking}
+                        bookingSeat={bookingSeat}
+                      />
+                    </>
+                  );
+                })
             : null;
         })
       ) : (

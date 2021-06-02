@@ -37,18 +37,18 @@ const UpcomingBookings = () => {
       {loggedInUser && bookingsStored() ? (
         userBookings.map((booking, index) => {
           return countDate(booking)
-            ? booking.seatRows.map((bookingSeat) => {
-                return (
-                  <>
-                    <h2 key={index + 1}>{booking.showtime.movie.title}</h2>
-                    <TicketCard
-                      key={index}
-                      booking={booking}
-                      bookingSeat={bookingSeat}
-                    />
-                  </>
-                );
-              })
+            ? <h2 key={index + 1}>{booking.showtime.movie.title}</h2> &&
+                booking.seatRows.map((bookingSeat) => {
+                  return (
+                    <>
+                      <TicketCard
+                        key={index}
+                        booking={booking}
+                        bookingSeat={bookingSeat}
+                      />
+                    </>
+                  );
+                })
             : null;
         })
       ) : (
