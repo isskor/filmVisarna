@@ -9,11 +9,10 @@ function DetailPage() {
   const [showTimes, setShowTimes] = useState([]);
   const [date, SetDate] = useState(new Date());
   const history = useParams();
-  console.log(history);
-  console.log(date);
   useEffect(() => {
     getMovieById(history.id);
     fetchShowtimes(history.id, date);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, history.id]);
 
   const fetchShowtimes = async (id, date) => {

@@ -20,15 +20,12 @@ export default function BookingSeatPage() {
     junior: { price: showTime?.movie.price * 0.7, quantity: 0 },
   };
   const [tickets, setTickets] = useState({});
-  console.log(tickets);
   const { id } = useParams();
   const history = useHistory();
 
   const fetchShow = useCallback(
     async (id) => {
-      console.log(id);
       const show = await fetchOneShowtime(id);
-      console.log(show);
       setShowTime(show);
       setBooked(show.booked);
     },
@@ -61,15 +58,13 @@ export default function BookingSeatPage() {
   };
 
   useEffect(() => {
-    console.log(id);
     fetchShow(id);
   }, [id, fetchShow]);
 
   useEffect(() => {
     setTickets(init);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showTime]);
-
-  console.log(showTime);
 
   const submitBooking = async () => {
     let numOfTickets = Object.values(tickets).reduce(

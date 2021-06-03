@@ -130,9 +130,6 @@ router.get('/', async (req, res, next) => {
   let date1 = new Date('jun 24, 2021');
   let date2 = new Date('aug 24, 2021');
 
-  console.log(date1);
-  console.log(date2);
-
   dates = [];
   for (let i = 0; date1 <= date2; i++) {
     let d = new Date(date1).toDateString();
@@ -143,7 +140,6 @@ router.get('/', async (req, res, next) => {
 
     date1.setDate(date1.getDate() + 1);
   }
-  console.log(dates);
 
   // console.log(showtimes.length);
   // let shows = [];

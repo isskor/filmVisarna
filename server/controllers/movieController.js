@@ -7,15 +7,12 @@ exports.getMovies = async (req, res) => {
 };
 
 exports.getMovieById = async (req, res) => {
-  console.log('movieId', req.params);
   let movie = await Movie.findById(req.params.id).exec();
   res.json(movie);
 };
 
 //For finding movies/movie in the search bar at home.
 exports.findMovieByKeyword = async (req, res) => {
-  console.log(req.body.keyword);
-  console.log('query', query);
 
   let foundMovies = await Movie.find({
     $or: [
@@ -32,7 +29,6 @@ exports.findMovieByKeyword = async (req, res) => {
   }
 };
 exports.filterMovies = async (req, res) => {
-  console.log(req.body);
   const { rated, price, runTime, genres, language } = req.body;
 
   let filterData = {};
@@ -86,11 +82,9 @@ exports.createMovie = async (req, res) => {
       const time = +response.data.Runtime.split(' ')[0];
       const g = response.data.Genre.replace(/\s/g, '');
       const genres = g.split(',');
-      console.log(time);
-
+     
       const l = response.data.Language.replace(/\s/g, '');
       const langs = l.split(',');
-      console.log(langs);
       const movie = await new Movie({
         title: response.data.Title,
         rated: response.data.Rated,

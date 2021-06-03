@@ -7,12 +7,10 @@ const MovieContextProvider = (props) => {
   const [movie, setMovie] = useState(null);
 
   const getMovieById = async (movieId) => {
-    console.log(movieId);
     fetch(`http://localhost:3001/api/movies/${movieId}`)
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);
-        console.log(data);
       });
   };
 
@@ -59,7 +57,6 @@ const MovieContextProvider = (props) => {
     return fetch(`http://localhost:3001/api/OneShowtime?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         return data;
       });
   };
@@ -67,7 +64,6 @@ const MovieContextProvider = (props) => {
     return fetch(`http://localhost:3001/api/showdate?date=${date}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         return data;
       });
   };

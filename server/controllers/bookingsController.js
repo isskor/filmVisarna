@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 exports.bookShowtime = async (req, res) => {
   const { showTime, seats, tickets } = req.body;
-  console.log(req.body);
   // console.log(req.session);
   try {
     // update showtime with pushed booked:[new seats]
