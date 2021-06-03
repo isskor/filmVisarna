@@ -9,7 +9,7 @@ const ShowTimes = ({ showTimes }) => {
       {showTimes.length > 0 ? (
         showTimes.map((s) => (
           <Container className=' mb-2 col-12 col-md-10'>
-          <div className='row align-items-center' key={s._id}>
+          <div className='row align-items-center justify-content-between' key={s._id}>
                <div className='col-2 '>{s.movie.title}</div>
             <div className='col-3'>{s.date}</div>
             <div className='col-2'>{s.saloon.name}</div>
