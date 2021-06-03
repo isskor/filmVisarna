@@ -35,6 +35,7 @@ function Home() {
 
   return (
     <>
+
       <div className='Home'>
         <MovieBannerImage />
         <div className='home_filter container'>
@@ -66,6 +67,7 @@ function Home() {
         </Container>
       </div>
       <FilterModal open={openFilter} setOpen={setOpenFilter} />
+
     </>
   );
 }

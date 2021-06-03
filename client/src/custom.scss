@@ -16,7 +16,8 @@ $HoverBlue: #19aaff;
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 body {
-  background-color: $DarkBlue;
+  background: $DarkBlue url("./assets/Film.svg") no-repeat fixed ;
+  background-size: 100%;
   color: #fff;
 }
 
