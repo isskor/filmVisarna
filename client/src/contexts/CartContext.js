@@ -4,7 +4,7 @@ export const CartContext = createContext();
 
 const CartContextProvider = (props) => {
     const [cart, setCart] = useState([]);
-    const [cartBookings, setCartBookings ] = useState([]);
+    const [cartBookings, setCartBookings] = useState([]);
 
     const values = { cart, setCart, cartBookings };
 
@@ -16,13 +16,14 @@ const CartContextProvider = (props) => {
             },
             body: JSON.stringify(cart),
         });
-        const bookingsJson = await bookings.json() 
+        const bookingsJson = await bookings.json()
         setCartBookings(bookingsJson)
     };
+
     useEffect(() => {
         getCartBookings()
-    },[cart]);
-    console.log(cartBookings);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cart]);
     return (
         <CartContext.Provider value={values}>
             {props.children}
