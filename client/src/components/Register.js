@@ -55,7 +55,7 @@ export default function Register() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!isValid) return
+    if (!isValid) return
     let user = {
       firstName: firstName,
       lastName: lastName,
@@ -72,9 +72,8 @@ export default function Register() {
       <Form onSubmit={handleSubmit}>
         <Alert
           variant={"danger"}
-          className={`${styles.Alert} ${
-            Error ? styles.Alert.active : styles.Alert.inactive
-          }`}
+          className={`${styles.Alert} ${Error ? styles.Alert.active : styles.Alert.inactive
+            }`}
         >
           You did not enter the correct credentials
         </Alert>

@@ -20,15 +20,12 @@ export default function BookingSeatPage() {
     junior: { price: showTime?.movie.price * 0.7, quantity: 0 },
   };
   const [tickets, setTickets] = useState({});
-  console.log(tickets);
   const { id } = useParams();
   const history = useHistory();
 
   const fetchShow = useCallback(
     async (id) => {
-      console.log(id);
       const show = await fetchOneShowtime(id);
-      console.log(show);
       setShowTime(show);
       setBooked(show.booked);
     },
@@ -61,15 +58,13 @@ export default function BookingSeatPage() {
   };
 
   useEffect(() => {
-    console.log(id);
     fetchShow(id);
   }, [id, fetchShow]);
 
   useEffect(() => {
     setTickets(init);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showTime]);
-
-  console.log(showTime);
 
   const submitBooking = async () => {
     let numOfTickets = Object.values(tickets).reduce(
@@ -88,7 +83,7 @@ export default function BookingSeatPage() {
     const booking = await fetch('http://localhost:3001/api/bookShowtime', {
       method: 'PUT',
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       credentials: 'include',
       body: JSON.stringify({
@@ -103,7 +98,7 @@ export default function BookingSeatPage() {
     setCart([...cart, bookingJson._id]);
     fetchShow(id);
     setSelected([]);
-    history.push("/checkout")
+    history.push('/checkout');
   };
 
   return (
@@ -113,20 +108,6 @@ export default function BookingSeatPage() {
           <div className='arrow'></div>
           <p className='back_btn'>Back</p>
         </div>
-        <div className=' showtime_info--text'>
-          <div className='showtime_info_group'>
-            <span>Saloon</span>
-            <span>{showTime?.saloon.name}</span>
-          </div>
-          <div className='showtime_info_group'>
-            <span>Time</span>
-            <span>{showTime?.time}</span>
-          </div>
-          <div className='showtime_info_group'>
-            <span>Date</span>
-            <span>{showTime?.date}</span>
-          </div>
-        </div>
 
         <div className='showtime_poster'>
           <img src={showTime?.movie.poster} alt='' />
@@ -134,6 +115,20 @@ export default function BookingSeatPage() {
 
         <div className='showtime_title'>
           <h1>{showTime?.movie.title}</h1>
+          <div className=' showtime_info--text'>
+            <div className='showtime_info_group'>
+              <span>Saloon</span>
+              <span>{showTime?.saloon.name}</span>
+            </div>
+            <div className='showtime_info_group'>
+              <span>Time</span>
+              <span>{showTime?.time}</span>
+            </div>
+            <div className='showtime_info_group'>
+              <span>Date</span>
+              <span>{showTime?.date}</span>
+            </div>
+          </div>
         </div>
         <div className='showtime_tickets'>
           <h4>Tickets</h4>
