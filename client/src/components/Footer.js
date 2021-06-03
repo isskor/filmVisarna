@@ -5,23 +5,30 @@ export default function Footer() {
     <div className="footerContainer">
       <div className="footerMain">
         <div className="footerSection">
-          <Link to="/About" className="footerLink">
+          <div>
+            <Link to="/About" className="footerLink">
+              About Us
+            </Link>
+          </div>
+          <div>
             {" "}
-            About Us{" "}
-          </Link>
-          <p className="footerLink"> Help </p>
-          <p className="footerLink"> Contact Us </p>
-          <p className="footerLink"> Information </p>
-          <p className="footerLink"> Join our team </p>
+            <Link to="/calendar" className="footerLink">
+              Calendar
+            </Link>
+          </div>
+          <div>
+            <Link to="/Login" className="footerLink">
+              Sign in
+            </Link>{" "}
+          </div>
         </div>
         <div className="footerSection">
-          <p className="footerLink"> Cookie Policy </p>
-          <p className="footerLink"> Privacy </p>
-          <p className="footerLink"> Legal </p>
+          <p className="footerLink"> Filmvisarvägen 55 </p>
+          <p className="footerLink"> Huaröd </p>
+          <p className="footerLink"> 070 555 66 32 </p>
         </div>
         <div className="footerSection">
-          <p className="footerLink"> Android Download </p>
-          <p className="footerLink"> iOS Download </p>
+          <p className="footerLink"> Filmvisarna@contact.com </p>
         </div>
       </div>
       <hr />

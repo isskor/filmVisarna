@@ -17,6 +17,7 @@ import CartContextProvider from './contexts/CartContext';
 import Footer from './components/Footer';
 import CheckoutPage from './pages/CheckoutPage';
 
+
 function App() {
   return (
     <div className='App'>
@@ -63,7 +64,7 @@ function App() {
           </FilterContextProvider>
         </MovieContextProvider>
       </BrowserRouter>
-    </div>
+    </div >
   );
 }
 
