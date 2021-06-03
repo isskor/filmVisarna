@@ -55,7 +55,7 @@ function DetailPage() {
               <h2 className="title"> {movie.title} </h2>
 
               <div className="grayText"> Directors </div>
-              <div className="director"> {movie.director}</div>
+              <div className="whiteText"> {movie.director}</div>
 
               <div className="grayText"> Cast </div>
               <div className="whiteText">{movie.actors}</div>
