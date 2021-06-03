@@ -46,6 +46,8 @@ server.use(
   })
 );
 
+
+
 mongoose
   .connect(
     "mongodb+srv://filmVisarna:filmVisarna@cinemacluster.dsbop.mongodb.net/cinema",

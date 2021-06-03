@@ -83,7 +83,6 @@ export default function ProfilePage() {
   return (
     <div className="profileContainer">
       <div className="profileSideBar">
-        <Link to="/Profile">My Profile</Link>
         <Link to="/upcoming-bookings">Upcoming Bookings</Link>
         <Link to="/previous-bookings">Previous Bookings</Link>
       </div>

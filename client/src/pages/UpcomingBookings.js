@@ -19,7 +19,7 @@ const UpcomingBookings = () => {
     //Get showtimes date value
     let showtimeDate = new Date(booking.showtime.date);
     //Subtract the two and return true of false if the showtime has passed or not
-    return showtimeDate < todaysDate;
+    return showtimeDate > todaysDate;
   };
 
   //Function that checks if bookings exists so page dosen't crash
@@ -36,20 +36,24 @@ const UpcomingBookings = () => {
       <h1>Upcoming bookings</h1>
       {loggedInUser && bookingsStored() ? (
         userBookings.map((booking, index) => {
-          return countDate(booking)
-            ? <h2 key={index + 1}>{booking.showtime.movie.title}</h2> &&
-                booking.seatRows.map((bookingSeat) => {
-                  return (
-                    <>
-                      <TicketCard
-                        key={index}
-                        booking={booking}
-                        bookingSeat={bookingSeat}
-                      />
-                    </>
-                  );
-                })
-            : null;
+          return countDate(booking) ? (
+            <>
+              {" "}
+              <h2 key={index + 1}>{booking.showtime.movie.title}</h2>
+              {/* Renders a ticketCard for each booked seat in that booking */}
+              {booking.seatRows.map((bookingSeat) => {
+                return (
+                  <>
+                    <TicketCard
+                      key={index}
+                      booking={booking}
+                      bookingSeat={bookingSeat}
+                    />
+                  </>
+                );
+              })}
+            </>
+          ) : null;
         })
       ) : (
         <>

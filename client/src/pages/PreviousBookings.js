@@ -19,7 +19,7 @@ const PreviousBookings = () => {
     //Get showtimes date value
     let showtimeDate = new Date(booking.showtime.date);
     //Subtract the two and return true of false if the showtime has passed or not
-    return showtimeDate > todaysDate;
+    return showtimeDate < todaysDate;
   };
 
   //Function that checks if bookings exists so page dosen't crash
