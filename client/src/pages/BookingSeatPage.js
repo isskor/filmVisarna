@@ -83,7 +83,7 @@ export default function BookingSeatPage() {
     const booking = await fetch('http://localhost:3001/api/bookShowtime', {
       method: 'PUT',
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       credentials: 'include',
       body: JSON.stringify({

@@ -1,0 +1,119 @@
+.ticketCard {
+  width: 400px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem;
+
+  .topContainer {
+    display: flex;
+    height: 20%;
+    width: 100%;
+    background-color: $QueenBlue;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+
+    .topLeftContainer {
+      width: 70%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 1rem;
+      padding-top: 0.5rem;
+      font-family: "Lato", sans-serif;
+      letter-spacing: 0.1rem;
+      border-right: dashed $RaisinBlack 5px;
+    }
+    .topRightContainer {
+      width: 30%;
+    }
+  }
+  .bottomContainer {
+    display: flex;
+    height: 80%;
+    width: 100%;
+
+    .bottomLeftContainer {
+      background-color: #f6f6f6;
+      width: 70%;
+      border-bottom-left-radius: 1.2rem;
+      border-right: dashed $RaisinBlack 5px;
+      display: flex;
+      flex-direction: column;
+      color: #222222;
+      .movieTitleContainer {
+        padding-left: 2rem;
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        h3 {
+          font-size: 1.2rem;
+        }
+        span {
+          font-size: 0.8rem;
+          margin-top: -10px;
+          margin-bottom: 10px;
+          color: #959595;
+        }
+      }
+      .movieTimeContainer {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        div {
+          text-align: center;
+          h5 {
+            margin: 0px;
+            font-size: 1rem;
+          }
+          span {
+            font-size: 0.8rem;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            color: #959595;
+          }
+        }
+      }
+    }
+    .bottomRightContainer {
+      background-color: #f6f6f6;
+      border-bottom-right-radius: 1.2rem;
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      h2 {
+        color: $QueenBlue;
+        font-size: 3rem;
+        margin: 0px;
+      }
+      span {
+        color: #959595;
+        margin-top: -10px;
+        margin-bottom: 10px;
+      }
+      img {
+        max-width: 50%;
+      }
+    }
+  }
+  .hidden {
+    display: none !important;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 500px) {
+  .ticketCard {
+    width: 300px;
+    height: 250px;
+    .movieTimeContainer {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+  }
+}
