@@ -114,11 +114,10 @@ const ChooseSeat = ({
                   ${i === seatCol2 ? 'seat_col' : ''}
                   ${selected.includes(s) ? 'seat_selected' : ''}
                   ${booked.includes(s) ? 'seat_booked' : ''}
-                  ${
-                    preview.filter((seat) => seat === s).length > 0
+                  ${preview.filter((seat) => seat === s).length > 0
                       ? 'seat_preview'
                       : ''
-                  }
+                    }
                   `}
                   key={i}
                   onMouseOver={

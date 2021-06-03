@@ -9,7 +9,7 @@ const showTimes = require("../models/showTimes");
 
 exports.getSingleShowtime = async (req, res) => {
   const { id } = req.query;
-  console.log("query", req.query);
+  console.log('query', req.query);
   const show = await showTimes
     .findById(id)
     .populate("movie")
@@ -17,33 +17,27 @@ exports.getSingleShowtime = async (req, res) => {
     .exec();
 
   res.json(show);
-  console.log(show);
 };
 
 exports.getShowtimeByDate = async (req, res) => {
   const { date } = req.query;
-  console.log('query', req.query);
   const show = await showTimes
-    .find({date:date})
+    .find({ date: date })
     .populate('movie')
     .populate('saloon')
     .exec();
-
   res.json(show);
-  console.log(show);
 };
 
 exports.getShowtime = async (req, res) => {
   const { date, id } = req.query;
-  console.log("query", req.query);
+  console.log('query', req.query);
   const shows = await showTimes
     .find({ movie: id, date })
     .populate("movie", "title")
     .populate("saloon", "name")
     .exec();
-
   res.json(shows);
-  console.log(shows);
 };
 // moved to booking controller
 // exports.bookShowtime = async (req, res) => {
@@ -88,7 +82,5 @@ exports.createShowTime = async (req, res) => {
     }).save();
   }
 
-  // console.log(movies);
-  //   console.log(saloon);
-  res.json("hello");
+  res.json('hello');
 };

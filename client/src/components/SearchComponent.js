@@ -12,7 +12,6 @@ const SearchComponent = () => {
   const findMovies = (e) => {
     e.preventDefault();
     let keyWordToSend = { keyword: keyword };
-    console.log("keyWordToSend", keyWordToSend);
     getMoviesByKeyword(keyWordToSend);
     setKeyword("");
   };

@@ -13,7 +13,7 @@ exports.logout = (req, res) => {
 
 exports.whoami = (req, res) => {
   if (req.session.user) {
-    console.log("WHOAMI**************", req.session.user);
+    console.log('WHOAMI**************', req.session.user);
     res.json(req.session.user);
   } else {
     res.json({ error: "error" });
@@ -23,7 +23,6 @@ exports.whoami = (req, res) => {
 //Logic to create a user
 exports.createUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
-  console.log(req.body);
 
   let user = await User.create({
     firstName: req.body.firstName,
@@ -32,7 +31,7 @@ exports.createUser = async (req, res) => {
     password: req.body.password,
   });
 
-  console.log("New user added to database", user);
+  console.log('New user added to database', user);
   res.json({ success: true });
 };
 
@@ -40,7 +39,7 @@ exports.createUser = async (req, res) => {
 exports.editUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
   console.log(`body`, req.body);
-  console.log("sesh =======> ", req.session);
+  console.log('sesh =======> ', req.session);
   let updatedUser = await User.findOneAndUpdate(
     { _id: req.session.user._id },
     {
@@ -52,10 +51,10 @@ exports.editUser = async (req, res) => {
     { new: true }
   ).exec();
 
-  console.log("updt =====>", updatedUser);
+  console.log('updt =====>', updatedUser);
   updatedUser.password = null;
   req.session.user = updatedUser;
-  console.log("new sesh =====>", req.session.user);
+  console.log('new sesh =====>', req.session.user);
   req.session.save((err) => {
     if (err) return console.log(err);
 

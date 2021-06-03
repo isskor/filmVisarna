@@ -10,18 +10,15 @@ const UserContextProvider = (props) => {
   const [userBookings, setUserBookings] = useState(null);
 
   const logout = async () => {
-    console.log("Logout clicked on");
-    let userToLogOut = await fetch("http://localhost:3001/api/users/logout", {
-      method: "GET",
-      credentials: "include",
+    let userToLogOut = await fetch('http://localhost:3001/api/users/logout', {
+      method: 'GET',
+      credentials: 'include',
     });
-    console.log(userToLogOut);
     userToLogOut = await userToLogOut.json();
     if (userToLogOut.success) {
       setLoginState(false);
       setIsMember(false);
       setloggedInUser(null);
-      console.log("Log Out Succesful");
     }
   };
 
@@ -34,11 +31,10 @@ const UserContextProvider = (props) => {
       },
     });
     sessionUser = await sessionUser.json();
-    console.log("session user***************:", sessionUser);
+    console.log('session user***************:', sessionUser);
     if (sessionUser.error) {
       setloggedInUser(null);
       setLoginState(false);
-      console.log("Error user doesn't exist!");
       return;
     }
     setloggedInUser(sessionUser);
@@ -47,7 +43,7 @@ const UserContextProvider = (props) => {
 
   useEffect(() => {
     whoami();
-    console.log("The SESSIONS in USER is: ", loggedInUser);
+    console.log('The SESSIONS in USER is: ', loggedInUser);
   }, []);
 
   const login = async (email, password) => {
@@ -66,13 +62,11 @@ const UserContextProvider = (props) => {
     });
 
     userToLogin = await userToLogin.json();
-    console.log(userToLogin);
 
     if (userToLogin.error) {
       setloggedInUser(null);
       setLoginState(false);
-      console.log("Error user doesn't exist!");
-      return userToLogin;
+      return userToLogin
     }
 
     setloggedInUser(userToLogin);
@@ -107,7 +101,7 @@ const UserContextProvider = (props) => {
     });
     userToEdit = await userToEdit.json();
     if (userToEdit.success) {
-      console.log("Here is userEdit.user", userToEdit.user);
+      console.log('Here is userEdit.user', userToEdit.user);
       setloggedInUser(userToEdit.user);
     }
   };
