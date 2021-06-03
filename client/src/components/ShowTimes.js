@@ -8,15 +8,15 @@ const ShowTimes = ({ showTimes }) => {
       {showTimes.length > 0 ? (
         showTimes.map((s) => (
           <Container className=' mb-2 col-12 col-md-10' key={s._id}>
-          <div className='row align-items-center justify-content-between' >
-               <div className='col-2 '>{s.movie.title}</div>
-            <div className='col-3'>{s.date}</div>
-            <div className='col-2'>{s.saloon.name}</div>
-            <div className='col-2 '>{s.time}</div>
-            <div className='col-2 ticket_btn'>
-              <TicketsButton showtimeID={s._id}>Tickets</TicketsButton>
+            <div className='row align-items-center justify-content-between' >
+              <div className='col-2 '>{s.movie.title}</div>
+              <div className='col-3'>{s.date}</div>
+              <div className='col-2'>{s.saloon.name}</div>
+              <div className='col-2 '>{s.time}</div>
+              <div className='col-2 ticket_btn'>
+                <TicketsButton showtimeID={s._id}>Tickets</TicketsButton>
+              </div>
             </div>
-          </div>
           </Container>
         ))
       ) : (

@@ -82,7 +82,7 @@ exports.createMovie = async (req, res) => {
       const time = +response.data.Runtime.split(' ')[0];
       const g = response.data.Genre.replace(/\s/g, '');
       const genres = g.split(',');
-     
+
       const l = response.data.Language.replace(/\s/g, '');
       const langs = l.split(',');
       const movie = await new Movie({
