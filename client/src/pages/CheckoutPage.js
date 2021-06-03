@@ -36,6 +36,8 @@ const CheckoutPage = () => {
                     <img src={booking.showtime.movie.poster} alt='' />
                   </div>
                   <div className='ticket_card--tickets'>
+                    <h3>{booking.showtime.movie.title}</h3>
+
                     {booking.tickets.map((ticket, i) => {
                       const [key, value] = Object.entries(ticket);
                       if (key[1].quantity > 0)
@@ -45,10 +47,7 @@ const CheckoutPage = () => {
                           </p>
                         );
                     })}
-                  </div>
-                  <div className='checkoutInfo'>
-                    <h3>{booking.showtime.movie.title}</h3>
-                    <p>seats{booking.seatRows}</p>
+                    <p>Seats {booking.seatRows}</p>
                   </div>
                   <div className='checkoutInfoTotal'>
                     <h2>Total {getBookingTotalPrice(booking.tickets)}</h2>
