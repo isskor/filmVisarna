@@ -13,5 +13,5 @@ const showTimeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
- module.exports = mongoose.model('ShowTime', showTimeSchema);
+module.exports = mongoose.model('ShowTime', showTimeSchema);
 

@@ -67,7 +67,7 @@ function Home() {
         </Container>
       </div>
       <FilterModal open={openFilter} setOpen={setOpenFilter} />
-   
+
     </>
   );
 }

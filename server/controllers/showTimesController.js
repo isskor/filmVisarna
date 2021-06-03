@@ -21,7 +21,7 @@ exports.getSingleShowtime = async (req, res) => {
 exports.getShowtimeByDate = async (req, res) => {
   const { date } = req.query;
   const show = await showTimes
-    .find({date:date})
+    .find({ date: date })
     .populate('movie')
     .populate('saloon')
     .exec();
@@ -79,6 +79,7 @@ exports.createShowTime = async (req, res) => {
       time: d.time + '.00',
     }).save();
   }
+
 
   res.json('hello');
 };
