@@ -1,18 +1,19 @@
 // const Movie = require('../models/movie');
-const axios = require('axios');
-const dates = require('../dates.json');
-const Saloon = require('../models/saloon');
-const Movie = require('../models/movie');
-const showTimes = require('../models/showTimes');
+const axios = require("axios");
+const dates = require("../dates.json");
+const Saloon = require("../models/saloon");
+const Movie = require("../models/movie");
+const showTimes = require("../models/showTimes");
 
 // only for creating saloons
 
 exports.getSingleShowtime = async (req, res) => {
   const { id } = req.query;
+  console.log('query', req.query);
   const show = await showTimes
     .findById(id)
-    .populate('movie')
-    .populate('saloon')
+    .populate("movie")
+    .populate("saloon")
     .exec();
 
   res.json(show);
@@ -30,10 +31,11 @@ exports.getShowtimeByDate = async (req, res) => {
 
 exports.getShowtime = async (req, res) => {
   const { date, id } = req.query;
+  console.log('query', req.query);
   const shows = await showTimes
     .find({ movie: id, date })
-    .populate('movie', 'title')
-    .populate('saloon', 'name')
+    .populate("movie", "title")
+    .populate("saloon", "name")
     .exec();
   res.json(shows);
 };
@@ -70,16 +72,15 @@ exports.createShowTime = async (req, res) => {
       movie: m._id,
       saloon: saloon[0]._id,
       date: d.date,
-      time: d.time + '.00',
+      time: d.time + ".00",
     }).save();
     const newMov2 = await new showTimes({
       movie: m2._id,
       saloon: saloon[1]._id,
       date: d.date,
-      time: d.time + '.00',
+      time: d.time + ".00",
     }).save();
   }
-
 
   res.json('hello');
 };

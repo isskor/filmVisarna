@@ -12,8 +12,12 @@ export default function ProfilePage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
-  const { editUser } = useContext(UserContext);
+  const { editUser, getUserBookings } = useContext(UserContext);
   const [editSuccess, setEditSuccess] = useState(0);
+
+  useEffect(() => {
+    getUserBookings();
+  }, []);
 
   useEffect(() => {
     if (confirmPassword === "") {
@@ -79,9 +83,8 @@ export default function ProfilePage() {
   return (
     <div className="profileContainer">
       <div className="profileSideBar">
-        <Link to="/Profile">My Profile</Link>
-        <Link to="/Bookings">Upcoming Bookings</Link>
-        <Link to="/Bookings">Previous Bookings</Link>
+        <Link to="/upcoming-bookings">Upcoming Bookings</Link>
+        <Link to="/previous-bookings">Previous Bookings</Link>
       </div>
       <div className="profileMain">
         <h2> Hello {loggedInUser?.firstName} </h2>{" "}
