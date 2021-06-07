@@ -117,7 +117,10 @@ const UserContextProvider = (props) => {
       body: JSON.stringify(bookingId),
     });
     console.log(bookingToDelete);
+    // update bookings on user page
     getUserBookings();
+    // update cart page
+
     return bookingToDelete;
   };
 

@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import { UserContext } from '../contexts/UserContext';
 
 const CheckoutPage = () => {
-  const { cartBookings } = useContext(CartContext);
+  const { cartBookings, getCartBookings } = useContext(CartContext);
+  const { deleteBooking } = useContext(UserContext);
   // console.log(Object.entries(cartBookings[0]?.tickets[0]));
 
   const getBookingTotalPrice = (tickets) => {
@@ -21,6 +23,11 @@ const CheckoutPage = () => {
       // get totalprice for each booking
       return accumlator + getBookingTotalPrice(current.tickets);
     }, 0);
+  };
+
+  const cancelBooking = async (id) => {
+    await deleteBooking({ bookingId: id });
+    await getCartBookings();
   };
 
   return (
@@ -49,6 +56,9 @@ const CheckoutPage = () => {
                     })}
                     <p>Seats {booking.seatRows}</p>
                   </div>
+                  <button onClick={() => cancelBooking(booking._id)}>
+                    Cancel
+                  </button>
                   <div className='checkoutInfoTotal'>
                     <h2>Total {getBookingTotalPrice(booking.tickets)}</h2>
                   </div>
