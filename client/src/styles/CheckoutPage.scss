@@ -29,6 +29,15 @@
   }
 }
 
+.ticket_card_total {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  h2 {
+    margin-top: auto;
+  }
+}
+
 .checkoutTotal {
   display: flex;
   flex-direction: row;

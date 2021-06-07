@@ -44,7 +44,7 @@ const CheckoutPage = () => {
                   </div>
                   <div className='ticket_card--tickets'>
                     <h3>{booking.showtime.movie.title}</h3>
-
+                    <p>Tickets:</p>
                     {booking.tickets.map((ticket, i) => {
                       const [key, value] = Object.entries(ticket);
                       if (key[1].quantity > 0)
@@ -54,13 +54,18 @@ const CheckoutPage = () => {
                           </p>
                         );
                     })}
-                    <p>Seats {booking.seatRows}</p>
+                    <p>
+                      Seats:{' '}
+                      {booking.seatRows.map((s, i) => (
+                        <span key={i}>{s}, </span>
+                      ))}
+                    </p>
                   </div>
-                  <button onClick={() => cancelBooking(booking._id)}>
-                    Cancel
-                  </button>
-                  <div className='checkoutInfoTotal'>
-                    <h2>Total {getBookingTotalPrice(booking.tickets)}</h2>
+                  <div className='ticket_card_total'>
+                    <button onClick={() => cancelBooking(booking._id)}>
+                      Cancel
+                    </button>
+                    <h2>Total {getBookingTotalPrice(booking.tickets)}kr</h2>
                   </div>
                 </div>
               );
@@ -68,7 +73,7 @@ const CheckoutPage = () => {
           </div>
 
           <div className='checkoutTotal'>
-            <h2>Total: {getTotalCheckoutPrice()} </h2>
+            <h2>Total: {getTotalCheckoutPrice()}kr </h2>
             <div className='button'>
               <button>Continue</button>
             </div>
