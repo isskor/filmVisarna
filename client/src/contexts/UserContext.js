@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from 'react';
 
 export const UserContext = createContext();
 
@@ -23,15 +23,15 @@ const UserContextProvider = (props) => {
   };
 
   const whoami = async () => {
-    let sessionUser = await fetch("http://localhost:3001/api/users/whoami", {
-      method: "GET",
-      credentials: "include",
+    let sessionUser = await fetch('http://localhost:3001/api/users/whoami', {
+      method: 'GET',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
     sessionUser = await sessionUser.json();
-    console.log('session user***************:', sessionUser);
+    // console.log('session user***************:', sessionUser);
     if (sessionUser.error) {
       setloggedInUser(null);
       setLoginState(false);
@@ -43,7 +43,7 @@ const UserContextProvider = (props) => {
 
   useEffect(() => {
     whoami();
-    console.log('The SESSIONS in USER is: ', loggedInUser);
+    // console.log('The SESSIONS in USER is: ', loggedInUser);
   }, []);
 
   const login = async (email, password) => {
@@ -52,11 +52,11 @@ const UserContextProvider = (props) => {
       password: password,
     };
 
-    let userToLogin = await fetch("http://localhost:3001/api/users/loginUser", {
-      method: "POST",
-      credentials: "include",
+    let userToLogin = await fetch('http://localhost:3001/api/users/loginUser', {
+      method: 'POST',
+      credentials: 'include',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify(user),
     });
@@ -66,7 +66,7 @@ const UserContextProvider = (props) => {
     if (userToLogin.error) {
       setloggedInUser(null);
       setLoginState(false);
-      return userToLogin
+      return userToLogin;
     }
 
     setloggedInUser(userToLogin);
@@ -76,47 +76,47 @@ const UserContextProvider = (props) => {
 
   const createUser = async (user) => {
     let userToRegiser = await fetch(
-      "http://localhost:3001/api/users/createUser",
+      'http://localhost:3001/api/users/createUser',
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "content-type": "application/json",
+          'content-type': 'application/json',
         },
         body: JSON.stringify(user),
       }
     );
     if (userToRegiser.success) {
-      alert("User registered!");
+      alert('User registered!');
     }
   };
 
   const editUser = async (user) => {
-    let userToEdit = await fetch("http://localhost:3001/api/users/editUser", {
-      method: "PUT",
-      credentials: "include",
+    let userToEdit = await fetch('http://localhost:3001/api/users/editUser', {
+      method: 'PUT',
+      credentials: 'include',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify(user),
     });
     userToEdit = await userToEdit.json();
     if (userToEdit.success) {
-      console.log('Here is userEdit.user', userToEdit.user);
+      // console.log('Here is userEdit.user', userToEdit.user);
       setloggedInUser(userToEdit.user);
     }
   };
 
   const getUserBookings = async () => {
     let allUserBookings = await fetch(
-      "http://localhost:3001/api/get-user-bookings",
-      { method: "GET", credentials: "include" }
+      'http://localhost:3001/api/get-user-bookings',
+      { method: 'GET', credentials: 'include' }
     );
     if (allUserBookings.error) {
-      alert("error");
+      alert('error');
       return;
     }
     allUserBookings = await allUserBookings.json();
-    console.log("allUserBookings, ", allUserBookings);
+    // console.log("allUserBookings, ", allUserBookings);
     setUserBookings(allUserBookings);
   };
 

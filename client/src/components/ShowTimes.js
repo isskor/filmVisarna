@@ -13,7 +13,7 @@ const ShowTimes = ({ showTimes }) => {
               <div className='col-3'>{s.date}</div>
               <div className='col-2'>{s.saloon.name}</div>
               <div className='col-2 '>{s.time}</div>
-              <div className='col-2 ticket_btn'>
+              <div className='col-3 col-md-2 ticket_btn'>
                 <TicketsButton showtimeID={s._id}>Tickets</TicketsButton>
               </div>
             </div>
