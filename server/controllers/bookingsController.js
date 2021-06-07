@@ -52,11 +52,10 @@ exports.deleteBooking = async (req, res) => {
 
     // get showtime to alter the booked array for that showtime
     const updtShowtime = await ShowTime.findById(booking.showtime);
-    console.log(updtShowtime);
+
     // filter out the seats that are about to be deleted
     const newSeatArr = updtShowtime.booked.filter((seat) => {
       const a = booking.seatRows.includes(seat);
-      console.log(a);
       if (a) return;
       return seat;
     });
