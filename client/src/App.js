@@ -51,7 +51,7 @@ function App() {
                   <UserRoutes exact path="/showtime/:id">
                     <BookingSeatPage />
                   </UserRoutes>
-                  <UserRoutes
+                  <Route
                     exact
                     path="/thank-you-for-registering"
                     component={RegisterThxPage}
