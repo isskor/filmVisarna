@@ -29,6 +29,9 @@
 .cover img {
   width: 100%;
   height: 100%;
+  min-width: 220px;
+  min-height: 350px;
+  object-fit: cover;
 }
 
 .mainInfo {
@@ -41,7 +44,7 @@
 
 .title {
   margin-top: -25px;
-  font-size: 1.7rem;
+  font-size: 2.8rem;
 }
 
 .director {
@@ -74,10 +77,8 @@
 }
 
 .booking {
-  // display: flex;
   margin-left: 5%;
   width: 80%;
-  height: 40vh;
   color: white;
 }
 
@@ -87,11 +88,10 @@
   align-items: center;
   width: 100%;
   height: 40px;
-  background: #4d648d;
+  background: #283655;
 }
 
 .showTime_card {
-  border-bottom: 1px solid white;
   padding: 2rem 1rem 1rem;
 
   .ticket_btn {
@@ -109,4 +109,9 @@
     margin-top: -80px;
     margin-bottom: 40px;
   }
+  .showTime_card {
+    padding: 1rem 1rem;
+    font-size:0.7rem;
+  }
+  
 }

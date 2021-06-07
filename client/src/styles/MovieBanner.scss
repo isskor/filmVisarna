@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: $RaisinBlack;
+  background-color: transparent;
 }
 .Carousel {
   width: 100%;
@@ -17,13 +17,12 @@
   .CarouselCaption {
     background-color: rgba(46, 46, 46, 0.295);
     min-width: 70%;
-    h3 {
-      font-family: "Lato", sans-serif;
+    h2 {
       letter-spacing: 0.1rem;
       font-size: 2rem;
     }
     p {
-      font-family: "Open Sans", sans-serif;
+      font-family: 'Open Sans', sans-serif;
     }
   }
 }
@@ -46,7 +45,7 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .CarouselCaption {
-    h3 {
+    h2 {
       font-size: 4rem !important;
     }
   }

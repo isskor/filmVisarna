@@ -1,23 +1,37 @@
-import { Navbar, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
 
 function TheNavbar() {
-  const { loginState } = useContext(UserContext);
+  const { loggedInUser, logout } = useContext(UserContext);
+
   return (
-    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+    <Navbar collapseOnSelect expand='lg' bg='primary' variant='dark'>
       <Navbar.Brand>
-        <Link to="/">
-          <img src="/assets/logo.svg" alt="Logo" />
+        <Link to='/'>
+          <h1> Filmvisarna </h1>
         </Link>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ml-auto">
-        { loginState ?  <Link to="/">Bookings</Link> :   <Link to="/loginpage">Sign In</Link>} 
-        
-           <Link to="/"> Checkout</Link>
+      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+      <Navbar.Collapse id='responsive-navbar-nav'>
+        <Nav className='ml-auto navbar'>
+          {loggedInUser ? (
+            <div>
+              <Link to='/calendar'>Calendar</Link>
+              <Link to='/Profile'>My Profile</Link>
+              <Link to='/'>Checkout</Link>
+              <Link onClick={logout} to='/'>
+                Sign out
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Link to='/calendar'>Calendar</Link>
+              <Link to='/loginpage'>Sign In</Link>
+              <Link to='/loginpage'>Register</Link>
+            </div>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

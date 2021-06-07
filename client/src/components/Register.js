@@ -1,8 +1,8 @@
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import styles from "../styles/login.module.css";
 import { UserContext } from "../contexts/UserContext";
-import { useHistory } from "react-router-dom";
 
 export default function Register() {
   const history = useHistory();
@@ -14,6 +14,12 @@ export default function Register() {
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
   const { createUser } = useContext(UserContext);
+
+  // useState variabler för varje input som görs i formuläret, email, password, firstName, lastName
+  //confirmpassword som används för att jämföra om det är samma lösenord i båda lösenordsformulären
+  // useEffecten nedan sätter condition för att lösenordet stämmer överens och om det är längre än 4 karaktärer
+  // isValid är variablen som är true eller false, och därmed ser till om röda utropstecknet syns på frontend eller inte
+  // createuser hämtas ifrån usercontext för att användas här
 
   useEffect(() => {
     if (confirmPassword === "") {
@@ -49,6 +55,7 @@ export default function Register() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isValid) return
     let user = {
       firstName: firstName,
       lastName: lastName,
@@ -56,7 +63,7 @@ export default function Register() {
       password: password,
     };
     createUser(user);
-    history.push("/login");
+    history.push("/thank-you-for-registering");
   };
 
   return (
@@ -65,9 +72,8 @@ export default function Register() {
       <Form onSubmit={handleSubmit}>
         <Alert
           variant={"danger"}
-          className={`${styles.Alert} ${
-            Error ? styles.Alert.active : styles.Alert.inactive
-          }`}
+          className={`${styles.Alert} ${Error ? styles.Alert.active : styles.Alert.inactive
+            }`}
         >
           You did not enter the correct credentials
         </Alert>

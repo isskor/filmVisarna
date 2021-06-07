@@ -10,3 +10,5 @@ const saloonSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('Saloon', saloonSchema);
+
+

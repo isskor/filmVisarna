@@ -7,13 +7,28 @@ exports.getMovies = async (req, res) => {
 };
 
 exports.getMovieById = async (req, res) => {
-  console.log('movieId', req.params);
   let movie = await Movie.findById(req.params.id).exec();
   res.json(movie);
 };
 
+//For finding movies/movie in the search bar at home.
+exports.findMovieByKeyword = async (req, res) => {
+
+  let foundMovies = await Movie.find({
+    $or: [
+      { title: { $regex: req.body.keyword, $options: 'gi' } },
+      { actors: { $regex: req.body.keyword, $options: 'gi' } },
+      { director: { $regex: req.body.keyword, $options: 'gi' } },
+    ],
+  }).exec();
+
+  if (foundMovies) {
+    res.json(foundMovies);
+  } else {
+    res.send('No movies found...');
+  }
+};
 exports.filterMovies = async (req, res) => {
-  console.log(req.body);
   const { rated, price, runTime, genres, language } = req.body;
 
   let filterData = {};
@@ -67,11 +82,9 @@ exports.createMovie = async (req, res) => {
       const time = +response.data.Runtime.split(' ')[0];
       const g = response.data.Genre.replace(/\s/g, '');
       const genres = g.split(',');
-      console.log(time);
 
       const l = response.data.Language.replace(/\s/g, '');
       const langs = l.split(',');
-      console.log(langs);
       const movie = await new Movie({
         title: response.data.Title,
         rated: response.data.Rated,
