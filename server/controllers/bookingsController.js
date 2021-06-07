@@ -4,6 +4,7 @@ const ShowTime = require('../models/showTimes');
 const mongoose = require('mongoose');
 
 exports.bookShowtime = async (req, res) => {
+  console.log('line 7 bookingcontroller');
   const { showTime, seats, tickets } = req.body;
   // console.log(req.session);
   try {
@@ -27,13 +28,14 @@ exports.bookShowtime = async (req, res) => {
 };
 
 exports.CartBookings = async (req, res) => {
+  console.log('line 30 bookingcontroller');
   let ids = req.body.map((booking) => mongoose.Types.ObjectId(booking));
   const bookings = await Booking.find({ _id: { $in: ids } })
     .populate({
-      path: "showtime",
+      path: 'showtime',
       populate: {
-        path: "movie",
-        model: "Movie",
+        path: 'movie',
+        model: 'Movie',
       },
     })
     .exec();
@@ -42,6 +44,7 @@ exports.CartBookings = async (req, res) => {
 
 exports.deleteBooking = async (req, res) => {
   // expects booking id in body
+  console.log(req.body);
   const { bookingId } = req.body;
   try {
     // get booking to delete
@@ -52,11 +55,14 @@ exports.deleteBooking = async (req, res) => {
     console.log(updtShowtime);
     // filter out the seats that are about to be deleted
     const newSeatArr = updtShowtime.booked.filter((seat) => {
-      return booking.seatRows.some((seat2) => seat !== seat2);
+      const a = booking.seatRows.includes(seat);
+      console.log(a);
+      if (a) return;
+      return seat;
     });
 
-    // console.log(updtShowtime.booked);
-    // console.log(newSeatArr);
+    console.log(updtShowtime.booked);
+    console.log(newSeatArr);
     // deletebooking
     await Booking.findByIdAndDelete(bookingId).exec();
     // update showtime bookings array
@@ -66,33 +72,33 @@ exports.deleteBooking = async (req, res) => {
 
     res.json({ success: 'deleted' });
   } catch (err) {
-    console.log(err);
+    console.log(`line 70`, err);
   }
 };
 
 //Get all user-bookings
 exports.getUserBookings = async (req, res) => {
   console.log(
-    "Session id",
+    'Session id',
     req.session.user._id,
-    "session user: ",
+    'session user: ',
     req.session.user
   );
   let userBookings = await Booking.find({
     user: mongoose.Types.ObjectId(req.session.user._id),
   })
     .populate({
-      path: "showtime",
+      path: 'showtime',
       populate: {
-        path: "movie",
-        model: "Movie",
+        path: 'movie',
+        model: 'Movie',
       },
     })
     .populate({
-      path: "showtime",
+      path: 'showtime',
       populate: {
-        path: "saloon",
-        model: "Saloon",
+        path: 'saloon',
+        model: 'Saloon',
       },
     })
     .exec();
@@ -100,6 +106,6 @@ exports.getUserBookings = async (req, res) => {
   if (userBookings) {
     res.json(userBookings);
   } else {
-    res.json({ error: "error no bookings found" });
+    res.json({ error: 'error no bookings found' });
   }
 };
