@@ -5,7 +5,6 @@ import { useState, useEffect, useContext } from "react";
 
 export default function ProfilePage() {
   const { loggedInUser } = useContext(UserContext);
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -34,15 +33,11 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (loggedInUser) {
-      setEmail(loggedInUser.email);
       setFirstName(loggedInUser.firstName);
       setLastName(loggedInUser.lastName);
     }
   }, [loggedInUser]);
 
-  const emailInput = (e) => {
-    setEmail(e.target.value);
-  };
 
   const passwordInput = (e) => {
     setPassword(e.target.value);
@@ -65,7 +60,6 @@ export default function ProfilePage() {
     let user = {
       firstName: firstName,
       lastName: lastName,
-      email: email,
       password: password,
     };
     editUser(user);
@@ -154,22 +148,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="profileAccountBox">
-              <div className="emailIcon" />
-              <div className="profileAccountContent">
-                <div className="formController">
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label className="login-info">Email</Form.Label>
-                    <Form.Control
-                      onChange={emailInput}
-                      type="email"
-                      value={email}
-                      required
-                    />
-                  </Form.Group>
-                </div>
-              </div>
-            </div>
+       
             <Container className="text-center">
               <Button variant="primary" type="submit">
                 UPDATE INFO
