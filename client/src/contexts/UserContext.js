@@ -106,6 +106,21 @@ const UserContextProvider = (props) => {
     }
   };
 
+  const deleteBooking = async (bookingId) => {
+    console.log(bookingId);
+    let bookingToDelete = await fetch('http://localhost:3001/api/delete', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(bookingId),
+    });
+    console.log(bookingToDelete);
+    getUserBookings();
+    return bookingToDelete;
+  };
+
   const getUserBookings = async () => {
     let allUserBookings = await fetch(
       'http://localhost:3001/api/get-user-bookings',
@@ -136,6 +151,7 @@ const UserContextProvider = (props) => {
     logout,
     userBookings,
     getUserBookings,
+    deleteBooking,
   };
   return (
     <UserContext.Provider value={values}>{props.children}</UserContext.Provider>

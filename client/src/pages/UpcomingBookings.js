@@ -4,7 +4,7 @@ import TicketCard from '../components/TicketCard';
 import { useHistory } from 'react-router-dom';
 
 const UpcomingBookings = () => {
-  const { userBookings, loggedInUser, getUserBookings } =
+  const { userBookings, loggedInUser, getUserBookings, deleteBooking } =
     useContext(UserContext);
 
   useEffect(() => {
@@ -31,6 +31,10 @@ const UpcomingBookings = () => {
     }
   };
 
+  const cancelBooking = (id) => {
+    deleteBooking({ bookingId: id });
+  };
+
   return (
     <div className='bookingsWrapper'>
       <h1>Upcoming bookings</h1>
@@ -40,6 +44,7 @@ const UpcomingBookings = () => {
             <div key={index}>
               {' '}
               <h2 key={index + 1}>{booking.showtime.movie.title}</h2>
+              <button onClick={() => cancelBooking(booking._id)}>Cancel</button>
               {/* Renders a ticketCard for each booked seat in that booking */}
               {booking.seatRows.map((bookingSeat, i) => {
                 return (
