@@ -6,7 +6,6 @@ const ScrollTop = () => {
   const history = useHistory();
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(history);
   }, [history.location]);
   return '';
 };
