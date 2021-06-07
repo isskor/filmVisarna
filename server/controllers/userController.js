@@ -1,12 +1,12 @@
-const User = require('../models/User');
-const Encrypt = require('../Encrypt');
+const User = require("../models/User");
+const Encrypt = require("../Encrypt");
 
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.log(err);
     } else {
-      res.send({ success: 'logout' });
+      res.send({ success: "logout" });
     }
   });
 };
@@ -16,14 +16,13 @@ exports.whoami = (req, res) => {
     console.log('WHOAMI**************', req.session.user);
     res.json(req.session.user);
   } else {
-    res.json({ error: 'error' });
+    res.json({ error: "error" });
   }
 };
 
 //Logic to create a user
 exports.createUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
-  console.log(req.body);
 
   let user = await User.create({
     firstName: req.body.firstName,
@@ -72,7 +71,7 @@ exports.loginUser = async (req, res) => {
 
   //If database could not find user send back error
   if (!user) {
-    return res.status(404).json({ error: 'Wrong credentials' });
+    return res.status(404).json({ error: "Wrong credentials" });
   }
   user.password = null;
   req.session.user = user;

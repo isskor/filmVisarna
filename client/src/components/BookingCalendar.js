@@ -24,7 +24,7 @@ function BookingCalendar() {
   return (
     <div>
 
-      <Calendar className='mx-auto py-5'
+      <Calendar className='mx-auto py-5 col-11'
         onChange={onChange}
         value={date}
       />

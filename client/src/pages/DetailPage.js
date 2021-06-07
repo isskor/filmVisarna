@@ -2,22 +2,23 @@ import { MovieContext } from "../contexts/MovieContext";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ShowTimes from "../components/ShowTimes";
-import Calendar from 'react-calendar';
+import Calendar from "react-calendar";
 
 function DetailPage() {
   const { movie, getMovieById } = useContext(MovieContext);
   const [showTimes, setShowTimes] = useState([]);
   const [date, SetDate] = useState(new Date());
   const history = useParams();
-  console.log(history);
-  console.log(date);
   useEffect(() => {
     getMovieById(history.id);
     fetchShowtimes(history.id, date);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, history.id]);
 
   const fetchShowtimes = async (id, date) => {
-    fetch(`http://localhost:3001/api/showtime?id=${id}&date=${date.toDateString()}`)
+    fetch(
+      `http://localhost:3001/api/showtime?id=${id}&date=${date.toDateString()}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setShowTimes(data);
@@ -27,14 +28,15 @@ function DetailPage() {
   const onChange = (date) => {
     SetDate(date);
     fetchShowtimes(history.id, date);
-  }
+  };
 
   return (
     <div>
       {movie && (
         <>
           <div className="trailer">
-            <iframe title="Trailer"
+            <iframe
+              title="Trailer"
               src={
                 movie.trailer +
                 '?frameborder="0"' +
@@ -52,7 +54,7 @@ function DetailPage() {
               <h2 className="title"> {movie.title} </h2>
 
               <div className="grayText"> Directors </div>
-              <div className="director"> {movie.director}</div>
+              <div className="whiteText"> {movie.director}</div>
 
               <div className="grayText"> Cast </div>
               <div className="whiteText">{movie.actors}</div>
@@ -61,9 +63,6 @@ function DetailPage() {
               <div className="whiteText">{movie.plot}</div>
             </div>
             <div className="sideInfo">
-              <div className="grayText"> Release Date </div>
-              <div className="whiteText"></div>
-
               <div className="grayText"> Genres </div>
               <div className="genres">
                 {movie.genres.map((g, i) =>
@@ -82,11 +81,11 @@ function DetailPage() {
             </div>
           </div>
           <div className="booking container mx-auto">
-
-          <Calendar className='mx-auto py-5'
-        onChange={onChange}
-        value={date}
-      />
+            <Calendar
+              className="mx-auto py-5"
+              onChange={onChange}
+              value={date}
+            />
             <div className="showTimes row"> Show times </div>
             <ShowTimes showTimes={showTimes} />
           </div>

@@ -1,9 +1,9 @@
 $theme-colors: (
-  'info': #fff,
-  'danger': #fe7f50,
-  'success': #4d648d,
-  'warning': #fe5050,
-  'primary': #283655,
+  "info": #fff,
+  "danger": #fe7f50,
+  "success": #4d648d,
+  "warning": #fe5050,
+  "primary": #283655,
 );
 $RaisinBlack: #1e1f26;
 $SpaceCadet: #283655;
@@ -12,11 +12,12 @@ $BeauBlue: #d0e1f9;
 $DarkBlue: #1c1f36;
 $HoverBlue: #19aaff;
 
-@import '~bootstrap/scss/bootstrap';
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 body {
-  background-color: $DarkBlue;
+  background: $DarkBlue url("./assets/Film.svg") no-repeat fixed;
+  background-size: 100%;
   color: #fff;
 }
 
@@ -47,12 +48,10 @@ body {
 
 .movie-info {
   padding: 1rem;
-  font-family: 'Bebas Neue', cursive;
-  color: #fff;
   text-transform: uppercase;
   font-size: 34px;
   h3 {
-    font-family: 'machine';
+    font-family: "machine";
   }
 }
 
@@ -79,4 +78,14 @@ body {
   padding-bottom: 0.75rem;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.App {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  
+  padding-bottom: 255px;
+  border: solid red 2px;
 }

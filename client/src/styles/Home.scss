@@ -22,9 +22,6 @@
         color: white;
       }
     }
-    input:placeholder {
-      color: white !important;
-    }
   }
   .registerThxPage {
     display: flex;
@@ -42,7 +39,7 @@
     margin: 0.5rem;
   }
   .resetButton {
-    // background-color: $HoverBlue;
+    background-color: $HoverBlue;
   }
 }
 

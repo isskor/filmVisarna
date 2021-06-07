@@ -1,22 +1,22 @@
-const express = require('express');
-const mongoose = require('mongoose');
-let session = require('express-session');
-var MongoDBStore = require('connect-mongo');
-const cors = require('cors');
+const express = require("express");
+const mongoose = require("mongoose");
+let session = require("express-session");
+var MongoDBStore = require("connect-mongo");
+const cors = require("cors");
 const server = express();
-const movieRoutes = require('./routes/movieRoute');
-const userRoutes = require('./routes/userRoutes');
-const showTimesRoutes = require('./routes/showTimesRoute');
-const saloonRoutes = require('./routes/saloonRoute');
+const movieRoutes = require("./routes/movieRoute");
+const userRoutes = require("./routes/userRoutes");
+const showTimesRoutes = require("./routes/showTimesRoute");
+const saloonRoutes = require("./routes/saloonRoute");
 
 server.use(cors({ credentials: true, origin: true }));
-const bookingRoutes = require('./routes/bookingRoutes');
+const bookingRoutes = require("./routes/bookingRoutes");
 server.use(express.json());
 
 server.use(express.urlencoded({ extended: true }));
 
 const dbUrl =
-  'mongodb+srv://filmVisarna:filmVisarna@cinemacluster.dsbop.mongodb.net/cinema';
+  "mongodb+srv://filmVisarna:filmVisarna@cinemacluster.dsbop.mongodb.net/cinema";
 
 mongoose
   .connect(dbUrl, {
@@ -26,7 +26,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log('db connected');
+    console.log("db connected");
   })
   .catch((err) => console.log(err));
 
@@ -36,7 +36,7 @@ let store = new MongoDBStore({
 
 server.use(
   session({
-    secret: 'SECRET KEY',
+    secret: "SECRET KEY",
     resave: true,
     saveUninitialized: false,
     store: store,
@@ -45,6 +45,8 @@ server.use(
     },
   })
 );
+
+
 
 mongoose
   .connect(
@@ -59,12 +61,10 @@ mongoose
   .then(() => console.log("db connected"))
   .catch((err) => console.log(err));
 
-
 server.use("/api/users", userRoutes);
-server.use('/api', showTimesRoutes);
-server.use('/api', bookingRoutes);
-server.use('/api', saloonRoutes);
+server.use("/api", showTimesRoutes);
+server.use("/api", bookingRoutes);
+server.use("/api", saloonRoutes);
 server.use("/api", movieRoutes);
 
-
-server.listen(3001, () => console.log('listening to' + 3001));
+server.listen(3001, () => console.log("listening to" + 3001));

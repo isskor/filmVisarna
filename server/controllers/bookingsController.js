@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 exports.bookShowtime = async (req, res) => {
   const { showTime, seats, tickets } = req.body;
-  console.log(req.body);
   // console.log(req.session);
   try {
     // update showtime with pushed booked:[new seats]
@@ -21,7 +20,6 @@ exports.bookShowtime = async (req, res) => {
       showtime: showTime,
       tickets: tickets,
     });
-
     res.json(booking);
   } catch (err) {
     console.log(err);
@@ -32,10 +30,10 @@ exports.CartBookings = async (req, res) => {
   let ids = req.body.map((booking) => mongoose.Types.ObjectId(booking));
   const bookings = await Booking.find({ _id: { $in: ids } })
     .populate({
-      path: 'showtime',
+      path: "showtime",
       populate: {
-        path: 'movie',
-        model: 'Movie',
+        path: "movie",
+        model: "Movie",
       },
     })
     .exec();
@@ -69,5 +67,39 @@ exports.deleteBooking = async (req, res) => {
     res.json({ success: 'deleted' });
   } catch (err) {
     console.log(err);
+  }
+};
+
+//Get all user-bookings
+exports.getUserBookings = async (req, res) => {
+  console.log(
+    "Session id",
+    req.session.user._id,
+    "session user: ",
+    req.session.user
+  );
+  let userBookings = await Booking.find({
+    user: mongoose.Types.ObjectId(req.session.user._id),
+  })
+    .populate({
+      path: "showtime",
+      populate: {
+        path: "movie",
+        model: "Movie",
+      },
+    })
+    .populate({
+      path: "showtime",
+      populate: {
+        path: "saloon",
+        model: "Saloon",
+      },
+    })
+    .exec();
+
+  if (userBookings) {
+    res.json(userBookings);
+  } else {
+    res.json({ error: "error no bookings found" });
   }
 };

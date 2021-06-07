@@ -216,9 +216,8 @@ const FilterModal = ({ open, setOpen }) => {
                 </div>
               </div>
               <ul
-                className={`row filter_group ${
-                  languageEl ? 'toggle_group' : ''
-                }`}
+                className={`row filter_group ${languageEl ? 'toggle_group' : ''
+                  }`}
               >
                 <li className='col-md-3'>
                   <label htmlFor='language'>English</label>
