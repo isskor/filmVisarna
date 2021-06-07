@@ -24,6 +24,13 @@ exports.whoami = (req, res) => {
 exports.createUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
 
+  let userExist = await User.findOne({ email : req.body.email }).exec();
+
+  //If user exist, 
+  if (userExist) {
+    return res.status(404).json({ error: "User already exists" });
+    
+  }
   let user = await User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,

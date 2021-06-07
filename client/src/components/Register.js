@@ -14,6 +14,7 @@ export default function Register() {
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
   const { createUser } = useContext(UserContext);
+  const [error, setError] = useState(false);
 
   // useState variabler för varje input som görs i formuläret, email, password, firstName, lastName
   //confirmpassword som används för att jämföra om det är samma lösenord i båda lösenordsformulären
@@ -35,7 +36,13 @@ export default function Register() {
   }, [password, confirmPassword]);
 
   const emailInput = (e) => {
-    setEmail(e.target.value);
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(e.target.value))
+    {
+      setError(false);
+      setEmail(e.target.value);
+    }else
+    setError(true);
+   
   };
 
   const passwordInput = (e) => {
@@ -56,6 +63,7 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isValid) return
+    setError(true);
     let user = {
       firstName: firstName,
       lastName: lastName,
@@ -72,7 +80,7 @@ export default function Register() {
       <Form onSubmit={handleSubmit}>
         <Alert
           variant={"danger"}
-          className={`${styles.Alert} ${Error ? styles.Alert.active : styles.Alert.inactive
+          className={`${styles.Alert} ${error? styles.Alert_active : styles.Alert_inactive
             }`}
         >
           You did not enter the correct credentials
@@ -86,6 +94,8 @@ export default function Register() {
             required
           />
         </Form.Group>
+        <small id="emailHelp"    className={`${styles.Alert} ${error? styles.Alert_active : styles.Alert_inactive
+            }`}>Please enter an email adress</small>
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label className="login-info">Password</Form.Label>
