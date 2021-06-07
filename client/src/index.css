@@ -7,7 +7,54 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: machine;
+  src: url(./Machine\ Regular.ttf);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2 {
+  font-family: 'machine' !important;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', sans-serif;
+}
+
+button {
+  background-color: #4d648d;
+  border: solid transparent 0px;
+  font-size: 3em;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: auto;
+  font-family: 'Lato', sans-serif !important;
+  color: white;
+}
+
+a {
+  font-size: 1.2rem;
+  margin: 10px;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  /* color: rgb(14, 14, 68) !important; */
+  color: #19aaff !important;
+  cursor: pointer;
 }

@@ -1,0 +1,228 @@
+.booking_header {
+  margin-top: 2rem;
+  display: grid;
+  padding: 0 1rem;
+  grid-template-columns: repeat(12, 1fr);
+  // grid-template-rows: 120px repeat(auto, 1fr);
+  gap: 3rem 1rem;
+
+  .arrow_back {
+    grid-area: 1/1/1/12;
+  }
+  .showtime_info--text {
+    margin-top: 1rem;
+    display: flex;
+    color: white;
+    display: flex;
+    gap: 3rem;
+
+    .showtime_info_group {
+      display: flex;
+      flex-direction: column;
+      span {
+        font-size: 1.2rem;
+        font-weight: 200;
+      }
+      :first-child {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .showtime_poster {
+    grid-area: 2/1/2/12;
+    justify-self: center;
+  }
+  .showtime_title {
+    grid-area: 3/1/3/12;
+    color: white;
+  }
+  .showtime_tickets {
+    grid-area: 5/1/5/12;
+    width: 100%;
+    justify-self: center;
+    max-width: 700px;
+  }
+
+  .showtime_ticket--summary {
+    grid-area: 3/1/3/12;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+
+    .showtime_poster {
+      grid-area: 2/1/2/2;
+      justify-self: center;
+      img {
+        max-width: 200px;
+      }
+    }
+    .showtime_title {
+      grid-area: 2/3/2/13;
+      color: white;
+    }
+    .showtime_tickets {
+      grid-area: 3/1/3/13;
+
+      // padding-top: 4rem;
+    }
+  }
+  @media (min-width: 992px) {
+    .showtime_title {
+      grid-area: 2/2/2/8;
+      color: white;
+    }
+    .showtime_tickets {
+      // grid-area: 2/2/2/8;
+      // padding-top: 5rem;
+    }
+    .showtime_ticket--summary {
+      grid-area: 2/9/2/13;
+      margin: 0;
+    }
+  }
+  @media (min-width: 1200px) {
+    .showtime_poster {
+      img {
+        max-width: 300px;
+      }
+    }
+  }
+  @media (min-width: 1600px) {
+    .arrow_back {
+      grid-area: 1/2/1/12;
+    }
+    .showtime_poster {
+      grid-area: 2/2/2/3;
+    }
+    .showtime_title {
+      grid-area: 2/3/2/8;
+      color: white;
+    }
+    .showtime_tickets {
+      grid-area: 2/3/2/8;
+      align-self: end;
+    }
+    .showtime_ticket--summary {
+      grid-area: 2/9/2/12;
+    }
+  }
+}
+
+.arrow_back {
+  display: flex;
+  gap: 1rem;
+  color: white;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  p {
+    margin: 0;
+  }
+
+  .arrow {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid white;
+  }
+}
+
+.showtime_ticket--summary {
+  padding: 0 2rem;
+  // border-radius: 1rem;
+  margin: 5rem auto;
+  // background: linear-gradient(145deg, #2b3a5b, #24314d);
+  // box-shadow: 5px 5px 11px #182134, -5px -5px 11px #223257;
+  // border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+  max-width: 700px;
+
+  .ticket_summary--row {
+    margin: 1rem 0;
+  }
+
+  .ticket_summary--total {
+    margin-top: auto;
+
+    h4 {
+      margin: 1rem 0;
+    }
+  }
+}
+
+.showtime_tickets {
+  margin-top: 2rem;
+
+  h4 {
+    // margin-left: 0.5rem;
+    color: white;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .ticket_group {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    align-items: center;
+
+    h5 {
+      flex: 100%;
+      margin: 0;
+    }
+
+    .ticket_quantity {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+    .ticket_plus,
+    .ticket_minus {
+      font-size: 1.5rem;
+      color: white;
+      height: 35px;
+      width: 35px;
+      min-width: 35px;
+      border-radius: 5px;
+      background: linear-gradient(145deg, #2b3a5b, #24314d);
+      box-shadow: 2px 2px 5px #182134, -2px -2px 5px #2c3342;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      span {
+        color: white;
+        display: inline-block;
+        padding-bottom: 6px;
+        user-select: none;
+      }
+
+      &:active {
+        border-radius: 5px;
+        background: #283655;
+        box-shadow: inset -5px -5px 20px #384b76, inset 5px 5px 20px #182134;
+      }
+    }
+  }
+}
+
+.choose_seat {
+  color: white;
+  margin-top: 2rem;
+  h2 {
+    margin: 2rem;
+  }
+}
+
+.seat_error {
+  color: rgb(250, 120, 120);
+}

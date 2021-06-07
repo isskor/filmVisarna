@@ -1,0 +1,67 @@
+.searchComponent {
+  width: 100%;
+  display: flex;
+  // flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    input {
+      background: transparent;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      color: white;
+      min-width: 35ch;
+      margin-bottom: 8px;
+      margin-right: 1rem;
+      &:placeholder-shown {
+        color: white;
+      }
+    }
+  }
+  .registerThxPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    color: white;
+    button {
+      margin: 2rem;
+    }
+  }
+
+  button {
+    margin: 0.5rem;
+  }
+  .resetButton {
+    background-color: $HoverBlue;
+  }
+}
+
+.home_filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3rem auto 0rem;
+  padding: 0 40px;
+  // background: $SpaceCadet;
+  .filter_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .searchComponent {
+    form {
+      flex-direction: row;
+    }
+  }
+}

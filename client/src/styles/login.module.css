@@ -1,0 +1,12 @@
+
+.Alert {
+    display: none;
+  }
+  
+.Alert_active {
+    display: block;
+  }
+  
+ .Alert_inactive {
+    display: none;
+  }

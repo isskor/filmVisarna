@@ -1,0 +1,56 @@
+.mainWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: transparent;
+}
+.Carousel {
+  width: 100%;
+  max-height: 600px;
+  img {
+    min-height: 300px;
+    max-height: 600px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    object-fit: cover;
+  }
+  .CarouselCaption {
+    background-color: rgba(46, 46, 46, 0.295);
+    min-width: 70%;
+    h2 {
+      letter-spacing: 0.1rem;
+      font-size: 2rem;
+    }
+    p {
+      font-family: 'Open Sans', sans-serif;
+    }
+  }
+}
+
+// Extra small devices (portrait phones, less than 330px)
+@media (max-width: 550px) {
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .Carousel {
+    width: 70%;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .CarouselCaption {
+    h2 {
+      font-size: 4rem !important;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
