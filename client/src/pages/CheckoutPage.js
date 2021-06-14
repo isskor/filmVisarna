@@ -97,7 +97,7 @@ const CheckoutPage = () => {
           <div className='checkoutTotal'>
             <h2>Total: {getTotalCheckoutPrice()}kr </h2>
             <div className='button'>
-              <button onClick={createBooking}>Continue</button>;
+              <button onClick={createBooking}>Continue</button>
             </div>
           </div>
         </>
