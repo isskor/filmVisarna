@@ -5,8 +5,23 @@ import { useHistory } from 'react-router';
 
 const CheckoutPage = () => {
   const history = useHistory();
-  const handleClick = () => {
-    history.push('/orderdetails/');
+  const createBooking = async () => {
+    const newBooking = await fetch(
+      'http://localhost:3001/api/createUserBooking',
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          bookings: cartBookings.map((b) => b._id),
+        }),
+      }
+    );
+    const data = await newBooking.json();
+    console.log(data);
+    history.push('/orderdetails/' + data._id);
   };
   const { cartBookings, getCartBookings } = useContext(CartContext);
   const { deleteBooking } = useContext(UserContext);
@@ -80,7 +95,7 @@ const CheckoutPage = () => {
           <div className='checkoutTotal'>
             <h2>Total: {getTotalCheckoutPrice()}kr </h2>
             <div className='button'>
-              <button onClick={handleClick}>Continue</button>;
+              <button onClick={createBooking}>Continue</button>;
             </div>
           </div>
         </>

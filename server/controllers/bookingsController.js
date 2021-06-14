@@ -1,4 +1,5 @@
 const Booking = require('../models/Bookings');
+const UserBooking = require('../models/UserBooking');
 const axios = require('axios');
 const ShowTime = require('../models/showTimes');
 const mongoose = require('mongoose');
@@ -107,4 +108,27 @@ exports.getUserBookings = async (req, res) => {
   } else {
     res.json({ error: 'error no bookings found' });
   }
+};
+
+exports.createUserBooking = async (req, res) => {
+  const newBooking = await new UserBooking({
+    user: req.session.user._id,
+    booking: req.body.bookings,
+  }).save();
+
+  res.json(newBooking);
+};
+
+exports.getUserBooking = async (req, res) => {
+  console.log('getuserb');
+  console.log(req.query);
+  const b = await UserBooking.findById(req.query.id).populate({
+    path: 'booking',
+    populate: {
+      path: 'showtime',
+      populate: [{ path: 'movie' }, { path: 'saloon' }],
+    },
+  });
+
+  res.json(b);
 };
