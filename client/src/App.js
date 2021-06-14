@@ -21,6 +21,7 @@ import UpcomingBookings from "./pages/UpcomingBookings";
 import ScrollTop from "./components/ScrollTop";
 import NoPageFound from "./pages/NoPageFound";
 import UserRoutes from "./components/UserRoutes";
+import OrderDetails from "./pages/OrderDetails";
 
 function App() {
   return (
@@ -70,6 +71,9 @@ function App() {
                   </UserRoutes>
                   <UserRoutes exact path="/previous-bookings">
                     <PreviousBookings />
+                  </UserRoutes>
+                  <UserRoutes exact path="/orderdetails">
+                    <OrderDetails />
                   </UserRoutes>
                   <Route>
                     <NoPageFound />

@@ -1,8 +1,13 @@
 import { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
 import { UserContext } from '../contexts/UserContext';
+import { useHistory } from 'react-router';
 
 const CheckoutPage = () => {
+  const history = useHistory();
+  const handleClick = () => {
+    history.push('/orderdetails/');
+  };
   const { cartBookings, getCartBookings } = useContext(CartContext);
   const { deleteBooking } = useContext(UserContext);
   // console.log(Object.entries(cartBookings[0]?.tickets[0]));
@@ -75,7 +80,7 @@ const CheckoutPage = () => {
           <div className='checkoutTotal'>
             <h2>Total: {getTotalCheckoutPrice()}kr </h2>
             <div className='button'>
-              <button>Continue</button>
+              <button onClick={handleClick}>Continue</button>;
             </div>
           </div>
         </>
