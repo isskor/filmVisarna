@@ -1,8 +1,28 @@
 import { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
 import { UserContext } from '../contexts/UserContext';
+import { useHistory } from 'react-router';
 
 const CheckoutPage = () => {
+  const history = useHistory();
+  const createBooking = async () => {
+    const newBooking = await fetch(
+      'http://localhost:3001/api/createUserBooking',
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          bookings: cartBookings.map((b) => b._id),
+        }),
+      }
+    );
+    const data = await newBooking.json();
+    console.log(data);
+    history.push('/orderdetails/' + data._id);
+  };
   const { cartBookings, getCartBookings } = useContext(CartContext);
   const { deleteBooking } = useContext(UserContext);
   // console.log(Object.entries(cartBookings[0]?.tickets[0]));
@@ -75,7 +95,7 @@ const CheckoutPage = () => {
           <div className='checkoutTotal'>
             <h2>Total: {getTotalCheckoutPrice()}kr </h2>
             <div className='button'>
-              <button>Continue</button>
+              <button onClick={createBooking}>Continue</button>;
             </div>
           </div>
         </>
