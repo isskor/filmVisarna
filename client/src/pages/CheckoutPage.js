@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 
 const CheckoutPage = () => {
   const history = useHistory();
+
   const createBooking = async () => {
     const newBooking = await fetch(
       'http://localhost:3001/api/createUserBooking',
@@ -23,6 +24,7 @@ const CheckoutPage = () => {
     console.log(data);
     history.push('/orderdetails/' + data._id);
   };
+
   const { cartBookings, getCartBookings } = useContext(CartContext);
   const { deleteBooking } = useContext(UserContext);
   // console.log(Object.entries(cartBookings[0]?.tickets[0]));

@@ -13,6 +13,7 @@ const OrderDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         setOrder(data);
+        //   empty cart
         setCart([]);
       });
   }, []);
@@ -21,17 +22,22 @@ const OrderDetails = () => {
     <div className='container OrderDetails'>
       <h1>Your order is complete!</h1>
       <h2>Order Details:</h2>
+      <h5>Order ID : {order._id}</h5>
       {order && (
         <div className='orderComplete'>
           {order.booking?.map((o) => {
+            //   get variables for ease of use
             const { seatRows, tickets, showtime } = o;
             const { date, movie, saloon } = showtime;
+            // get total price
             const totalPrice = tickets.reduce((a, b) => {
               const tick = Object.values(b);
+              //   returns [{price, quantity}]
               return a + tick[0].price * tick[0].quantity;
             }, 0);
             const numTickets = tickets.reduce((a, b) => {
               const tick = Object.values(b);
+              //   returns [{price, quantity}]
               return a + tick[0].quantity;
             }, 0);
             return (
