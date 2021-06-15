@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div className="footerContainer">
       <div className="footerMain">
-        <div className="footerSection">
+        <div className="footerMainSection">
           <div>
             <Link to="/About" className="footerLink">
               About Us
@@ -22,7 +22,7 @@ export default function Footer() {
             </Link>{" "}
           </div>
         </div>
-        <div className="footerSection">
+        <div className="footerMainSection2">
           <p className="footerLink"> Filmvisarvägen 55 </p>
           <p className="footerLink"> Huaröd </p>
           <p className="footerLink"> 070 555 66 32 </p>
