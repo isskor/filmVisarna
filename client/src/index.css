@@ -1,16 +1,38 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: machine;
+  src: url(./Machine\ Regular.ttf);
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2 {
+  font-family: 'machine' !important;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', sans-serif;
+}
+
 button {
   background-color: #4d648d;
   border: solid transparent 0px;
@@ -21,33 +43,18 @@ button {
   padding-right: 1rem;
   width: auto;
   font-family: 'Lato', sans-serif !important;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   color: white;
 }
 
-p {
-  font-family: "Open Sans", sans-serif;
+a {
+  font-size: 1.2rem;
+  margin: 10px;
+  color: white !important;
+  text-decoration: none !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Lato", sans-serif;
-}
-
-button {
-  background-color: #4d648d;
-  border: solid transparent 0px;
-  font-size: 3em;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  width: auto;
-  font-family: "Lato", sans-serif !important;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  color: white;
+a:hover {
+  /* color: rgb(14, 14, 68) !important; */
+  color: #19aaff !important;
+  cursor: pointer;
 }

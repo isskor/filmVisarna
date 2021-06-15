@@ -7,9 +7,9 @@ const movieSchema = new mongoose.Schema(
     trailer: String,
     actors: String,
     director: String,
-    runTime: String,
-    genres: String,
-    language: String,
+    runTime: Number,
+    genres: [],
+    language: [],
     poster: String,
     plot: String,
     price: Number,
@@ -18,3 +18,5 @@ const movieSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('Movie', movieSchema);
+
+

@@ -1,0 +1,49 @@
+.checkoutpage {
+  h1 {
+    color: white;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  h2 {
+    color: white;
+  }
+  h3 {
+    color: white;
+  }
+  p {
+    color: $BeauBlue;
+    line-height: 2rem;
+  }
+  .ticket_card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1rem;
+
+    img {
+      max-width: 200px;
+      max-height: 350px;
+    }
+  }
+}
+
+.ticket_card_total {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  h2 {
+    margin-top: auto;
+  }
+}
+
+.checkoutTotal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.checkoutTotal {
+  margin-top: 40px;
+}

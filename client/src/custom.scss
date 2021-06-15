@@ -9,35 +9,82 @@ $RaisinBlack: #1e1f26;
 $SpaceCadet: #283655;
 $QueenBlue: #4d648d;
 $BeauBlue: #d0e1f9;
+$DarkBlue: #1c1f36;
+$HoverBlue: #19aaff;
 
 @import "~bootstrap/scss/bootstrap";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 body {
-  background-color: $SpaceCadet;
-}
-.navbar-dark .navbar-nav .nav-link {
-    color: #fff;
-}
-
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link:focus {
-  color: $QueenBlue;
-}
-.movie-container  {
-  display:flex;
-  flex-wrap:wrap;
+  background: $DarkBlue url("./assets/Film.svg") no-repeat fixed;
+  background-size: 100%;
+  color: #fff;
 }
 
-.movie  {
-  width:200px;
-  height:400px;
-  margin:1rem;
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 70px;
+}
+.navbar a:hover,
+.navbar a:focus {
+  color: $HoverBlue;
+}
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie {
+  width: 200px;
+  margin: 1rem 4rem;
 }
 .movie img {
-  max-width:100%;
+  max-width: 100%;
+  min-height: 80%;
 }
 
-.movie-info{
-  padding:1rem;
+.movie-info {
+  padding: 1rem;
+  text-transform: uppercase;
+  font-size: 34px;
+  h3 {
+    font-family: "machine";
+  }
+}
+
+.react-calendar__tile--active {
+  background: $SpaceCadet;
+}
+
+@media (min-width: 576px) {
+  .movie {
+    margin: 1rem 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .movie {
+    margin: 1.8rem;
+  }
+}
+
+.btn-primary {
+  background-color: $QueenBlue;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.App {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  
+  padding-bottom: 255px;
 }
