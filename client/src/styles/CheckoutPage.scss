@@ -23,6 +23,11 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 1rem;
 
+    .ticket_card--tickets{
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
     img {
       max-width: 200px;
       max-height: 350px;
@@ -62,5 +67,8 @@
 h3{
   margin-top: 10px;
 }
-
+.ticket_card_total {
+  display: flex;
+  flex-direction: row;
+}
 }

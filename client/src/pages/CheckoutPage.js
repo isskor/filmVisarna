@@ -87,10 +87,11 @@ const CheckoutPage = () => {
                     </p>
                   </div>
                   <div className='ticket_card_total'>
+                  <h2>Total {getBookingTotalPrice(booking.tickets)}kr</h2>
                     <button onClick={() => cancelBooking(booking._id)}>
                       Cancel
                     </button>
-                    <h2>Total {getBookingTotalPrice(booking.tickets)}kr</h2>
+
                   </div>
                 </div>
               );
