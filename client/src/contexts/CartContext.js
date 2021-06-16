@@ -3,10 +3,13 @@ import { createContext, useState, useEffect } from 'react';
 export const CartContext = createContext();
 
 const CartContextProvider = (props) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(
+    localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+  );
   const [cartBookings, setCartBookings] = useState([]);
 
   const getCartBookings = async () => {
+    console.log(cart);
     let bookings = await fetch('http://localhost:3001/api/cartBookings', {
       method: 'POST',
       headers: {
@@ -20,9 +23,17 @@ const CartContextProvider = (props) => {
 
   useEffect(() => {
     getCartBookings();
+    console.log(cart);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
-  const values = { cart, setCart, cartBookings, getCartBookings };
+
+  const handleCart = (cartArr) => {
+    setCart(cartArr);
+    localStorage.setItem('cart', JSON.stringify(cartArr));
+  };
+
+  const values = { cart, setCart, handleCart, cartBookings, getCartBookings };
+
   return (
     <CartContext.Provider value={values}>{props.children}</CartContext.Provider>
   );

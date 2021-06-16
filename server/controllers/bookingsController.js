@@ -30,6 +30,7 @@ exports.bookShowtime = async (req, res) => {
 
 exports.CartBookings = async (req, res) => {
   console.log('line 30 bookingcontroller');
+  console.log('asdasda');
   let ids = req.body.map((booking) => mongoose.Types.ObjectId(booking));
   const bookings = await Booking.find({ _id: { $in: ids } })
     .populate({
