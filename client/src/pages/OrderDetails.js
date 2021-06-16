@@ -19,7 +19,7 @@ const OrderDetails = () => {
   }, []);
 
   return (
-    <div className='container OrderDetails'>
+    <div className='container orderdetails'>
       <h1>Your order is complete!</h1>
       <h2>Order Details:</h2>
       <h5>Order ID : {order._id}</h5>
