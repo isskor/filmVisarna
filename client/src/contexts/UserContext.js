@@ -91,8 +91,10 @@ const UserContextProvider = (props) => {
     } else if (userToRegiser.userExist) {
       alert("A user with that email already exist.");
     } else {
+      // else response will have error
+      // return error
       let response = await userToRegiser.json();
-      console.log(response);
+
       return response;
     }
   };
