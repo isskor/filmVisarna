@@ -30,6 +30,7 @@ exports.bookShowtime = async (req, res) => {
 
 exports.CartBookings = async (req, res) => {
   console.log('line 30 bookingcontroller');
+  console.log('asdasda');
   let ids = req.body.map((booking) => mongoose.Types.ObjectId(booking));
   const bookings = await Booking.find({ _id: { $in: ids } })
     .populate({
@@ -111,10 +112,21 @@ exports.getUserBookings = async (req, res) => {
 };
 
 exports.createUserBooking = async (req, res) => {
+  const { bookings } = req.body;
+  // create new userbooking object with ALL bookings in user cart
   const newBooking = await new UserBooking({
     user: req.session.user._id,
     booking: req.body.bookings,
   }).save();
+
+  // update each new booking to match the user ( in case, user decides to book and then login to another account to book)
+
+  bookings.forEach((bookingId) => {
+    Booking.findOneAndUpdate(
+      { _id: bookingId },
+      { user: req.session.user._id }
+    );
+  });
 
   res.json(newBooking);
 };
