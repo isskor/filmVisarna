@@ -216,8 +216,9 @@ const FilterModal = ({ open, setOpen }) => {
                 </div>
               </div>
               <ul
-                className={`row filter_group ${languageEl ? 'toggle_group' : ''
-                  }`}
+                className={`row filter_group ${
+                  languageEl ? 'toggle_group' : ''
+                }`}
               >
                 <li className='col-md-3'>
                   <label htmlFor='language'>English</label>
@@ -252,7 +253,7 @@ const FilterModal = ({ open, setOpen }) => {
               </ul>
             </form>
             <div className='row justify-content-center'>
-              <div className='col-2'>
+              <div className='d-flex justify-content-center mb-5'>
                 <button onClick={handleSubmit} className='filter_btn'>
                   Apply
                 </button>

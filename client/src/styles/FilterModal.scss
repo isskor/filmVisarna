@@ -18,12 +18,12 @@
   width: 80vw;
   height: 90vh;
   max-width: 800px;
-  margin: 60px auto;
+  margin: 60px auto 0;
   top: 0;
   overflow-y: scroll;
   left: 50%;
   transform: translate(-50%, -0%);
-  padding: 3rem;
+  // padding: 3rem;
   z-index: 500;
 
   &::-webkit-scrollbar {
@@ -41,7 +41,7 @@
 
   h3 {
     color: white;
-    padding-bottom: 2rem;
+    padding: 3rem;
   }
 
   form {
