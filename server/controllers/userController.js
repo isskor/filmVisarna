@@ -25,13 +25,10 @@ exports.createUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
 
   let userExist = await User.find({ email: req.body.email }).exec();
-  console.log('1');
   //If user exist,
-  if (userExist) {
-    console.log('2');
+  if (userExist[0]) {
     return res.json({ error: 'User already exists' });
   }
-  console.log('3');
   let user = await User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -39,7 +36,6 @@ exports.createUser = async (req, res) => {
     password: req.body.password,
   });
 
-  console.log('New user added to database', user);
   res.json({ success: true });
 };
 

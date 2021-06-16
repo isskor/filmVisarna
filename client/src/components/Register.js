@@ -43,7 +43,7 @@ export default function Register() {
     ) {
       setError(false);
       setEmail(e.target.value);
-    } else setError(true);
+    } else setError('You did not enter the correct credentials');
   };
 
   const passwordInput = (e) => {
@@ -91,7 +91,7 @@ export default function Register() {
             error ? styles.Alert_active : styles.Alert_inactive
           }`}
         >
-          You did not enter the correct credentials
+          {error}
         </Alert>
         <Form.Group controlId='formBasicEmail'>
           <Form.Label className='login-info'>Email</Form.Label>
