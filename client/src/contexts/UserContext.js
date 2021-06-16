@@ -89,8 +89,10 @@ const UserContextProvider = (props) => {
       alert('User registered!');
       return true;
     } else {
+      // else response will have error
+      // return error
       let response = await userToRegiser.json();
-      console.log(response);
+
       return response;
     }
   };
