@@ -22,6 +22,9 @@ const CheckoutPage = () => {
     );
     const data = await newBooking.json();
     console.log(data);
+    if (cartBookings.length == 0) {
+      return
+    } 
     history.push('/orderdetails/' + data._id);
   };
 
