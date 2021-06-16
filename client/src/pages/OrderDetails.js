@@ -61,7 +61,7 @@ const OrderDetails = () => {
       )}
       <div className='orderconfirmation'>
         <p>
-          We have sent an orderconfirmation to your email to help you pick up
+          We have sent an order confirmation to your email to help you pick up
           your tickets when you arrive!
         </p>
       </div>
