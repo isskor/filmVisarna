@@ -112,10 +112,21 @@ exports.getUserBookings = async (req, res) => {
 };
 
 exports.createUserBooking = async (req, res) => {
+  const { bookings } = req.body;
+  // create new userbooking object with ALL bookings in user cart
   const newBooking = await new UserBooking({
     user: req.session.user._id,
     booking: req.body.bookings,
   }).save();
+
+  // update each new booking to match the user ( in case, user decides to book and then login to another account to book)
+
+  bookings.forEach((bookingId) => {
+    Booking.findOneAndUpdate(
+      { _id: bookingId },
+      { user: req.session.user._id }
+    );
+  });
 
   res.json(newBooking);
 };
