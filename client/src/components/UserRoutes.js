@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { Route } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
+import React, { useContext } from 'react';
+import { Route } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
 //Gets all prop data
 const UserRoutes = ({ children, ...rest }) => {
