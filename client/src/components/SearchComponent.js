@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { MovieContext } from '../contexts/MovieContext';
+import React, { useContext, useState } from "react";
+import { MovieContext } from "../contexts/MovieContext";
 
 const SearchComponent = () => {
   const { getMoviesByKeyword, getAllMovies } = useContext(MovieContext);
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
 
   const handleInput = (e) => {
     setKeyword(e.target.value);
@@ -13,21 +13,21 @@ const SearchComponent = () => {
     e.preventDefault();
     let keyWordToSend = { keyword: keyword };
     getMoviesByKeyword(keyWordToSend);
-    setKeyword('');
+    setKeyword("");
   };
 
   const resetMovies = () => {
     getAllMovies();
-    setKeyword('');
+    setKeyword("");
   };
   return (
-    <div className='searchComponent'>
+    <div className="searchComponent">
       <form onSubmit={findMovies}>
         <input
           placeholder='Search, by name or actor or director'
           onChange={handleInput}
           value={keyword}
-          type='text'
+          type="text"
         />
         <div>
           <button type='submit'>Search</button>

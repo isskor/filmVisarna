@@ -5,15 +5,18 @@ import { useState, useEffect, useContext } from "react";
 
 export default function ProfilePage() {
   const { loggedInUser } = useContext(UserContext);
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
-  const { editUser } = useContext(UserContext);
+  const { editUser, getUserBookings } = useContext(UserContext);
   const [editSuccess, setEditSuccess] = useState(0);
+
+  useEffect(() => {
+    getUserBookings();
+  }, []);
 
   useEffect(() => {
     if (confirmPassword === "") {
@@ -30,15 +33,11 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (loggedInUser) {
-      setEmail(loggedInUser.email);
       setFirstName(loggedInUser.firstName);
       setLastName(loggedInUser.lastName);
     }
   }, [loggedInUser]);
 
-  const emailInput = (e) => {
-    setEmail(e.target.value);
-  };
 
   const passwordInput = (e) => {
     setPassword(e.target.value);
@@ -61,7 +60,6 @@ export default function ProfilePage() {
     let user = {
       firstName: firstName,
       lastName: lastName,
-      email: email,
       password: password,
     };
     editUser(user);
@@ -79,9 +77,8 @@ export default function ProfilePage() {
   return (
     <div className="profileContainer">
       <div className="profileSideBar">
-        <Link to="/Profile">My Profile</Link>
-        <Link to="/Bookings">Upcoming Bookings</Link>
-        <Link to="/Bookings">Previous Bookings</Link>
+        <Link to="/upcoming-bookings">Upcoming Bookings</Link>
+        <Link to="/previous-bookings">Previous Bookings</Link>
       </div>
       <div className="profileMain">
         <h2> Hello {loggedInUser?.firstName} </h2>{" "}
@@ -151,22 +148,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="profileAccountBox">
-              <div className="emailIcon" />
-              <div className="profileAccountContent">
-                <div className="formController">
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label className="login-info">Email</Form.Label>
-                    <Form.Control
-                      onChange={emailInput}
-                      type="email"
-                      value={email}
-                      required
-                    />
-                  </Form.Group>
-                </div>
-              </div>
-            </div>
+       
             <Container className="text-center">
               <Button variant="primary" type="submit">
                 UPDATE INFO
