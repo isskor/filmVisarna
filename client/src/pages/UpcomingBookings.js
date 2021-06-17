@@ -41,7 +41,7 @@ const UpcomingBookings = () => {
       {loggedInUser && bookingsStored() ? (
         userBookings.map((booking, index) => {
           return countDate(booking) ? (
-            <div key={index} className="test">
+            <div key={index} className="innerWrapper">
               {" "}
               <h2 key={index + 1}>{booking.showtime.movie.title}</h2>
               <button onClick={() => cancelBooking(booking._id)}>Cancel</button>

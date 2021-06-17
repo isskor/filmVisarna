@@ -40,7 +40,7 @@ const PreviousBookings = () => {
         userBookings.map((booking, index) => {
           //CountDate checks if the booking.date is greater than todays that, if true render that booking
           return countDate(booking) ? (
-            <>
+            <div className="innerWrapper">
               {" "}
               <h2 key={index + 1}>{booking.showtime.movie.title}</h2>
               {/* Renders a ticketCard for each booked seat in that booking */}
@@ -55,7 +55,7 @@ const PreviousBookings = () => {
                   </>
                 );
               })}
-            </>
+            </div>
           ) : null;
         })
       ) : (
