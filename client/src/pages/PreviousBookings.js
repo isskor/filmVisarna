@@ -1,7 +1,7 @@
-import React, { useEffect, useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
-import TicketCard from "../components/TicketCard";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
+import TicketCard from '../components/TicketCard';
+import { useHistory } from 'react-router-dom';
 
 const PreviousBookings = () => {
   const { userBookings, loggedInUser, getUserBookings } =
@@ -9,6 +9,8 @@ const PreviousBookings = () => {
 
   useEffect(() => {
     getUserBookings();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const history = useHistory();
 
@@ -32,7 +34,7 @@ const PreviousBookings = () => {
   };
 
   return (
-    <div className="bookingsWrapper">
+    <div className='bookingsWrapper'>
       <h1>Previous bookings</h1>
       {/*Checks if loggedInUserExists and that users bookings has been stored*/}
       {loggedInUser && bookingsStored() ? (
@@ -40,7 +42,7 @@ const PreviousBookings = () => {
         userBookings.map((booking, index) => {
           //CountDate checks if the booking.date is greater than todays that, if true render that booking
           return countDate(booking) ? (
-            <>
+            <div className="innerWrapper">
               {" "}
               <h2 key={index + 1}>{booking.showtime.movie.title}</h2>
               {/* Renders a ticketCard for each booked seat in that booking */}
@@ -55,13 +57,13 @@ const PreviousBookings = () => {
                   </>
                 );
               })}
-            </>
+            </div>
           ) : null;
         })
       ) : (
         <>
           <h3>You have no previous bookings...</h3>
-          <button onClick={() => history.push("/")}>Go to home</button>
+          <button onClick={() => history.push('/')}>Go to home</button>
         </>
       )}
     </div>

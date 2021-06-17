@@ -15,6 +15,8 @@ const OrderDetails = () => {
         //   empty cart
         setCart([]);
       });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -22,7 +24,7 @@ const OrderDetails = () => {
       <h1>Your order is complete!</h1>
       <h2>Order Details:</h2>
       <h5>Order ID : {order._id} </h5>
-      <p> Booked at: {order?.createdAt?.split("T")[0]}</p>
+      <p> Booked at: {order?.createdAt?.split('T')[0]}</p>
       {order && (
         <div className='orderComplete'>
           {order.booking?.map((o) => {
@@ -41,7 +43,7 @@ const OrderDetails = () => {
               return a + tick[0].quantity;
             }, 0);
             return (
-              <div key={o._id}> 
+              <div key={o._id}>
                 <p>Movie: {movie.title}</p>
                 <p>Movie Date: {date}</p>
                 <p>Time: {showtime.time}</p>

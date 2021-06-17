@@ -36,7 +36,7 @@ const CheckoutPage = () => {
   const getBookingTotalPrice = (tickets) => {
     return tickets.reduce((a, b) => {
       // each ticket is an object, so we need to go into the object and get the keys.
-      const [key, value] = Object.entries(b);
+      const [key] = Object.entries(b);
       // key[0] => type 'adult, senior, junoir'
       // key[1] => {price , quantity}
       return a + key[1].quantity * key[1].price;
@@ -72,18 +72,22 @@ const CheckoutPage = () => {
                   </div>
                   <div className='ticket_card--tickets'>
                     <h3>{booking.showtime.movie.title}</h3>
-                    <h4>{booking.showtime.date} {""}{booking.showtime.time}</h4>
-                    
+                    <h4>
+                      {booking.showtime.date} {''}
+                      {booking.showtime.time}
+                    </h4>
+
                     <p>Tickets:</p>
                     {/* {'loop tickets'} */}
                     {booking.tickets.map((ticket, i) => {
-                      const [key, value] = Object.entries(ticket);
+                      const [key] = Object.entries(ticket);
                       if (key[1].quantity > 0)
                         return (
                           <p key={i}>
                             {key[0]} - {key[1].quantity} x {key[1].price}
                           </p>
                         );
+                      return '';
                     })}
                     <p>
                       Seats: {/* {loop over seats} */}

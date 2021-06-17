@@ -9,6 +9,8 @@ const UpcomingBookings = () => {
 
   useEffect(() => {
     getUserBookings();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const history = useHistory();
 
@@ -41,8 +43,8 @@ const UpcomingBookings = () => {
       {loggedInUser && bookingsStored() ? (
         userBookings.map((booking, index) => {
           return countDate(booking) ? (
-            <div key={index}>
-              {' '}
+            <div key={index} className="innerWrapper">
+              {" "}
               <h2 key={index + 1}>{booking.showtime.movie.title}</h2>
               <button onClick={() => cancelBooking(booking._id)}>Cancel</button>
               {/* Renders a ticketCard for each booked seat in that booking */}

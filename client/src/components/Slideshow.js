@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "react-slideshow-image/dist/styles.css";
 import { Slide } from "react-slideshow-image";
 
@@ -17,7 +18,7 @@ const Slideshow = () => {
             <div className="slideshowInfo">
               <div>
                 <h2>Cruella</h2>
-                <button>Book now</button>
+                <button>Coming Soon</button>
               </div>
             </div>
           </div>
@@ -28,7 +29,10 @@ const Slideshow = () => {
             <div className="slideshowInfo">
               <div>
                 <h2>The Unholy</h2>
-                <button>Book now</button>
+                <Link to="/movies/60abac9fc1a04e453cbc09e3">
+                  {" "}
+                  <button>Book now</button>
+                </Link>
               </div>
             </div>
           </div>
@@ -39,7 +43,10 @@ const Slideshow = () => {
             <div className="slideshowInfo">
               <div>
                 <h2>The Joker</h2>
-                <button>Book now</button>
+                <Link to="/movies/60abaca4c1a04e453cbc09f2">
+                  {" "}
+                  <button>Book now</button>
+                </Link>
               </div>
             </div>
           </div>
