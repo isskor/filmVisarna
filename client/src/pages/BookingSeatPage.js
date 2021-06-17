@@ -13,7 +13,7 @@ export default function BookingSeatPage() {
   const [selected, setSelected] = useState([]);
   const [booked, setBooked] = useState([]);
   const [error, setError] = useState(null);
-
+  // initial ticket state
   let init = {
     adult: { price: showTime?.movie.price, quantity: 0 },
     senior: { price: showTime?.movie.price * 0.8, quantity: 0 },
@@ -23,6 +23,7 @@ export default function BookingSeatPage() {
   const { id } = useParams();
   const history = useHistory();
 
+  // fetch shows using id from params
   const fetchShow = useCallback(
     async (id) => {
       const show = await fetchOneShowtime(id);
@@ -35,13 +36,16 @@ export default function BookingSeatPage() {
   const handleQuantity = (type, minus) => {
     setSelected([]);
     if (minus) {
+      // if quantity = 0 do nothing
       if (tickets[type].quantity === 0) return;
 
+      // decrease quantity by one
       setTickets({
         ...tickets,
         [type]: { ...tickets[type], quantity: tickets[type].quantity - 1 },
       });
     } else {
+      // increase  quantity by one
       setTickets({
         ...tickets,
         [type]: { ...tickets[type], quantity: tickets[type].quantity + 1 },
@@ -50,6 +54,7 @@ export default function BookingSeatPage() {
   };
 
   const getTotalPrice = () => {
+    // ['type':{price, quantity}] ===  ticket object
     const ticketArray = Object.values(tickets);
     const sum = ticketArray.reduce((a, b) => {
       return a + b.price * b.quantity;
@@ -62,19 +67,23 @@ export default function BookingSeatPage() {
   }, [id, fetchShow]);
 
   useEffect(() => {
+    // if showtime changed(date change, reset selected tickets)
     setTickets(init);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showTime]);
 
   const submitBooking = async () => {
+    // ['type':{price, quantity}] ===  ticket object
     let numOfTickets = Object.values(tickets).reduce(
       (a, b) => a + b.quantity,
       0
     );
+    // if user have not selected all chairs
     if (selected.length < numOfTickets) {
       setError('Please select a seat for all tickets');
       return;
     }
+    // if none selected
     if (numOfTickets === 0) {
       setError('Please choose your tickets');
       return;
@@ -95,8 +104,11 @@ export default function BookingSeatPage() {
       }),
     });
     const bookingJson = await booking.json();
+    // sets cart
     handleCart([...cart, bookingJson._id]);
+    // render newly booked seats by fetching the show again
     fetchShow(id);
+    // set selected to 0
     setSelected([]);
     history.push('/checkout');
   };

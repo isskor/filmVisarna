@@ -1,6 +1,5 @@
 const Booking = require('../models/Bookings');
 const UserBooking = require('../models/UserBooking');
-const axios = require('axios');
 const ShowTime = require('../models/showTimes');
 const mongoose = require('mongoose');
 
@@ -27,6 +26,8 @@ exports.bookShowtime = async (req, res) => {
 };
 
 exports.CartBookings = async (req, res) => {
+  // expects [ids] in req.body
+  // loop over bookings and return ObjectIds
   let ids = req.body.map((booking) => mongoose.Types.ObjectId(booking));
   const bookings = await Booking.find({ _id: { $in: ids } })
     .populate({
@@ -57,7 +58,7 @@ exports.deleteBooking = async (req, res) => {
       return seat;
     });
 
-    // deletebooking
+    // delete booking
     await Booking.findByIdAndDelete(bookingId).exec();
     // update showtime bookings array
     await ShowTime.findByIdAndUpdate(booking.showtime, {
@@ -71,12 +72,6 @@ exports.deleteBooking = async (req, res) => {
 
 //Get all user-bookings
 exports.getUserBookings = async (req, res) => {
-  console.log(
-    'Session id',
-    req.session.user._id,
-    'session user: ',
-    req.session.user
-  );
   let userBookings = await Booking.find({
     user: mongoose.Types.ObjectId(req.session.user._id),
   })
@@ -124,8 +119,7 @@ exports.createUserBooking = async (req, res) => {
 };
 
 exports.getUserBooking = async (req, res) => {
-  console.log('getuserb');
-  console.log(req.query);
+  // get booking, populate showtime and within showtime populate movie and saloon
   const b = await UserBooking.findById(req.query.id).populate({
     path: 'booking',
     populate: {

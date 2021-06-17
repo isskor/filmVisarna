@@ -7,6 +7,7 @@ const CheckoutPage = () => {
   const history = useHistory();
 
   const createBooking = async () => {
+    // create new booking with all movie tickets
     const newBooking = await fetch(
       'http://localhost:3001/api/createUserBooking',
       {
@@ -20,11 +21,15 @@ const CheckoutPage = () => {
         }),
       }
     );
+
     const data = await newBooking.json();
+    // reset cart to empty arr
+    handleCart([]);
+    // push to order details page
     history.push('/orderdetails/' + data._id);
   };
 
-  const { cartBookings, getCartBookings } = useContext(CartContext);
+  const { cartBookings, getCartBookings, handleCart } = useContext(CartContext);
   const { deleteBooking } = useContext(UserContext);
   // console.log(Object.entries(cartBookings[0]?.tickets[0]));
 
@@ -41,13 +46,14 @@ const CheckoutPage = () => {
   const getTotalCheckoutPrice = () => {
     // loop over all bookings
     return cartBookings.reduce((accumlator, current) => {
-      // get totalprice for each booking
+      // get total price for each booking
       return accumlator + getBookingTotalPrice(current.tickets);
     }, 0);
   };
 
   const cancelBooking = async (id) => {
     await deleteBooking({ bookingId: id });
+    // re-fetch bookings
     await getCartBookings();
   };
 
@@ -57,9 +63,10 @@ const CheckoutPage = () => {
       {cartBookings && (
         <>
           <div className='checkoutTicketCard'>
+            {/* {'loop over bookings '} */}
             {cartBookings?.map((booking) => {
               return (
-                <div className='ticket_card'>
+                <div className='ticket_card' key={booking._id}>
                   <div className='checkoutPoster'>
                     <img src={booking.showtime.movie.poster} alt='' />
                   </div>
@@ -68,17 +75,18 @@ const CheckoutPage = () => {
                     <h4>{booking.showtime.date} {""}{booking.showtime.time}</h4>
                     
                     <p>Tickets:</p>
+                    {/* {'loop tickets'} */}
                     {booking.tickets.map((ticket, i) => {
                       const [key, value] = Object.entries(ticket);
                       if (key[1].quantity > 0)
                         return (
-                          <p>
+                          <p key={i}>
                             {key[0]} - {key[1].quantity} x {key[1].price}
                           </p>
                         );
                     })}
                     <p>
-                      Seats:{' '}
+                      Seats: {/* {loop over seats} */}
                       {booking.seatRows.map((s, i) => (
                         <span key={i}>{s}, </span>
                       ))}

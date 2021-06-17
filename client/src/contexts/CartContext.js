@@ -3,6 +3,7 @@ import { createContext, useState, useEffect } from 'react';
 export const CartContext = createContext();
 
 const CartContextProvider = (props) => {
+  // checks if we have cart in localstorage, if true set that to state, otherwise set empty array
   const [cart, setCart] = useState(
     localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
   );
@@ -26,7 +27,9 @@ const CartContextProvider = (props) => {
   }, [cart]);
 
   const handleCart = (cartArr) => {
+    // update state
     setCart(cartArr);
+    // update local storage
     localStorage.setItem('cart', JSON.stringify(cartArr));
   };
 
