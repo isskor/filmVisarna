@@ -2,8 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+//controllers
 const {
-  createBooking,
   bookShowtime,
   getUserBookings,
   getUserBooking,
@@ -12,7 +12,7 @@ const {
   createUserBooking,
 } = require('../controllers/bookingsController');
 
-// router.post('/createBooking', createBooking);
+//routes
 router.put('/delete', deleteBooking);
 router.put('/bookShowtime', bookShowtime);
 router.get('/get-user-bookings', getUserBookings);
@@ -20,4 +20,5 @@ router.post('/cartBookings', CartBookings);
 router.post('/createUserBooking', createUserBooking);
 router.get('/userBooking', getUserBooking);
 
+//export
 module.exports = router;

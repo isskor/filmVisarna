@@ -16,18 +16,17 @@ export default function Register() {
   const { createUser } = useContext(UserContext);
   const [error, setError] = useState(false);
 
-  // useState variabler för varje input som görs i formuläret, email, password, firstName, lastName
-  //confirmpassword som används för att jämföra om det är samma lösenord i båda lösenordsformulären
-  // useEffecten nedan sätter condition för att lösenordet stämmer överens och om det är längre än 4 karaktärer
-  // isValid är variablen som är true eller false, och därmed ser till om röda utropstecknet syns på frontend eller inte
-  // createuser hämtas ifrån usercontext för att användas här
+  // useState variabler for every input in the form, email, password, firstName, lastName
+  //confirmpassword is for the comparison with the second password form to validate if its the same password
+  // useEffecten contains the logic for checking that the password requirements are met
+  // isValid are true or false, for showing the red triangle for the password input field
 
   useEffect(() => {
     if (confirmPassword === "") {
       setInputValidation(true);
     } else {
       setInputValidation(false);
-      if (confirmPassword.length >= 4 && password === confirmPassword) {
+      if ( /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(confirmPassword) && password === confirmPassword) {
         setIsValid(true);
       } else {
         setIsValid(false);
@@ -47,7 +46,14 @@ export default function Register() {
   };
 
   const passwordInput = (e) => {
-    setPassword(e.target.value);
+    if (
+       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(
+        e.target.value
+      )
+    ) {
+      setError(false);
+      setPassword(e.target.value);
+    } else setError("You did not enter the correct credentials");
   };
 
   const firstNameInput = (e) => {
@@ -119,6 +125,14 @@ export default function Register() {
             required
           />
         </Form.Group>
+        <small
+          id="emailHelp"
+          className={`${styles.Alert} ${
+            error ? styles.Alert_active : styles.Alert_inactive
+          }`}
+        >
+           password must be more than 8 characters long, have at least one number and at least one special character
+        </small>
 
         <Form.Group controlId="formConfirmPassword">
           <Form.Label>Confirm the password</Form.Label>
