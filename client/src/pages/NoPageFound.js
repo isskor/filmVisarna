@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
+import RedirectPage from './RedirectPage';
 
 const NoPageFound = () => {
   return (
     <div>
-      <h2>404 - NO SUCH PAGE FOUND...</h2>
+      <RedirectPage />
     </div>
   );
 };
