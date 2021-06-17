@@ -15,9 +15,9 @@ function TheNavbar() {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ml-auto navbar">
+        <Nav className="ml-auto navbar p-0">
           {loggedInUser ? (
-            <div>
+            <div className="d-flex flex-column flex-lg-row text-center">
               <Link to="/calendar">Calendar</Link>
               <Link to="/Profile">My Profile</Link>
               <Link to="/checkout">Checkout</Link>
@@ -26,7 +26,7 @@ function TheNavbar() {
               </Link>
             </div>
           ) : (
-            <div>
+            <div className="d-flex flex-column flex-lg-row text-center">
               <Link to="/calendar">Calendar</Link>
               <Link to="/loginpage">Sign In</Link>
               <Link to="/loginpage">Register</Link>
