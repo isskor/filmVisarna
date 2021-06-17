@@ -256,7 +256,7 @@ const FilterModal = ({ open, setOpen }) => {
               </ul>
             </form>
             <div className='row justify-content-center'>
-              <div className='col-2'>
+              <div className='d-flex justify-content-center mb-5'>
                 <button onClick={handleSubmit} className='filter_btn'>
                   Apply
                 </button>
