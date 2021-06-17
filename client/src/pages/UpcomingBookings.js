@@ -1,7 +1,7 @@
-import React, { useEffect, useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
-import TicketCard from "../components/TicketCard";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
+import TicketCard from '../components/TicketCard';
+import { useHistory } from 'react-router-dom';
 
 const UpcomingBookings = () => {
   const { userBookings, loggedInUser, getUserBookings, deleteBooking } =
@@ -9,6 +9,8 @@ const UpcomingBookings = () => {
 
   useEffect(() => {
     getUserBookings();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const history = useHistory();
 
@@ -36,7 +38,7 @@ const UpcomingBookings = () => {
   };
 
   return (
-    <div className="bookingsWrapper">
+    <div className='bookingsWrapper'>
       <h1>Upcoming bookings</h1>
       {loggedInUser && bookingsStored() ? (
         userBookings.map((booking, index) => {
@@ -61,7 +63,7 @@ const UpcomingBookings = () => {
       ) : (
         <>
           <h3>You have no upcoming bookings...</h3>
-          <button onClick={() => history.push("/")}>Go to home</button>
+          <button onClick={() => history.push('/')}>Go to home</button>
         </>
       )}
     </div>

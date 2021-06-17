@@ -107,7 +107,7 @@ export default function BookingSeatPage() {
     // sets cart
     handleCart([...cart, bookingJson._id]);
     // render newly booked seats by fetching the show again
-    fetchShow(id);
+    // fetchShow(id);
     // set selected to 0
     setSelected([]);
     history.push('/checkout');
