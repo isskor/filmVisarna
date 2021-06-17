@@ -9,7 +9,6 @@ const CartContextProvider = (props) => {
   const [cartBookings, setCartBookings] = useState([]);
 
   const getCartBookings = async () => {
-    console.log(cart);
     let bookings = await fetch('http://localhost:3001/api/cartBookings', {
       method: 'POST',
       headers: {
@@ -23,7 +22,6 @@ const CartContextProvider = (props) => {
 
   useEffect(() => {
     getCartBookings();
-    console.log(cart);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 

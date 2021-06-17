@@ -6,7 +6,6 @@ const OrderDetails = () => {
   const { setCart } = useContext(CartContext);
 
   const [order, setOrder] = useState([]);
-  console.log(id);
 
   useEffect(() => {
     fetch('http://localhost:3001/api/userBooking?id=' + id)
@@ -30,7 +29,6 @@ const OrderDetails = () => {
             //   get variables for ease of use
             const { seatRows, tickets, showtime } = o;
             const { date, movie, saloon } = showtime;
-            console.log(showtime);
             // get total price
             const totalPrice = tickets.reduce((a, b) => {
               const tick = Object.values(b);

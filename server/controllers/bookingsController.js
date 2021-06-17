@@ -5,7 +5,6 @@ const ShowTime = require('../models/showTimes');
 const mongoose = require('mongoose');
 
 exports.bookShowtime = async (req, res) => {
-  console.log('line 7 bookingcontroller');
   const { showTime, seats, tickets } = req.body;
   // console.log(req.session);
   try {
@@ -24,13 +23,10 @@ exports.bookShowtime = async (req, res) => {
     });
     res.json(booking);
   } catch (err) {
-    console.log(err);
   }
 };
 
 exports.CartBookings = async (req, res) => {
-  console.log('line 30 bookingcontroller');
-  console.log('asdasda');
   let ids = req.body.map((booking) => mongoose.Types.ObjectId(booking));
   const bookings = await Booking.find({ _id: { $in: ids } })
     .populate({
@@ -46,7 +42,6 @@ exports.CartBookings = async (req, res) => {
 
 exports.deleteBooking = async (req, res) => {
   // expects booking id in body
-  console.log(req.body);
   const { bookingId } = req.body;
   try {
     // get booking to delete
@@ -62,8 +57,6 @@ exports.deleteBooking = async (req, res) => {
       return seat;
     });
 
-    console.log(updtShowtime.booked);
-    console.log(newSeatArr);
     // deletebooking
     await Booking.findByIdAndDelete(bookingId).exec();
     // update showtime bookings array
@@ -73,7 +66,6 @@ exports.deleteBooking = async (req, res) => {
 
     res.json({ success: 'deleted' });
   } catch (err) {
-    console.log(`line 70`, err);
   }
 };
 

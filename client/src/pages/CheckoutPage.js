@@ -21,7 +21,6 @@ const CheckoutPage = () => {
       }
     );
     const data = await newBooking.json();
-    console.log(data);
     history.push('/orderdetails/' + data._id);
   };
 

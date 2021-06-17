@@ -4,7 +4,6 @@ const Encrypt = require("../Encrypt");
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      console.log(err);
     } else {
       res.send({ success: "logout" });
     }
@@ -13,7 +12,6 @@ exports.logout = (req, res) => {
 
 exports.whoami = (req, res) => {
   if (req.session.user) {
-    console.log("WHOAMI**************", req.session.user);
     res.json(req.session.user);
   } else {
     res.json({ error: "error" });
