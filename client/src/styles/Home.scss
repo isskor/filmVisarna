@@ -65,3 +65,18 @@
     }
   }
 }
+
+// Medium devices (tablets, 550px and down)
+@media (max-width: 550px) {
+  .searchComponent {
+    justify-content: center;
+    form {
+      align-items: center;
+      margin-left: 2rem;
+    }
+  }
+  .home_filter {
+    display: flex;
+    flex-direction: column;
+  }
+}
