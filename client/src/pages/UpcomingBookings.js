@@ -1,7 +1,7 @@
-import React, { useEffect, useContext } from 'react';
-import { UserContext } from '../contexts/UserContext';
-import TicketCard from '../components/TicketCard';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
+import TicketCard from "../components/TicketCard";
+import { useHistory } from "react-router-dom";
 
 const UpcomingBookings = () => {
   const { userBookings, loggedInUser, getUserBookings, deleteBooking } =
@@ -36,13 +36,13 @@ const UpcomingBookings = () => {
   };
 
   return (
-    <div className='bookingsWrapper'>
+    <div className="bookingsWrapper">
       <h1>Upcoming bookings</h1>
       {loggedInUser && bookingsStored() ? (
         userBookings.map((booking, index) => {
           return countDate(booking) ? (
-            <div key={index}>
-              {' '}
+            <div key={index} className="test">
+              {" "}
               <h2 key={index + 1}>{booking.showtime.movie.title}</h2>
               <button onClick={() => cancelBooking(booking._id)}>Cancel</button>
               {/* Renders a ticketCard for each booked seat in that booking */}
@@ -61,7 +61,7 @@ const UpcomingBookings = () => {
       ) : (
         <>
           <h3>You have no upcoming bookings...</h3>
-          <button onClick={() => history.push('/')}>Go to home</button>
+          <button onClick={() => history.push("/")}>Go to home</button>
         </>
       )}
     </div>
