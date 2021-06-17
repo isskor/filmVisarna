@@ -29,6 +29,7 @@ const OrderDetails = () => {
             //   get variables for ease of use
             const { seatRows, tickets, showtime } = o;
             const { date, movie, saloon } = showtime;
+            console.log(showtime);
             // get total price
             const totalPrice = tickets.reduce((a, b) => {
               const tick = Object.values(b);
@@ -52,6 +53,8 @@ const OrderDetails = () => {
                   ))}
                 </p>
                 <p>Saloon: {saloon.name}</p>
+                <p>Date: {showtime.date}</p>
+                <p>Time: {showtime.time}</p>
                 <p>Total: {totalPrice} kr</p>
                 <hr />
               </div>
