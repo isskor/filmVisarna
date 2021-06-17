@@ -31,6 +31,8 @@ export default function ProfilePage() {
     }
   }, [password, confirmPassword]);
 
+
+  // Set the default input fields to the information of the logged in user
   useEffect(() => {
     if (loggedInUser) {
       setFirstName(loggedInUser.firstName);
@@ -67,6 +69,7 @@ export default function ProfilePage() {
     toggleEditText();
   };
 
+  // Make text appear after editing information which shows for 10s then dissapears
   const toggleEditText = () => {
     setEditSuccess(true);
     setTimeout(() => {
