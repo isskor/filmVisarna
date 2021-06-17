@@ -66,6 +66,8 @@ const CheckoutPage = () => {
                   </div>
                   <div className='ticket_card--tickets'>
                     <h3>{booking.showtime.movie.title}</h3>
+                    <h4>{booking.showtime.date} {""}{booking.showtime.time}</h4>
+                    
                     <p>Tickets:</p>
                     {booking.tickets.map((ticket, i) => {
                       const [key, value] = Object.entries(ticket);

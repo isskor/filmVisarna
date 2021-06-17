@@ -45,6 +45,7 @@ const OrderDetails = () => {
               <div key={o._id}>
                 <p>Movie: {movie.title}</p>
                 <p>Movie Date: {date}</p>
+                <p>Time: {showtime.time}</p>
                 <p>Quantity: {numTickets}</p>
                 <p>
                   Seats:
@@ -53,8 +54,6 @@ const OrderDetails = () => {
                   ))}
                 </p>
                 <p>Saloon: {saloon.name}</p>
-                <p>Date: {showtime.date}</p>
-                <p>Time: {showtime.time}</p>
                 <p>Total: {totalPrice} kr</p>
                 <hr />
               </div>
