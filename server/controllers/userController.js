@@ -1,22 +1,21 @@
-const User = require("../models/User");
-const Encrypt = require("../Encrypt");
+const User = require('../models/User');
+const Encrypt = require('../Encrypt');
 
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      console.log(err);
     } else {
-      res.send({ success: "logout" });
+      res.send({ success: 'logout' });
     }
   });
 };
 
 exports.whoami = (req, res) => {
+  // checks if we have user in session
   if (req.session.user) {
-    console.log('WHOAMI**************', req.session.user);
     res.json(req.session.user);
   } else {
-    res.json({ error: "error" });
+    res.json({ error: 'error' });
   }
 };
 
@@ -24,12 +23,10 @@ exports.whoami = (req, res) => {
 exports.createUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
 
-  let userExist = await User.findOne({ email : req.body.email }).exec();
-
-  //If user exist, 
-  if (userExist) {
-    return res.status(404).json({ error: "User already exists" });
-    
+  let userExist = await User.find({ email: req.body.email }).exec();
+  //If user exist,
+  if (userExist.length > 0) {
+    return res.json({ userExist: 'User already exists' });
   }
   let user = await User.create({
     firstName: req.body.firstName,
@@ -38,15 +35,12 @@ exports.createUser = async (req, res) => {
     password: req.body.password,
   });
 
-  console.log('New user added to database', user);
-  res.json({ success: true });
+  res.json({ success: true, msg: 'new user created:', user });
 };
 
 //Logic to edit a user
 exports.editUser = async (req, res) => {
   req.body.password = Encrypt.encrypt(req.body.password);
-  console.log(`body`, req.body);
-  console.log('sesh =======> ', req.session);
   let updatedUser = await User.findOneAndUpdate(
     { _id: req.session.user._id },
     {
@@ -57,10 +51,8 @@ exports.editUser = async (req, res) => {
     { new: true }
   ).exec();
 
-  console.log('updt =====>', updatedUser);
   updatedUser.password = null;
   req.session.user = updatedUser;
-  console.log('new sesh =====>', req.session.user);
   req.session.save((err) => {
     if (err) return console.log(err);
 
@@ -77,7 +69,7 @@ exports.loginUser = async (req, res) => {
 
   //If database could not find user send back error
   if (!user) {
-    return res.status(404).json({ error: "Wrong credentials" });
+    return res.status(404).json({ error: 'Wrong credentials' });
   }
   user.password = null;
   req.session.user = user;

@@ -98,9 +98,7 @@ exports.createMovie = async (req, res) => {
         plot: response.data.Plot,
         price: price[Math.floor(Math.random() * 3)],
       }).save();
-      console.log(movie);
     } catch (err) {
-      console.log(err.message);
     }
   }
   res.json('hello');

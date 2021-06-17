@@ -6,7 +6,7 @@ import useToggle from './useToggle';
 const FilterModal = ({ open, setOpen }) => {
   const { filterMovies, filters, handleChange } = useContext(FilterContext);
   const [genreList, setGenreList] = useState([]);
-  // toggle filter groups
+  // toggle filter groups, gives each a state of true or false to toggle classnames
   const [priceEl, priceToggle] = useToggle('price');
   const [lengthEl, lengthToggle] = useToggle('length');
   const [ratedEl, ratedToggle] = useToggle('rated');
@@ -15,10 +15,13 @@ const FilterModal = ({ open, setOpen }) => {
 
   const getGenres = (movies) => {
     const list = [];
+    // loop movies and get all genres
     movies.forEach((m) => {
       return list.push(...m.genres);
     });
+    // create a set from list (to filter out only unique values)
     const genreList = new Set(list);
+    // set the unique list to genre list and sort it
     setGenreList([...genreList].sort());
   };
 

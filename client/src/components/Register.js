@@ -36,13 +36,14 @@ export default function Register() {
   }, [password, confirmPassword]);
 
   const emailInput = (e) => {
-    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(e.target.value))
-    {
+    if (
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        e.target.value
+      )
+    ) {
       setError(false);
       setEmail(e.target.value);
-    }else
-    setError(true);
-   
+    } else setError("You did not enter the correct credentials");
   };
 
   const passwordInput = (e) => {
@@ -60,9 +61,9 @@ export default function Register() {
   const checkPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isValid) return
+    if (!isValid) return;
     setError(true);
     let user = {
       firstName: firstName,
@@ -70,8 +71,13 @@ export default function Register() {
       email: email,
       password: password,
     };
-    createUser(user);
-    history.push("/thank-you-for-registering");
+    let newUser = await createUser(user);
+    if (newUser.error) {
+      setError(newUser.error);
+      return;
+    } else {
+      history.push("/thank-you-for-registering");
+    }
   };
 
   return (
@@ -80,10 +86,11 @@ export default function Register() {
       <Form onSubmit={handleSubmit}>
         <Alert
           variant={"danger"}
-          className={`${styles.Alert} ${error? styles.Alert_active : styles.Alert_inactive
-            }`}
+          className={`${styles.Alert} ${
+            error ? styles.Alert_active : styles.Alert_inactive
+          }`}
         >
-          You did not enter the correct credentials
+          {error}
         </Alert>
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="login-info">Email</Form.Label>
@@ -94,8 +101,14 @@ export default function Register() {
             required
           />
         </Form.Group>
-        <small id="emailHelp"    className={`${styles.Alert} ${error? styles.Alert_active : styles.Alert_inactive
-            }`}>Please enter an email adress</small>
+        <small
+          id="emailHelp"
+          className={`${styles.Alert} ${
+            error ? styles.Alert_active : styles.Alert_inactive
+          }`}
+        >
+          Please enter an email adress
+        </small>
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label className="login-info">Password</Form.Label>

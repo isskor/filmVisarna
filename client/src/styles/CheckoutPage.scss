@@ -3,6 +3,7 @@
     color: white;
     margin-top: 5%;
     margin-bottom: 5%;
+   margin: 20px;
   }
   h2 {
     color: white;
@@ -42,8 +43,24 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 20px;
 }
 
 .checkoutTotal {
   margin-top: 40px;
+}
+
+@media screen and (max-width: 600px) {
+  .checkoutpage .ticket_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1rem;
+}
+h3{
+  margin-top: 10px;
+}
+
 }
