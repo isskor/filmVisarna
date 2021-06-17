@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
+import RedirectPage from '../pages/RedirectPage';
 
 //Gets all prop data
 const UserRoutes = ({ children, ...rest }) => {
@@ -10,7 +11,7 @@ const UserRoutes = ({ children, ...rest }) => {
     <Route {...rest}>{children}</Route>
   ) : (
     <div>
-      <h3>404</h3>
+      <RedirectPage />
     </div>
   );
 };
