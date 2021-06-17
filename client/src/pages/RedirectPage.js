@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-export default function RedirectPage() {
+export default function RedirectPage({ userRoute }) {
   const [timer, setTimer] = useState(5);
   const history = useHistory();
+
   useEffect(() => {
     const interval = setInterval(() => {
-      /* do repeated stuff */
       if (timer === 0) {
         history.push('/');
       }
@@ -18,14 +18,18 @@ export default function RedirectPage() {
     <div className='container my-5'>
       <div className='row '>
         <h2 className='text-center'>
-          You Must Be logged in to Proceed to this page
+          {userRoute
+            ? ' You Must Be logged in to Proceed to this page'
+            : 'Page Not Found'}
         </h2>
       </div>
       <div className='row'>
         <div className='col text-center my-5'>
-          <Link to='/loginpage'>
-            <button className='my-3'>Login</button>
-          </Link>
+          {userRoute && (
+            <Link to='/loginpage'>
+              <button className='my-3'>Login</button>
+            </Link>
+          )}
           <Link to='/'>
             <button>Back to Home</button>
           </Link>

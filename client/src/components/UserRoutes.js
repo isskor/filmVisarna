@@ -11,7 +11,7 @@ const UserRoutes = ({ children, ...rest }) => {
     <Route {...rest}>{children}</Route>
   ) : (
     <div>
-      <RedirectPage />
+      <RedirectPage userRoute={true} />
     </div>
   );
 };
