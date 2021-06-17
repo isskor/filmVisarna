@@ -78,7 +78,6 @@ export default function Register() {
       password: password,
     };
     let newUser = await createUser(user);
-    console.log(newUser);
     if (newUser.error) {
       setError(newUser.error);
       return;

@@ -118,7 +118,6 @@ const UserContextProvider = (props) => {
   };
 
   const deleteBooking = async (bookingId) => {
-    console.log(bookingId);
     let bookingToDelete = await fetch("http://localhost:3001/api/delete", {
       method: "PUT",
       credentials: "include",
@@ -127,7 +126,6 @@ const UserContextProvider = (props) => {
       },
       body: JSON.stringify(bookingId),
     });
-    console.log(bookingToDelete);
     // update bookings on user page
     getUserBookings();
     // update cart page

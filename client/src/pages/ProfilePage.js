@@ -92,7 +92,7 @@ export default function ProfilePage() {
               <div className="profileIcon" />
               <div className="profileAccountContent">
                 <div className="formController">
-                  <Form.Group controlId="formBasicPassword">
+                  <Form.Group controlId="formBasicName">
                     <Form.Label className="login-info">First name</Form.Label>
                     <Form.Control
                       onChange={firstNameInput}
@@ -104,7 +104,7 @@ export default function ProfilePage() {
                 </div>
               </div>
               <div className="formController">
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group controlId="formBasicLastName">
                   <Form.Label className="login-info">Last Name</Form.Label>
                   <Form.Control
                     onChange={lastNameInput}
