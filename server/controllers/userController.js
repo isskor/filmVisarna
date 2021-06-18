@@ -1,11 +1,11 @@
-const User = require('../models/User');
-const Encrypt = require('../Encrypt');
+const User = require("../models/User");
+const Encrypt = require("../Encrypt");
 
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
     } else {
-      res.send({ success: 'logout' });
+      res.send({ success: "logout" });
     }
   });
 };
@@ -15,27 +15,34 @@ exports.whoami = (req, res) => {
   if (req.session.user) {
     res.json(req.session.user);
   } else {
-    res.json({ error: 'error' });
+    res.json({ error: "error" });
   }
 };
 
 //Logic to create a user
 exports.createUser = async (req, res) => {
-  req.body.password = Encrypt.encrypt(req.body.password);
-
-  let userExist = await User.find({ email: req.body.email }).exec();
-  //If user exist,
-  if (userExist.length > 0) {
-    return res.json({ userExist: 'User already exists' });
+  let user;
+  if (
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(
+      req.body.password
+    )
+  ) {
+    req.body.password = Encrypt.encrypt(req.body.password);
+    let userExist = await User.find({ email: req.body.email }).exec();
+    //If user exist,
+    if (userExist.length > 0) {
+      return res.json({ userExist: "User already exists" });
+    }
+    user = await User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+    });
+    res.json({ success: true, msg: "new user created:", user });
+  } else {
+    res.json({ error: "error" });
   }
-  let user = await User.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-  });
-
-  res.json({ success: true, msg: 'new user created:', user });
 };
 
 //Logic to edit a user
@@ -69,7 +76,7 @@ exports.loginUser = async (req, res) => {
 
   //If database could not find user send back error
   if (!user) {
-    return res.status(404).json({ error: 'Wrong credentials' });
+    return res.status(404).json({ error: "Wrong credentials" });
   }
   user.password = null;
   req.session.user = user;
