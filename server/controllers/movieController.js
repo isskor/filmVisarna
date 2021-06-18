@@ -13,7 +13,7 @@ exports.getMovieById = async (req, res) => {
 
 //For finding movies/movie in the search bar at home.
 exports.findMovieByKeyword = async (req, res) => {
-
+  // find with mongoose or
   let foundMovies = await Movie.find({
     $or: [
       { title: { $regex: req.body.keyword, $options: 'gi' } },
@@ -28,10 +28,14 @@ exports.findMovieByKeyword = async (req, res) => {
     res.send('No movies found...');
   }
 };
+
 exports.filterMovies = async (req, res) => {
   const { rated, price, runTime, genres, language } = req.body;
 
   let filterData = {};
+
+  // create filter object if those filters exist in body
+  // ex. if rated, price exist ==> filterData = {rated: value, price: {$gte: max, $lte:min }}
 
   if (rated.length > 0) filterData = { ...filterData, rated: { $in: rated } };
   if (price.length > 0)
@@ -55,6 +59,14 @@ exports.filterMovies = async (req, res) => {
   if (language.length > 0)
     filterData = { ...filterData, language: { $in: language } };
 
+  // find movies with the filter object
+  // example filterObj
+  // filterData: {
+  // price : {$gte:max, $lte: min} ,
+  // runtime: {$gte: max, $lte: min},
+  //  genres: {$in: ['action', 'whatever']},
+  //
+  // }
   const filteredMovies = await Movie.find(filterData).exec();
   if (filteredMovies) {
     res.json(filteredMovies);
@@ -64,45 +76,6 @@ exports.filterMovies = async (req, res) => {
 };
 
 // only for creating movies
-exports.createMovie = async (req, res) => {
-  const price = [120, 140, 160];
-  //   const query = [];
-  let data = [];
-  for (let i = 0; i < query.length; i++) {
-    try {
-      const response = await axios.get(
-        // `https://www.omdbapi.com/embed/2d5b182c&t=${query[i].name}`
-        `http://www.omdbapi.com/?t=${query[i].name}&apikey=2d5b182c`
-      );
-      //   console.log(response.data.data);
-      const p = price[Math.floor(Math.random() * 3)];
-      // console.log(query[i].name);
-      //   data.push({ ...response.data.data, price: p, trailer: query[i].trailer });
-
-      const time = +response.data.Runtime.split(' ')[0];
-      const g = response.data.Genre.replace(/\s/g, '');
-      const genres = g.split(',');
-
-      const l = response.data.Language.replace(/\s/g, '');
-      const langs = l.split(',');
-      const movie = await new Movie({
-        title: response.data.Title,
-        rated: response.data.Rated,
-        trailer: query[i].trailer,
-        actors: response.data.Actors,
-        director: response.data.Director,
-        runTime: time,
-        genres: genres,
-        language: langs,
-        poster: response.data.Poster,
-        plot: response.data.Plot,
-        price: price[Math.floor(Math.random() * 3)],
-      }).save();
-    } catch (err) {
-    }
-  }
-  res.json('hello');
-};
 const query = [
   {
     name: 'Dream Horse ',
@@ -200,3 +173,50 @@ const query = [
   { name: 'Joker ', trailer: 'https://www.youtube.com/embed/zAGVQLHvwOY' },
   { name: 'happily', trailer: 'https://www.youtube.com/embed/gyNvw5Dmk' },
 ];
+
+exports.createMovie = async (req, res) => {
+  const price = [120, 140, 160];
+  const query = [];
+  let data = [];
+  // loop all queries, get name and trailer, and use name to fetch data from omdbapi
+  for (let i = 0; i < query.length; i++) {
+    try {
+      const response = await axios.get(
+        // `https://www.omdbapi.com/embed/2d5b182c&t=${query[i].name}`
+        `http://www.omdbapi.com/?t=${query[i].name}&apikey=2d5b182c`
+      );
+
+      // sets random price from price array
+      const p = price[Math.floor(Math.random() * 3)];
+      // console.log(query[i].name);
+      //   data.push({ ...response.data.data, price: p, trailer: query[i].trailer });
+
+      // fix the time and make it a number
+      const time = +response.data.Runtime.split(' ')[0];
+      // splits genres from string to array
+      const g = response.data.Genre.replace(/\s/g, '');
+      // sets genres
+      const genres = g.split(',');
+
+      // same as genres but with langueages
+      const l = response.data.Language.replace(/\s/g, '');
+      const langs = l.split(',');
+
+      // set new movie object
+      const movie = await new Movie({
+        title: response.data.Title,
+        rated: response.data.Rated,
+        trailer: query[i].trailer,
+        actors: response.data.Actors,
+        director: response.data.Director,
+        runTime: time,
+        genres: genres,
+        language: langs,
+        poster: response.data.Poster,
+        plot: response.data.Plot,
+        price: price[Math.floor(Math.random() * 3)],
+      }).save();
+    } catch (err) {}
+  }
+  res.json('hello');
+};
