@@ -46,8 +46,9 @@ export default function Login() {
       <Form onSubmit={handleLogin}>
         <Alert
           variant={'danger'}
-          className={`${styles.Alert} ${error ? styles.Alert_active : styles.Alert_inactive
-            }`}
+          className={`${styles.Alert} ${
+            error ? styles.Alert_active : styles.Alert_inactive
+          }`}
         >
           You did not enter the correct credentials
         </Alert>
