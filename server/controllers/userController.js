@@ -25,6 +25,9 @@ exports.createUser = async (req, res) => {
   if (
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(
       req.body.password
+    ) &&
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+      req.body.email
     )
   ) {
     req.body.password = Encrypt.encrypt(req.body.password);
