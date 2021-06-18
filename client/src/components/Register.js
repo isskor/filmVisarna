@@ -1,16 +1,16 @@
-import { Container, Form, Button, Alert } from "react-bootstrap";
-import { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import styles from "../styles/login.module.css";
-import { UserContext } from "../contexts/UserContext";
+import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import styles from '../styles/login.module.css';
+import { UserContext } from '../contexts/UserContext';
 
 export default function Register() {
   const history = useHistory();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
   const { createUser } = useContext(UserContext);
@@ -22,11 +22,16 @@ export default function Register() {
   // isValid are true or false, for showing the red triangle for the password input field
 
   useEffect(() => {
-    if (confirmPassword === "") {
+    if (confirmPassword === '') {
       setInputValidation(true);
     } else {
       setInputValidation(false);
-      if ( /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(confirmPassword) && password === confirmPassword) {
+      if (
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(
+          confirmPassword
+        ) &&
+        password === confirmPassword
+      ) {
         setIsValid(true);
       } else {
         setIsValid(false);
@@ -42,7 +47,7 @@ export default function Register() {
     ) {
       setError(false);
       setEmail(e.target.value);
-    } else setError("You did not enter the correct credentials");
+    } else setError('You did not enter the correct credentials');
   };
 
   const passwordInput = (e) => {
@@ -53,7 +58,7 @@ export default function Register() {
     ) {
       setError(false);
       setPassword(e.target.value);
-    } else setError("You did not enter the correct credentials");
+    } else setError('You did not enter the correct credentials');
   };
 
   const firstNameInput = (e) => {
@@ -82,33 +87,33 @@ export default function Register() {
       setError(newUser.error);
       return;
     } else {
-      history.push("/thank-you-for-registering");
+      history.push('/thank-you-for-registering');
     }
   };
 
   return (
     <Container>
-      <h1 className="text-center login-info">Register</h1>
+      <h1 className='text-center login-info'>Register</h1>
       <Form onSubmit={handleSubmit}>
         <Alert
-          variant={"danger"}
+          variant={'danger'}
           className={`${styles.Alert} ${
             error ? styles.Alert_active : styles.Alert_inactive
           }`}
         >
           {error}
         </Alert>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label className="login-info">Email</Form.Label>
+        <Form.Group controlId='formBasicEmail'>
+          <Form.Label className='login-info'>Email</Form.Label>
           <Form.Control
             onChange={emailInput}
-            type="email"
-            placeholder="Enter email"
+            type='email'
+            placeholder='Enter email'
             required
           />
         </Form.Group>
         <small
-          id="emailHelp"
+          id='emailHelp'
           className={`${styles.Alert} ${
             error ? styles.Alert_active : styles.Alert_inactive
           }`}
@@ -116,60 +121,61 @@ export default function Register() {
           Please enter an email adress
         </small>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label className="login-info">Password</Form.Label>
+        <Form.Group controlId='formBasicPassword'>
+          <Form.Label className='login-info'>Password</Form.Label>
           <Form.Control
             onChange={passwordInput}
-            type="password"
-            placeholder="Password"
+            type='password'
+            placeholder='Password'
             required
           />
         </Form.Group>
         <small
-          id="emailHelp"
+          id='emailHelp'
           className={`${styles.Alert} ${
             error ? styles.Alert_active : styles.Alert_inactive
           }`}
         >
-           password must be more than 8 characters long, have at least one number and at least one special character
+          password must be more than 8 characters long, have at least one number
+          and at least one special character
         </small>
 
-        <Form.Group controlId="formConfirmPassword">
+        <Form.Group controlId='formConfirmPassword2'>
           <Form.Label>Confirm the password</Form.Label>
           <Form.Control
             className={
-              inputValidation ? "" : isValid ? "is-valid" : "is-invalid"
+              inputValidation ? '' : isValid ? 'is-valid' : 'is-invalid'
             }
             onChange={checkPassword}
-            type="password"
-            name="confirm"
-            placeholder="Confirm Password"
+            type='password'
+            name='confirm'
+            placeholder='Confirm Password'
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label className="login-info">First name</Form.Label>
+        <Form.Group controlId='formBasicname'>
+          <Form.Label className='login-info'>First name</Form.Label>
           <Form.Control
             onChange={firstNameInput}
-            type="text"
-            placeholder="First Name"
+            type='text'
+            placeholder='First Name'
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label className="login-info">Last Name</Form.Label>
+        <Form.Group controlId='formBasiclast'>
+          <Form.Label className='login-info'>Last Name</Form.Label>
           <Form.Control
             onChange={lastNameInput}
-            type="text"
-            placeholder="Last Name"
+            type='text'
+            placeholder='Last Name'
             required
           />
         </Form.Group>
 
-        <Container className="text-center">
-          <Button variant="primary" type="submit">
+        <Container className='text-center'>
+          <Button variant='primary' type='submit'>
             REGISTER
           </Button>
         </Container>

@@ -21,8 +21,7 @@ exports.bookShowtime = async (req, res) => {
       tickets: tickets,
     });
     res.json(booking);
-  } catch (err) {
-  }
+  } catch (err) {}
 };
 
 exports.CartBookings = async (req, res) => {
@@ -66,8 +65,7 @@ exports.deleteBooking = async (req, res) => {
     }).exec();
 
     res.json({ success: 'deleted' });
-  } catch (err) {
-  }
+  } catch (err) {}
 };
 
 //Get all user-bookings
@@ -75,6 +73,7 @@ exports.getUserBookings = async (req, res) => {
   let userBookings = await Booking.find({
     user: mongoose.Types.ObjectId(req.session.user._id),
   })
+    // populate  movie
     .populate({
       path: 'showtime',
       populate: {
@@ -82,6 +81,7 @@ exports.getUserBookings = async (req, res) => {
         model: 'Movie',
       },
     })
+    // populate saloon
     .populate({
       path: 'showtime',
       populate: {
