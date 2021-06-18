@@ -47,7 +47,7 @@ export default function Register() {
 
   const passwordInput = (e) => {
     if (
-       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(
+       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%&'*+/=?^_`{|}~-]).{8,}$/.test(
         e.target.value
       )
     ) {
