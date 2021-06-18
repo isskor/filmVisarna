@@ -48,10 +48,13 @@ const ChooseSeat = ({
   };
 
   const handleSingleSelect = (seat) => {
+    // selected seat is included in the selected state array, remove it
     if (selected.includes(seat)) {
       setSelected(selected.filter((s) => s !== seat));
     } else {
+      // if user have already selected all tickets (ex. user chose 2 seats, then must de-select to select new seat)
       if (selected.length + 1 > numOfTickets) return;
+      // else set seat to selected seat
       setSelected([...selected, seat]);
     }
   };
@@ -72,8 +75,10 @@ const ChooseSeat = ({
     setSelected(preview);
   };
 
+  // toggle between single seat or all
   const toggleSingle = () => {
     setSingleSeat(!singleSeat);
+    // resets preview and selected state
     setSelected([]);
     setPreview([]);
   };
@@ -114,10 +119,11 @@ const ChooseSeat = ({
                   ${i === seatCol2 ? 'seat_col' : ''}
                   ${selected.includes(s) ? 'seat_selected' : ''}
                   ${booked.includes(s) ? 'seat_booked' : ''}
-                  ${preview.filter((seat) => seat === s).length > 0
+                  ${
+                    preview.filter((seat) => seat === s).length > 0
                       ? 'seat_preview'
                       : ''
-                    }
+                  }
                   `}
                   key={i}
                   onMouseOver={

@@ -1,9 +1,9 @@
 // const Movie = require('../models/movie');
-const axios = require("axios");
-const dates = require("../dates.json");
-const Saloon = require("../models/saloon");
-const Movie = require("../models/movie");
-const showTimes = require("../models/showTimes");
+const axios = require('axios');
+const dates = require('../dates.json');
+const Saloon = require('../models/saloon');
+const Movie = require('../models/movie');
+const showTimes = require('../models/showTimes');
 
 // only for creating saloons
 
@@ -12,8 +12,8 @@ exports.getSingleShowtime = async (req, res) => {
   console.log('query', req.query);
   const show = await showTimes
     .findById(id)
-    .populate("movie")
-    .populate("saloon")
+    .populate('movie')
+    .populate('saloon')
     .exec();
 
   res.json(show);
@@ -34,8 +34,8 @@ exports.getShowtime = async (req, res) => {
   console.log('query', req.query);
   const shows = await showTimes
     .find({ movie: id, date })
-    .populate("movie", "title")
-    .populate("saloon", "name")
+    .populate('movie', 'title')
+    .populate('saloon', 'name')
     .exec();
   res.json(shows);
 };
@@ -54,6 +54,7 @@ exports.getShowtime = async (req, res) => {
 //   }
 // };
 
+// loop our date array(jsonfile) and creates a random showtime for each date and time
 exports.createShowTime = async (req, res) => {
   let movies = await Movie.find().exec();
   let saloon = await Saloon.find().exec();
@@ -72,13 +73,13 @@ exports.createShowTime = async (req, res) => {
       movie: m._id,
       saloon: saloon[0]._id,
       date: d.date,
-      time: d.time + ".00",
+      time: d.time + '.00',
     }).save();
     const newMov2 = await new showTimes({
       movie: m2._id,
       saloon: saloon[1]._id,
       date: d.date,
-      time: d.time + ".00",
+      time: d.time + '.00',
     }).save();
   }
 

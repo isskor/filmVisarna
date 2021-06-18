@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import FilterModal from '../components/FilterModal';
-import MovieBannerImage from '../components/MovieBannerImage';
 import SearchComponent from '../components/SearchComponent';
 import { MovieContext } from '../contexts/MovieContext';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+import Slideshow from '../components/Slideshow';
 
 function Home() {
   const [openFilter, setOpenFilter] = useState(false);
@@ -35,9 +35,8 @@ function Home() {
 
   return (
     <>
-
       <div className='Home'>
-        <MovieBannerImage />
+        <Slideshow />
         <div className='home_filter container'>
           <button onClick={() => setOpenFilter(true)} className='filter_btn'>
             <span>Filter</span>
@@ -67,7 +66,6 @@ function Home() {
         </Container>
       </div>
       <FilterModal open={openFilter} setOpen={setOpenFilter} />
-
     </>
   );
 }

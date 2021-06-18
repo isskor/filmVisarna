@@ -9,10 +9,10 @@ export default function Login() {
   const history = useHistory();
   const { login } = useContext(UserContext);
   const [error, setError] = useState(false);
-  // hämtar setLoginState ifrån userContext, för att kunna sätta den till true vid inloggning
-  // use history används för att kunna göra history.push till home vid inloggning
-  // loginmetoden hämtas ifrån userContext för att användas vid login
-  // Error och settError används för att visa en alertruta vid fel inmatning i formulären
+  // we retreive setLoginState from userContext, so we can set it to true when login happens
+  // use history are beeing used to history.push to home when login happens
+  // login is beeing retrieved from UserContext to be used to login
+  // Error  is beeing used to set the alert container to show when some credentials are not beeing met
 
   const [userNameInput, setUserName] = useState('');
   const [passwordInput, setPassword] = useState('');
@@ -26,7 +26,7 @@ export default function Login() {
     setPassword(e.target.value);
     setError(false);
   };
-  // handleUsername och handlePassword tar emot userinput och lägger de i usestate ovan
+  // handleUsername och handlePassword takes the userinput and puts it in the variables above
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,8 +46,9 @@ export default function Login() {
       <Form onSubmit={handleLogin}>
         <Alert
           variant={'danger'}
-          className={`${styles.Alert} ${error ? styles.Alert_active : styles.Alert_inactive
-            }`}
+          className={`${styles.Alert} ${
+            error ? styles.Alert_active : styles.Alert_inactive
+          }`}
         >
           You did not enter the correct credentials
         </Alert>

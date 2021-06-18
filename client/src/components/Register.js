@@ -14,19 +14,24 @@ export default function Register() {
   const [inputValidation, setInputValidation] = useState(true);
   const [isValid, setIsValid] = useState(false);
   const { createUser } = useContext(UserContext);
+  const [error, setError] = useState(false);
 
-  // useState variabler för varje input som görs i formuläret, email, password, firstName, lastName
-  //confirmpassword som används för att jämföra om det är samma lösenord i båda lösenordsformulären
-  // useEffecten nedan sätter condition för att lösenordet stämmer överens och om det är längre än 4 karaktärer
-  // isValid är variablen som är true eller false, och därmed ser till om röda utropstecknet syns på frontend eller inte
-  // createuser hämtas ifrån usercontext för att användas här
+  // useState variabler for every input in the form, email, password, firstName, lastName
+  //confirmpassword is for the comparison with the second password form to validate if its the same password
+  // useEffecten contains the logic for checking that the password requirements are met
+  // isValid are true or false, for showing the red triangle for the password input field
 
   useEffect(() => {
     if (confirmPassword === "") {
       setInputValidation(true);
     } else {
       setInputValidation(false);
-      if (confirmPassword.length >= 4 && password === confirmPassword) {
+      if (
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(
+          confirmPassword
+        ) &&
+        password === confirmPassword
+      ) {
         setIsValid(true);
       } else {
         setIsValid(false);
@@ -35,11 +40,25 @@ export default function Register() {
   }, [password, confirmPassword]);
 
   const emailInput = (e) => {
-    setEmail(e.target.value);
+    if (
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        e.target.value
+      )
+    ) {
+      setError(false);
+      setEmail(e.target.value);
+    } else setError("You did not enter the correct credentials");
   };
 
   const passwordInput = (e) => {
-    setPassword(e.target.value);
+    if (
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%&'*+/=?^_`{|}~-]).{8,}$/.test(
+        e.target.value
+      )
+    ) {
+      setError(false);
+      setPassword(e.target.value);
+    } else setError("You did not enter the correct credentials");
   };
 
   const firstNameInput = (e) => {
@@ -53,17 +72,23 @@ export default function Register() {
   const checkPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isValid) return
+    if (!isValid) return;
+    setError(true);
     let user = {
       firstName: firstName,
       lastName: lastName,
       email: email,
       password: password,
     };
-    createUser(user);
-    history.push("/thank-you-for-registering");
+    let newUser = await createUser(user);
+    if (newUser.error) {
+      setError(newUser.error);
+      return;
+    } else {
+      history.push("/thank-you-for-registering");
+    }
   };
 
   return (
@@ -72,10 +97,11 @@ export default function Register() {
       <Form onSubmit={handleSubmit}>
         <Alert
           variant={"danger"}
-          className={`${styles.Alert} ${Error ? styles.Alert.active : styles.Alert.inactive
-            }`}
+          className={`${styles.Alert} ${
+            error ? styles.Alert_active : styles.Alert_inactive
+          }`}
         >
-          You did not enter the correct credentials
+          {error}
         </Alert>
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="login-info">Email</Form.Label>
@@ -86,6 +112,14 @@ export default function Register() {
             required
           />
         </Form.Group>
+        <small
+          id="emailHelp"
+          className={`${styles.Alert} ${
+            error ? styles.Alert_active : styles.Alert_inactive
+          }`}
+        >
+          Please enter an email adress
+        </small>
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label className="login-info">Password</Form.Label>
@@ -96,8 +130,17 @@ export default function Register() {
             required
           />
         </Form.Group>
+        <small
+          id="emailHelp"
+          className={`${styles.Alert} ${
+            error ? styles.Alert_active : styles.Alert_inactive
+          }`}
+        >
+          password must be more than 8 characters long, have at least one number
+          and at least one special character
+        </small>
 
-        <Form.Group controlId="formConfirmPassword">
+        <Form.Group controlId="formConfirmPassword2">
           <Form.Label>Confirm the password</Form.Label>
           <Form.Control
             className={
@@ -111,7 +154,7 @@ export default function Register() {
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId="formBasicname">
           <Form.Label className="login-info">First name</Form.Label>
           <Form.Control
             onChange={firstNameInput}
@@ -121,7 +164,7 @@ export default function Register() {
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId="formBasiclast">
           <Form.Label className="login-info">Last Name</Form.Label>
           <Form.Control
             onChange={lastNameInput}

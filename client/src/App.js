@@ -21,6 +21,7 @@ import UpcomingBookings from "./pages/UpcomingBookings";
 import ScrollTop from "./components/ScrollTop";
 import NoPageFound from "./pages/NoPageFound";
 import UserRoutes from "./components/UserRoutes";
+import OrderDetails from "./pages/OrderDetails";
 
 function App() {
   return (
@@ -32,49 +33,54 @@ function App() {
             <UserContextProvider>
               <CartContextProvider>
                 <Nav />
-                <Switch>
-                  <Route exact path="/">
-                    <Home />
-                  </Route>
-                  <Route exact path="/about">
-                    <About />
-                  </Route>
-                  <Route exact path="/loginpage">
-                    <LoginPage />
-                  </Route>
-                  <Route exact path="/login">
-                    <Login />
-                  </Route>
-                  <Route exact path="/movies/:id">
-                    <DetailPage />
-                  </Route>
-                  <UserRoutes exact path="/showtime/:id">
-                    <BookingSeatPage />
-                  </UserRoutes>
-                  <UserRoutes
-                    exact
-                    path="/thank-you-for-registering"
-                    component={RegisterThxPage}
-                  />
-                  <UserRoutes exact path="/Profile">
-                    <ProfilePage />
-                  </UserRoutes>
-                  <UserRoutes exact path="/checkout">
-                    <CheckoutPage />
-                  </UserRoutes>
-                  <Route exact path="/calendar">
-                    <BookingCalendar />
-                  </Route>
-                  <UserRoutes exact path="/upcoming-bookings">
-                    <UpcomingBookings />
-                  </UserRoutes>
-                  <UserRoutes exact path="/previous-bookings">
-                    <PreviousBookings />
-                  </UserRoutes>
-                  <Route>
-                    <NoPageFound />
-                  </Route>
-                </Switch>
+                <div className="mb-5 pb-5">
+                  <Switch>
+                    <Route exact path="/">
+                      <Home />
+                    </Route>
+                    <Route exact path="/about">
+                      <About />
+                    </Route>
+                    <Route exact path="/loginpage">
+                      <LoginPage />
+                    </Route>
+                    <Route exact path="/login">
+                      <Login />
+                    </Route>
+                    <Route exact path="/movies/:id">
+                      <DetailPage />
+                    </Route>
+                    <UserRoutes exact path="/showtime/:id">
+                      <BookingSeatPage />
+                    </UserRoutes>
+                    <Route
+                      exact
+                      path="/thank-you-for-registering"
+                      component={RegisterThxPage}
+                    />
+                    <UserRoutes exact path="/Profile">
+                      <ProfilePage />
+                    </UserRoutes>
+                    <UserRoutes exact path="/checkout">
+                      <CheckoutPage />
+                    </UserRoutes>
+                    <Route exact path="/calendar">
+                      <BookingCalendar />
+                    </Route>
+                    <UserRoutes exact path="/upcoming-bookings">
+                      <UpcomingBookings />
+                    </UserRoutes>
+                    <UserRoutes exact path="/previous-bookings">
+                      <PreviousBookings />
+                    </UserRoutes>
+                    <UserRoutes exact path="/orderdetails/:id">
+                      <OrderDetails />
+                    </UserRoutes>
+                    <Route>
+                      <NoPageFound />
+                    </Route>
+                  </Switch>
+                </div>
                 <Footer />
               </CartContextProvider>
             </UserContextProvider>

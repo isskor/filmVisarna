@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-
 export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
@@ -85,8 +84,20 @@ const UserContextProvider = (props) => {
         body: JSON.stringify(user),
       }
     );
+    userToRegiser = await userToRegiser.json();
+
     if (userToRegiser.success) {
       alert("User registered!");
+
+      return true;
+    } else if (userToRegiser.userExist) {
+      return { error: "A user with that email already exist" };
+    } else {
+      // else response will have error
+      // return error
+      let response = await userToRegiser.json();
+
+      return response;
     }
   };
 
@@ -104,6 +115,22 @@ const UserContextProvider = (props) => {
       // console.log('Here is userEdit.user', userToEdit.user);
       setloggedInUser(userToEdit.user);
     }
+  };
+
+  const deleteBooking = async (bookingId) => {
+    let bookingToDelete = await fetch("http://localhost:3001/api/delete", {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingId),
+    });
+    // update bookings on user page
+    getUserBookings();
+    // update cart page
+
+    return bookingToDelete;
   };
 
   const getUserBookings = async () => {
@@ -136,6 +163,7 @@ const UserContextProvider = (props) => {
     logout,
     userBookings,
     getUserBookings,
+    deleteBooking,
   };
   return (
     <UserContext.Provider value={values}>{props.children}</UserContext.Provider>
